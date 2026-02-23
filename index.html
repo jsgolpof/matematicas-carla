@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mates con Carla</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Escuela de Carla 🎒</title>
     <style>
-        /* ESTILOS VISUALES (DISEÑO) */
+        /* ESTILOS VISUALES */
         :root {
-            --primary: #FF6B6B; /* Rojo suave */
-            --secondary: #4ECDC4; /* Turquesa */
-            --accent: #FFE66D; /* Amarillo */
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
             --dark: #292f36;
             --light: #f7fff7;
-            --font-main: 'Comic Sans MS', 'Chalkboard SE', sans-serif; /* Fuente amigable */
+            --font-main: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
         }
 
         body {
@@ -22,7 +22,8 @@
             padding: 0;
             text-align: center;
             color: var(--dark);
-            user-select: none; /* Evita que seleccione texto al tocar */
+            overflow-x: hidden;
+            touch-action: manipulation;
         }
 
         .container {
@@ -32,95 +33,132 @@
             background-color: var(--light);
             min-height: 100vh;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 10px; }
-        h2 { color: var(--dark); }
+        h1 { color: var(--primary); font-size: 2.2rem; margin: 10px 0; }
+        h2 { color: var(--dark); font-size: 1.5rem; }
 
-        /* BOTONES GRANDES PARA TABLET */
+        /* BOTONES */
         button {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            padding: 15px 20px;
+            font-size: 1.3rem;
             border-radius: 15px;
-            margin: 10px;
+            margin: 8px;
             cursor: pointer;
             font-family: var(--font-main);
             box-shadow: 0 5px 0 #c0392b;
             transition: transform 0.1s;
-            width: 80%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 350px;
         }
-
-        button:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 #c0392b;
-        }
-
+        button:active { transform: translateY(4px); box-shadow: 0 1px 0 #c0392b; }
         button.secondary { background-color: var(--secondary); box-shadow: 0 5px 0 #16a085; }
         button.accent { background-color: var(--accent); color: var(--dark); box-shadow: 0 5px 0 #f1c40f; }
+        button.small { width: auto; padding: 10px 20px; font-size: 1rem; }
 
         /* PANTALLAS */
-        .screen { display: none; }
-        .active { display: block; animation: fadeIn 0.5s; }
-
+        .screen { display: none; width: 100%; flex-direction: column; align-items: center; }
+        .active { display: flex; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* ZONA DE EJERCICIO */
-        .exercise-box {
-            background: #eee;
+        /* IMÁGENES DIDÁCTICAS */
+        .img-container {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .emoji-big { font-size: 5rem; }
+
+        /* EJERCICIOS */
+        .question-box {
+            background: #fff;
+            border: 2px dashed var(--primary);
             padding: 20px;
             border-radius: 15px;
-            margin: 20px 0;
-            font-size: 3rem;
-            font-weight: bold;
+            margin: 15px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
+        .question-text { font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; }
+        
+        /* OPCIONES MULTIPLE CHOICE */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+        }
+        .option-btn {
+            background-color: white;
+            color: var(--dark);
+            border: 2px solid var(--secondary);
+            box-shadow: 0 4px 0 #bdc3c7;
+        }
+        .option-btn.correct { background-color: #2ecc71; color: white; border-color: #27ae60; }
+        .option-btn.wrong { background-color: #e74c3c; color: white; border-color: #c0392b; }
 
-        input[type="number"] {
-            font-size: 2.5rem;
+        /* INPUT TEXTO */
+        input[type="text"], input[type="number"] {
+            font-size: 1.5rem;
             padding: 10px;
-            width: 150px;
+            width: 80%;
             text-align: center;
             border: 3px solid var(--primary);
             border-radius: 10px;
             font-family: var(--font-main);
+            margin-bottom: 10px;
         }
 
-        /* BARRA DE PROGRESO Y ESTRELLAS */
-        .stats-bar {
+        /* BARRA SUPERIOR */
+        .top-bar {
+            width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            align-items: center;
             background: var(--dark);
             color: white;
             padding: 10px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-
-        .medal-area {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .medal { font-size: 3rem; filter: grayscale(100%); opacity: 0.5; transition: 0.5s; }
-        .medal.unlocked { filter: grayscale(0%); opacity: 1; transform: scale(1.2); }
-
-        /* MENSAJE DE VOZ */
-        .voice-bubble {
-            background: #e1f5fe;
-            border: 2px solid #4fc3f7;
-            padding: 15px;
-            border-radius: 15px;
+            box-sizing: border-box;
             margin-bottom: 15px;
-            font-size: 1.2rem;
-            position: relative;
         }
-        .voice-icon { font-size: 2rem; cursor: pointer; }
+        .voice-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: none;
+            padding: 0;
+            width: auto;
+            margin: 0;
+        }
+        .voice-btn:active { transform: scale(0.9); }
+
+        /* MEDALLAS */
+        .medal-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .medal-item { text-align: center; }
+        .medal-icon { font-size: 3.5rem; filter: grayscale(100%); opacity: 0.4; transition: 0.5s; }
+        .medal-item.unlocked .medal-icon { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+        .medal-name { font-size: 0.9rem; font-weight: bold; }
 
     </style>
 </head>
@@ -130,56 +168,71 @@
     
     <!-- PANTALLA 1: INICIO -->
     <div id="screen-home" class="screen active">
-        <h1>¡Hola Carla! 🌟</h1>
-        <p>¿Qué quieres aprender hoy?</p>
+        <h1>¡Hola Carla! 🎒</h1>
+        <div class="emoji-big">👩‍🎓</div>
         
-        <div class="stats-bar">
+        <div class="top-bar">
             <span>⭐ <span id="total-stars">0</span></span>
-            <span>🏆 Nivel: <span id="user-level">Novata</span></span>
+            <span>🏆 <span id="user-level">Novata</span></span>
         </div>
 
-        <button onclick="showScreen('screen-menu')">📚 Empezar a Jugar</button>
-        <button class="secondary" onclick="showScreen('screen-rewards')">🏅 Mis Medallas</button>
-        <button class="accent" onclick="resetProgress()">⚠️ Borrar Progreso</button>
+        <button onclick="showScreen('screen-subjects')">📚 Asignaturas</button>
+        <button class="secondary" onclick="showScreen('screen-rewards')">🏅 Mis Logros</button>
+        <button class="accent" onclick="resetProgress()" style="font-size: 0.8rem; margin-top:20px;">⚠️ Borrar Datos</button>
     </div>
 
-    <!-- PANTALLA 2: MENÚ DE TEMAS -->
-    <div id="screen-menu" class="screen">
-        <h2>Elige un tema</h2>
-        <button onclick="startTopic('sumas')">➕ Sumas Divertidas</button>
-        <button onclick="startTopic('restas')">➖ Restas Mágicas</button>
-        <button onclick="startTopic('multiplicar')">✖️ Tablas de Multiplicar</button>
-        <button onclick="startTopic('problemas')">🧠 Problemas de Lógica</button>
-        <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver al Inicio</button>
+    <!-- PANTALLA 2: SELECCIÓN ASIGNATURA -->
+    <div id="screen-subjects" class="screen">
+        <h2>¿Qué estudiamos hoy?</h2>
+        <button onclick="selectSubject('mates')" style="background:#FF9F43">🧮 Matemáticas</button>
+        <button onclick="selectSubject('lengua')" style="background:#54a0ff">📖 Lengua</button>
+        <button onclick="selectSubject('medio')" style="background:#1dd1a1">🌍 Conocimiento del Medio</button>
+        <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver</button>
     </div>
 
-    <!-- PANTALLA 3: ZONA DE EJERCICIOS -->
+    <!-- PANTALLA 3: SELECCIÓN TEMA (Dinámico) -->
+    <div id="screen-topics" class="screen">
+        <h2 id="subject-title">Tema</h2>
+        <div id="topics-container" class="options-grid" style="grid-template-columns: 1fr;">
+            <!-- Los botones se generan con JS -->
+        </div>
+        <button class="secondary" onclick="showScreen('screen-subjects')" style="margin-top:20px">🔙 Atrás</button>
+    </div>
+
+    <!-- PANTALLA 4: JUEGO -->
     <div id="screen-game" class="screen">
-        <div class="voice-bubble">
-            <span class="voice-icon" onclick="speakCurrentText()">🔊</span>
-            <span id="voice-text">¡Vamos allá!</span>
+        <div class="top-bar">
+            <button class="voice-btn" onclick="speakCurrentText()">🔊</button>
+            <span id="game-subtitle">Pregunta</span>
         </div>
 
-        <div class="exercise-box" id="question-display">
-            2 + 2 = ?
+        <!-- Contenedor de Imagen o Emoji -->
+        <div id="visual-area" class="img-container">
+            <!-- Se llena dinámicamente -->
         </div>
 
-        <input type="number" id="answer-input" placeholder="?" inputmode="numeric">
-        <br><br>
-        <button onclick="checkAnswer()">✅ Comprobar</button>
-        <button class="secondary" onclick="showScreen('screen-menu')">🔙 Salir</button>
+        <div class="question-box">
+            <div id="question-text" class="question-text">...</div>
+            
+            <!-- Área de respuestas (Botones o Input) -->
+            <div id="answer-area"></div>
+        </div>
+
+        <button id="btn-check" class="accent" onclick="checkAnswer()" style="display:none;">✅ Comprobar</button>
+        <button class="secondary" onclick="showScreen('screen-topics')">🔙 Salir</button>
     </div>
 
-    <!-- PANTALLA 4: RECOMPENSAS -->
+    <!-- PANTALLA 5: RECOMPENSAS -->
     <div id="screen-rewards" class="screen">
-        <h2>Tu Colección</h2>
+        <h2>Tu Muro de la Fama</h2>
         <p>Consigue estrellas para desbloquear medallas.</p>
-        <div class="medal-area">
-            <div id="medal-1" class="medal">🥉</div>
-            <div id="medal-2" class="medal">🥈</div>
-            <div id="medal-3" class="medal">🥇</div>
-            <div id="medal-4" class="medal">👑</div>
-            <div id="medal-5" class="medal">🚀</div>
+        <div class="medal-grid">
+            <div class="medal-item" id="medal-1"><div class="medal-icon">🥉</div><div class="medal-name">Bronce</div></div>
+            <div class="medal-item" id="medal-2"><div class="medal-icon">🥈</div><div class="medal-name">Plata</div></div>
+            <div class="medal-item" id="medal-3"><div class="medal-icon">🥇</div><div class="medal-name">Oro</div></div>
+            <div class="medal-item" id="medal-4"><div class="medal-icon">👑</div><div class="medal-name">Reina</div></div>
+            <div class="medal-item" id="medal-5"><div class="medal-icon">🚀</div><div class="medal-name">Astronauta</div></div>
+            <div class="medal-item" id="medal-6"><div class="medal-icon">🦄</div><div class="medal-name">Mágica</div></div>
         </div>
         <br>
         <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver</button>
@@ -188,175 +241,386 @@
 </div>
 
 <script>
-    /* LÓGICA DE LA APLICACIÓN (EL CEREBRO) */
+    /* --- BASE DE DATOS DE PREGUNTAS Y TEMAS --- */
+    
+    const db = {
+        mates: [
+            { id: 'sumas', name: '➕ Sumas', type: 'input', gen: () => {
+                let n1 = Math.floor(Math.random() * 500) + 10;
+                let n2 = Math.floor(Math.random() * 400) + 10;
+                return { q: `${n1} + ${n2}`, a: n1 + n2, img: 'math', text: `Cuánto es ${n1} más ${n2}` };
+            }},
+            { id: 'restas', name: '➖ Restas', type: 'input', gen: () => {
+                let n1 = Math.floor(Math.random() * 500) + 50;
+                let n2 = Math.floor(Math.random() * (n1 - 10)) + 1;
+                return { q: `${n1} - ${n2}`, a: n1 - n2, img: 'math', text: `Cuánto es ${n1} menos ${n2}` };
+            }},
+            { id: 'multiplicar', name: '✖️ Tablas', type: 'input', gen: () => {
+                let n1 = Math.floor(Math.random() * 9) + 2;
+                let n2 = Math.floor(Math.random() * 10) + 1;
+                return { q: `${n1} x ${n2}`, a: n1 * n2, img: 'math', text: `Cuánto es ${n1} por ${n2}` };
+            }},
+            { id: 'divisiones', name: '➗ Divisiones', type: 'input', gen: () => {
+                // Divisiones exactas para 3º de Primaria
+                // Divisor entre 2 y 9
+                let divisor = Math.floor(Math.random() * 8) + 2;
+                // Cociente entre 1 y 10 (para que sea manejable)
+                let cociente = Math.floor(Math.random() * 10) + 1;
+                // Dividendo = divisor x cociente (así nos aseguramos que es exacta)
+                let dividendo = divisor * cociente;
+                
+                return { 
+                    q: `${dividendo} : ${divisor}`, 
+                    a: cociente, 
+                    img: 'math', 
+                    text: `Cuánto es ${dividendo} entre ${divisor}` 
+                };
+            }},
+            { id: 'problemas', name: '🧠 Problemas', type: 'input', gen: () => {
+                const scenarios = [
+                    { t: "Tengo {n1} cromos y gano {n2}. ¿Cuántos tengo?", op: '+', img: 'stickers' },
+                    { t: "En el autobús van {n1} personas. Se bajan {n2}. ¿Cuántas quedan?", op: '-', img: 'bus' }
+                ];
+                const s = scenarios[Math.floor(Math.random() * scenarios.length)];
+                let n1 = Math.floor(Math.random() * 20) + 5;
+                let n2 = Math.floor(Math.random() * 10) + 1;
+                let ans = s.op === '+' ? n1 + n2 : n1 - n2;
+                return { q: s.t.replace('{n1}', n1).replace('{n2}', n2), a: ans, img: s.img, text: "Lee el problema y responde." };
+            }}
+        ],
+        lengua: [
+            { id: 'ortografia_bv', name: '🅱️ B o V', type: 'choice', gen: () => {
+                const words = [
+                    { w: 'Burro', correct: 'B', wrong: 'V', img: 'donkey' },
+                    { w: 'Vaca', correct: 'V', wrong: 'B', img: 'cow' },
+                    { w: 'Barco', correct: 'B', wrong: 'V', img: 'ship' },
+                    { w: 'Ventana', correct: 'V', wrong: 'B', img: 'window' },
+                    { w: 'Bebé', correct: 'B', wrong: 'V', img: 'baby' },
+                    { w: 'Volcán', correct: 'V', wrong: 'B', img: 'volcano' }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                let hiddenWord = item.w.replace(item.correct, '_');
+                return { 
+                    q: `¿Cómo se escribe: ${hiddenWord}?`, 
+                    a: item.correct, 
+                    options: [item.correct, item.wrong], 
+                    img: item.img,
+                    text: `Elige la letra que falta en ${hiddenWord}`
+                };
+            }},
+            { id: 'sinonimos', name: '🔄 Sinónimos', type: 'choice', gen: () => {
+                const pairs = [
+                    { w: 'Feliz', s: 'Contento', img: 'happy' },
+                    { w: 'Casa', s: 'Vivienda', img: 'house' },
+                    { w: 'Coche', s: 'Automóvil', img: 'car' },
+                    { w: 'Rápido', s: 'Veloz', img: 'rabbit' },
+                    { w: 'Empezar', s: 'Comenzar', img: 'flag' }
+                ];
+                const item = pairs[Math.floor(Math.random() * pairs.length)];
+                return {
+                    q: `¿Cuál es el sinónimo de ${item.w}?`,
+                    a: item.s,
+                    options: [item.s, 'Triste', 'Lento', 'Parar'],
+                    img: item.img,
+                    text: `Busca la palabra que significa lo mismo que ${item.w}`
+                };
+            }},
+            { id: 'gramatica', name: '📝 Sustantivo o Verbo', type: 'choice', gen: () => {
+                const items = [
+                    { w: 'Correr', type: 'Verbo', img: 'running' },
+                    { w: 'Mesa', type: 'Sustantivo', img: 'table' },
+                    { w: 'Saltar', type: 'Verbo', img: 'jumping' },
+                    { w: 'Perro', type: 'Sustantivo', img: 'dog' },
+                    { w: 'Comer', type: 'Verbo', img: 'eating' }
+                ];
+                const item = items[Math.floor(Math.random() * items.length)];
+                return {
+                    q: `La palabra "${item.w}" es un...`,
+                    a: item.type,
+                    options: ['Sustantivo', 'Verbo'],
+                    img: item.img,
+                    text: `Dime si ${item.w} es un sustantivo o un verbo`
+                };
+            }}
+        ],
+        medio: [
+            { id: 'animales', name: '🦁 Animales', type: 'choice', gen: () => {
+                const animals = [
+                    { n: 'León', d: 'Soy el rey de la selva y tengo melena.', img: 'lion' },
+                    { n: 'Elefante', d: 'Tengo una trompa muy larga y soy gris.', img: 'elephant' },
+                    { n: 'Jirafa', d: 'Tengo el cuello muy largo para comer hojas.', img: 'giraffe' },
+                    { n: 'Pingüino', d: 'Soy un ave que no vuela y vivo en el hielo.', img: 'penguin' },
+                    { n: 'Delfín', d: 'Vivo en el mar y soy muy inteligente.', img: 'dolphin' }
+                ];
+                const item = animals[Math.floor(Math.random() * animals.length)];
+                let others = animals.filter(a => a.n !== item.n).map(a => a.n);
+                others.sort(() => 0.5 - Math.random());
+                let options = [item.n, others[0], others[1]];
+                options.sort(() => 0.5 - Math.random());
 
-    // ESTADO DEL JUEGO
-    let currentTopic = '';
-    let currentQuestion = {};
-    let stars = parseInt(localStorage.getItem('carla_stars')) || 0;
-    updateStats();
-
-    // INICIALIZACIÓN
-    window.onload = function() {
-        speak("Bienvenida Carla. ¿Qué quieres aprender hoy?");
-        checkMedals();
+                return {
+                    q: item.d,
+                    a: item.n,
+                    options: options,
+                    img: item.img,
+                    text: "Escucha la descripción y adivina el animal."
+                };
+            }},
+            { id: 'cuerpo', name: '🫀 Cuerpo Humano', type: 'choice', gen: () => {
+                const parts = [
+                    { n: 'Corazón', d: 'Bombea sangre a todo el cuerpo.', img: 'heart' },
+                    { n: 'Cerebro', d: 'Controla lo que pensamos y recordamos.', img: 'brain' },
+                    { n: 'Pulmones', d: 'Nos ayudan a respirar.', img: 'lungs' },
+                    { n: 'Estómago', d: 'Aquí se digiere la comida.', img: 'stomach' }
+                ];
+                const item = parts[Math.floor(Math.random() * parts.length)];
+                let others = parts.filter(p => p.n !== item.n).map(p => p.n);
+                let options = [item.n, others[0], others[1]].sort(() => 0.5 - Math.random());
+                
+                return {
+                    q: `¿Qué órgano es este? ${item.d}`,
+                    a: item.n,
+                    options: options,
+                    img: item.img,
+                    text: "Adivina la parte del cuerpo."
+                };
+            }},
+            { id: 'geografia', name: '🗺️ Geografía', type: 'choice', gen: () => {
+                const places = [
+                    { q: '¿Cuál es la capital de España?', a: 'Madrid', opts: ['Barcelona', 'Sevilla', 'Valencia'], img: 'spain' },
+                    { q: '¿En qué comunidad vivimos?', a: 'Andalucía', opts: ['Cataluña', 'Galicia', 'Madrid'], img: 'andalucia' },
+                    { q: '¿Cuál es el planeta más grande?', a: 'Júpiter', opts: ['Marte', 'Tierra', 'Venus'], img: 'jupiter' }
+                ];
+                const item = places[Math.floor(Math.random() * places.length)];
+                let options = [item.a, ...item.opts].sort(() => 0.5 - Math.random());
+                return {
+                    q: item.q,
+                    a: item.a,
+                    options: options,
+                    img: item.img,
+                    text: item.q
+                };
+            }}
+        ]
     };
 
-    // NAVEGACIÓN
-    function showScreen(screenId) {
+    /* --- LÓGICA DEL JUEGO --- */
+
+    let currentSubject = '';
+    let currentQuestionData = null;
+    let stars = parseInt(localStorage.getItem('carla_stars')) || 0;
+    let window_activeTopicObj = null;
+    
+    // Inicialización
+    window.onload = function() {
+        updateStats();
+        checkMedals();
+        setTimeout(() => speak("Bienvenida a la escuela de Carla"), 1000);
+    };
+
+    function showScreen(id) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(screenId).classList.add('active');
+        document.getElementById(id).classList.add('active');
+        window.speechSynthesis.cancel();
+    }
+
+    function selectSubject(subj) {
+        currentSubject = subj;
+        document.getElementById('subject-title').innerText = subj === 'mates' ? 'Matemáticas' : (subj === 'lengua' ? 'Lengua' : 'Conocimiento del Medio');
         
-        // Limpiar input al cambiar
-        if(screenId === 'screen-game') {
-            document.getElementById('answer-input').value = '';
-            document.getElementById('answer-input').focus();
-        }
+        const container = document.getElementById('topics-container');
+        container.innerHTML = '';
+        
+        db[subj].forEach(topic => {
+            let btn = document.createElement('button');
+            btn.className = 'secondary';
+            btn.innerText = topic.name;
+            btn.onclick = () => startGame(topic.id);
+            container.appendChild(btn);
+        });
+        
+        showScreen('screen-topics');
     }
 
-    // SISTEMA DE VOZ (TEXT TO SPEECH)
-    function speak(text) {
-        if ('speechSynthesis' in window) {
-            // Cancelar cualquier audio anterior
-            window.speechSynthesis.cancel();
-            
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'es-ES'; // Español
-            utterance.rate = 0.9; // Un poco más lento para niños
-            utterance.pitch = 1.1; // Un poco más agudo (amigable)
-            window.speechSynthesis.speak(utterance);
-            
-            document.getElementById('voice-text').innerText = text;
-        }
-    }
-
-    function speakCurrentText() {
-        speak(document.getElementById('voice-text').innerText);
-    }
-
-    // GENERADOR DE EJERCICIOS (INFINITOS)
-    function startTopic(topic) {
-        currentTopic = topic;
+    function startGame(topicId) {
+        const topic = db[currentSubject].find(t => t.id === topicId);
+        window_activeTopicObj = topic;
         showScreen('screen-game');
-        generateQuestion();
+        generateQuestion(topic);
     }
 
-    function generateQuestion() {
-        let num1, num2, answer, text, display;
-
-        // Lógica según el tema (Dificultad progresiva simple)
-        if (currentTopic === 'sumas') {
-            num1 = Math.floor(Math.random() * 500) + 10;
-            num2 = Math.floor(Math.random() * 400) + 10;
-            answer = num1 + num2;
-            display = `${num1} + ${num2} = ?`;
-            text = `Cuánto es ${num1} más ${num2}`;
-        } 
-        else if (currentTopic === 'restas') {
-            num1 = Math.floor(Math.random() * 500) + 50;
-            num2 = Math.floor(Math.random() * (num1 - 10)) + 1; // Asegurar que el resultado sea positivo
-            answer = num1 - num2;
-            display = `${num1} - ${num2} = ?`;
-            text = `Cuánto es ${num1} menos ${num2}`;
-        }
-        else if (currentTopic === 'multiplicar') {
-            num1 = Math.floor(Math.random() * 9) + 2; // Tablas del 2 al 10
-            num2 = Math.floor(Math.random() * 10) + 1;
-            answer = num1 * num2;
-            display = `${num1} x ${num2} = ?`;
-            text = `Cuánto es ${num1} por ${num2}`;
-        }
-        else if (currentTopic === 'problemas') {
-            // Problemas simples generados aleatoriamente
-            const scenarios = [
-                { t: "Tengo {n1} manzanas y compro {n2} más. ¿Cuántas tengo?", op: '+' },
-                { t: "En una caja hay {n1} juguetes. Regalo {n2}. ¿Cuántos quedan?", op: '-' },
-                { t: "Carla tiene {n1} euros. Su abuela le da {n2}. ¿Cuánto tiene ahora?", op: '+' }
-            ];
-            const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
-            num1 = Math.floor(Math.random() * 20) + 5;
-            num2 = Math.floor(Math.random() * 10) + 1;
-            
-            if(scenario.op === '+') answer = num1 + num2;
-            else answer = num1 - num2;
-
-            display = scenario.t.replace('{n1}', num1).replace('{n2}', num2);
-            text = display.replace('?', ''); // La voz lee el texto sin la interrogación final para fluidez
-        }
-
-        currentQuestion = { answer: answer };
-        document.getElementById('question-display').innerText = display;
-        speak(text);
-    }
-
-    // COMPROBAR RESPUESTA
-    function checkAnswer() {
-        const userVal = parseInt(document.getElementById('answer-input').value);
+    function generateQuestion(topic) {
+        const data = topic.gen();
+        currentQuestionData = data;
         
-        if (userVal === currentQuestion.answer) {
-            // CORRECTO
-            speak("¡Muy bien Carla! Eres genial.");
-            addStar();
-            setTimeout(generateQuestion, 2000); // Espera 2 seg y pone otro
+        document.getElementById('question-text').innerText = data.q;
+        document.getElementById('game-subtitle').innerText = topic.name;
+        
+        const visualArea = document.getElementById('visual-area');
+        visualArea.innerHTML = '';
+        
+        if (data.img === 'math') {
+            visualArea.innerHTML = '<div class="emoji-big">🧮</div>';
         } else {
-            // INCORRECTO
-            speak("Inténtalo de nuevo, tú puedes.");
-            document.getElementById('answer-input').value = '';
-            document.getElementById('answer-input').focus();
+            let imgUrl = `https://loremflickr.com/320/200/${data.img}?lock=${Math.random()}`;
+            let img = document.createElement('img');
+            img.src = imgUrl;
+            img.alt = "Imagen de ayuda";
+            img.onerror = function() { this.style.display='none'; visualArea.innerHTML = '<div class="emoji-big">❓</div>'; };
+            visualArea.appendChild(img);
+        }
+
+        const answerArea = document.getElementById('answer-area');
+        answerArea.innerHTML = '';
+        document.getElementById('btn-check').style.display = 'none';
+
+        if (topic.type === 'input') {
+            let input = document.createElement('input');
+            input.type = currentSubject === 'mates' ? 'number' : 'text';
+            input.id = 'user-answer';
+            input.placeholder = '?';
+            input.autocomplete = 'off';
+            input.inputmode = currentSubject === 'mates' ? 'numeric' : 'text';
+            answerArea.appendChild(input);
+            
+            let btn = document.getElementById('btn-check');
+            btn.style.display = 'inline-block';
+            setTimeout(() => input.focus(), 500);
+        } else if (topic.type === 'choice') {
+            let grid = document.createElement('div');
+            grid.className = 'options-grid';
+            
+            let opts = data.options || [];
+            if(opts.length === 0) opts = ['Opción A', 'Opción B'];
+
+            opts.forEach(opt => {
+                let btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkChoice(btn, opt);
+                grid.appendChild(btn);
+            });
+            answerArea.appendChild(grid);
+        }
+
+        speak(data.text);
+    }
+
+    function checkChoice(btnElement, selectedValue) {
+        let allBtns = document.querySelectorAll('.option-btn');
+        allBtns.forEach(b => b.disabled = true);
+
+        if (selectedValue === currentQuestionData.a) {
+            btnElement.classList.add('correct');
+            handleSuccess();
+        } else {
+            btnElement.classList.add('wrong');
+            allBtns.forEach(b => {
+                if(b.innerText === currentQuestionData.a) b.classList.add('correct');
+            });
+            handleFail();
         }
     }
 
-    // SISTEMA DE PROGRESO Y MEDALLAS
+    function checkAnswer() {
+        let input = document.getElementById('user-answer');
+        let val = input.value.trim();
+        
+        if (currentSubject !== 'mates') {
+            val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            let correct = currentQuestionData.a.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            if (val === correct) {
+                handleSuccess();
+            } else {
+                handleFail();
+                input.value = '';
+                input.focus();
+            }
+        } else {
+            if (parseInt(val) === currentQuestionData.a) {
+                handleSuccess();
+            } else {
+                handleFail();
+                input.value = '';
+                input.focus();
+            }
+        }
+    }
+
+    function handleSuccess() {
+        speak("¡Muy bien! ¡Eres genial!");
+        addStar();
+        setTimeout(() => {
+            generateQuestion(window_activeTopicObj); 
+        }, 2000);
+    }
+
+    function handleFail() {
+        speak("Inténtalo de nuevo, tú puedes.");
+        document.body.style.backgroundColor = "#ffcccc";
+        setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
+    }
+
     function addStar() {
         stars++;
         localStorage.setItem('carla_stars', stars);
         updateStats();
         checkMedals();
-        
-        // Efecto visual simple (cambio de color fondo momentáneo)
         document.body.style.backgroundColor = "#ffeaa7";
         setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
     }
 
     function updateStats() {
         document.getElementById('total-stars').innerText = stars;
-        
         let level = "Novata";
-        if(stars > 10) level = "Aprendiz";
+        if(stars > 20) level = "Aprendiz";
         if(stars > 50) level = "Experta";
-        if(stars > 100) level = "Maestra";
-        if(stars > 500) level = "Genio Matemático";
-        
+        if(stars > 150) level = "Maestra";
+        if(stars > 300) level = "Genio";
+        if(stars > 1000) level = "Legendaria";
         document.getElementById('user-level').innerText = level;
     }
 
     function checkMedals() {
-        // Desbloquear medallas según estrellas
-        if(stars >= 10) document.getElementById('medal-1').classList.add('unlocked');
-        if(stars >= 50) document.getElementById('medal-2').classList.add('unlocked');
-        if(stars >= 100) document.getElementById('medal-3').classList.add('unlocked');
-        if(stars >= 300) document.getElementById('medal-4').classList.add('unlocked');
-        if(stars >= 1000) document.getElementById('medal-5').classList.add('unlocked');
+        const medals = [
+            { id: 'medal-1', req: 10 },
+            { id: 'medal-2', req: 50 },
+            { id: 'medal-3', req: 100 },
+            { id: 'medal-4', req: 300 },
+            { id: 'medal-5', req: 600 },
+            { id: 'medal-6', req: 1000 }
+        ];
+        medals.forEach(m => {
+            if(stars >= m.req) document.getElementById(m.id).classList.add('unlocked');
+            else document.getElementById(m.id).classList.remove('unlocked');
+        });
     }
 
     function resetProgress() {
-        if(confirm("¿Seguro que quieres borrar todas las estrellas?")) {
+        if(confirm("¿Seguro que quieres borrar todas las estrellas y medallas?")) {
             stars = 0;
             localStorage.setItem('carla_stars', 0);
             updateStats();
             checkMedals();
-            alert("Progreso borrado.");
+            alert("Progreso reiniciado.");
         }
     }
 
-    // Permitir usar la tecla "Enter" en la tablet si conecta teclado
-    document.getElementById("answer-input").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            checkAnswer();
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.95;
+            utterance.pitch = 1.1;
+            window.speechSynthesis.speak(utterance);
         }
-    });
+    }
+
+    function speakCurrentText() {
+        if(currentQuestionData) speak(currentQuestionData.text);
+    }
 
 </script>
-
 </body>
 </html>
