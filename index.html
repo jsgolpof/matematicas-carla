@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Escuela de Carla 🎒</title>
     <style>
-        /* ESTILOS VISUALES */
         :root {
             --primary: #FF6B6B;
             --secondary: #4ECDC4;
@@ -38,16 +37,16 @@
             align-items: center;
         }
 
-        h1 { color: var(--primary); font-size: 2.2rem; margin: 10px 0; }
+        h1 { color: var(--primary); font-size: 2rem; margin: 10px 0; }
         h2 { color: var(--dark); font-size: 1.5rem; }
+        h3 { color: var(--primary); font-size: 1.2rem; }
 
-        /* BOTONES */
         button {
             background-color: var(--primary);
             color: white;
             border: none;
             padding: 15px 20px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             border-radius: 15px;
             margin: 8px;
             cursor: pointer;
@@ -60,47 +59,23 @@
         button:active { transform: translateY(4px); box-shadow: 0 1px 0 #c0392b; }
         button.secondary { background-color: var(--secondary); box-shadow: 0 5px 0 #16a085; }
         button.accent { background-color: var(--accent); color: var(--dark); box-shadow: 0 5px 0 #f1c40f; }
-        button.small { width: auto; padding: 10px 20px; font-size: 1rem; }
 
-        /* PANTALLAS */
         .screen { display: none; width: 100%; flex-direction: column; align-items: center; }
         .active { display: flex; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* IMÁGENES DIDÁCTICAS */
-        .img-container {
-            width: 100%;
-            height: 200px;
-            background-color: #eee;
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 10px 0;
-            border: 4px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .emoji-big { font-size: 5rem; }
-
-        /* EJERCICIOS */
         .question-box {
             background: #fff;
-            border: 2px dashed var(--primary);
-            padding: 20px;
-            border-radius: 15px;
+            border: 3px dashed var(--primary);
+            padding: 25px;
+            border-radius: 20px;
             margin: 15px 0;
             width: 100%;
             box-sizing: border-box;
         }
-        .question-text { font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; }
-        
-        /* OPCIONES MULTIPLE CHOICE */
+        .question-text { font-size: 2rem; font-weight: bold; margin-bottom: 15px; color: var(--dark); }
+        .question-hint { font-size: 1.1rem; color: #666; margin-bottom: 15px; font-style: italic; }
+
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -112,23 +87,22 @@
             color: var(--dark);
             border: 2px solid var(--secondary);
             box-shadow: 0 4px 0 #bdc3c7;
+            font-size: 1.1rem;
         }
         .option-btn.correct { background-color: #2ecc71; color: white; border-color: #27ae60; }
         .option-btn.wrong { background-color: #e74c3c; color: white; border-color: #c0392b; }
 
-        /* INPUT TEXTO */
         input[type="text"], input[type="number"] {
-            font-size: 1.5rem;
-            padding: 10px;
+            font-size: 1.8rem;
+            padding: 15px;
             width: 80%;
             text-align: center;
             border: 3px solid var(--primary);
-            border-radius: 10px;
+            border-radius: 15px;
             font-family: var(--font-main);
             margin-bottom: 10px;
         }
 
-        /* BARRA SUPERIOR */
         .top-bar {
             width: 100%;
             display: flex;
@@ -136,7 +110,7 @@
             align-items: center;
             background: var(--dark);
             color: white;
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 10px;
             box-sizing: border-box;
             margin-bottom: 15px;
@@ -151,15 +125,49 @@
             width: auto;
             margin: 0;
         }
-        .voice-btn:active { transform: scale(0.9); }
 
-        /* MEDALLAS */
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--dark);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
         .medal-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .medal-item { text-align: center; }
-        .medal-icon { font-size: 3.5rem; filter: grayscale(100%); opacity: 0.4; transition: 0.5s; }
+        .medal-item { text-align: center; width: 80px; }
+        .medal-icon { font-size: 3rem; filter: grayscale(100%); opacity: 0.4; transition: 0.5s; }
         .medal-item.unlocked .medal-icon { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
-        .medal-name { font-size: 0.9rem; font-weight: bold; }
+        .medal-name { font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
 
+        .emoji-display { font-size: 4rem; margin: 10px 0; }
+        
+        .fraction {
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.5rem;
+        }
+        .fraction .top { border-bottom: 2px solid var(--dark); display: block; padding: 0 5px; }
+        .fraction .bottom { display: block; padding: 0 5px; }
+
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s;
+        }
     </style>
 </head>
 <body>
@@ -169,33 +177,31 @@
     <!-- PANTALLA 1: INICIO -->
     <div id="screen-home" class="screen active">
         <h1>¡Hola Carla! 🎒</h1>
-        <div class="emoji-big">👩‍🎓</div>
+        <div class="emoji-display">👩‍🎓</div>
         
-        <div class="top-bar">
+        <div class="stats-bar">
             <span>⭐ <span id="total-stars">0</span></span>
             <span>🏆 <span id="user-level">Novata</span></span>
         </div>
 
         <button onclick="showScreen('screen-subjects')">📚 Asignaturas</button>
         <button class="secondary" onclick="showScreen('screen-rewards')">🏅 Mis Logros</button>
-        <button class="accent" onclick="resetProgress()" style="font-size: 0.8rem; margin-top:20px;">⚠️ Borrar Datos</button>
+        <button class="accent" onclick="showScreen('screen-settings')">⚙️ Configuración</button>
     </div>
 
     <!-- PANTALLA 2: SELECCIÓN ASIGNATURA -->
     <div id="screen-subjects" class="screen">
         <h2>¿Qué estudiamos hoy?</h2>
         <button onclick="selectSubject('mates')" style="background:#FF9F43">🧮 Matemáticas</button>
-        <button onclick="selectSubject('lengua')" style="background:#54a0ff">📖 Lengua</button>
+        <button onclick="selectSubject('lengua')" style="background:#54a0ff">📖 Lengua Castellana</button>
         <button onclick="selectSubject('medio')" style="background:#1dd1a1">🌍 Conocimiento del Medio</button>
         <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver</button>
     </div>
 
-    <!-- PANTALLA 3: SELECCIÓN TEMA (Dinámico) -->
+    <!-- PANTALLA 3: SELECCIÓN TEMA -->
     <div id="screen-topics" class="screen">
         <h2 id="subject-title">Tema</h2>
-        <div id="topics-container" class="options-grid" style="grid-template-columns: 1fr;">
-            <!-- Los botones se generan con JS -->
-        </div>
+        <div id="topics-container" style="width: 100%;"></div>
         <button class="secondary" onclick="showScreen('screen-subjects')" style="margin-top:20px">🔙 Atrás</button>
     </div>
 
@@ -204,17 +210,18 @@
         <div class="top-bar">
             <button class="voice-btn" onclick="speakCurrentText()">🔊</button>
             <span id="game-subtitle">Pregunta</span>
+            <span>⭐ <span id="session-stars">0</span></span>
         </div>
 
-        <!-- Contenedor de Imagen o Emoji -->
-        <div id="visual-area" class="img-container">
-            <!-- Se llena dinámicamente -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
         </div>
+
+        <div id="emoji-display" class="emoji-display"></div>
 
         <div class="question-box">
+            <div id="question-hint" class="question-hint"></div>
             <div id="question-text" class="question-text">...</div>
-            
-            <!-- Área de respuestas (Botones o Input) -->
             <div id="answer-area"></div>
         </div>
 
@@ -224,7 +231,7 @@
 
     <!-- PANTALLA 5: RECOMPENSAS -->
     <div id="screen-rewards" class="screen">
-        <h2>Tu Muro de la Fama</h2>
+        <h2>🏆 Tu Muro de la Fama</h2>
         <p>Consigue estrellas para desbloquear medallas.</p>
         <div class="medal-grid">
             <div class="medal-item" id="medal-1"><div class="medal-icon">🥉</div><div class="medal-name">Bronce</div></div>
@@ -233,394 +240,1079 @@
             <div class="medal-item" id="medal-4"><div class="medal-icon">👑</div><div class="medal-name">Reina</div></div>
             <div class="medal-item" id="medal-5"><div class="medal-icon">🚀</div><div class="medal-name">Astronauta</div></div>
             <div class="medal-item" id="medal-6"><div class="medal-icon">🦄</div><div class="medal-name">Mágica</div></div>
+            <div class="medal-item" id="medal-7"><div class="medal-icon">🌟</div><div class="medal-name">Estelar</div></div>
+            <div class="medal-item" id="medal-8"><div class="medal-icon">💎</div><div class="medal-name">Diamante</div></div>
         </div>
         <br>
+        <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver</button>
+    </div>
+
+    <!-- PANTALLA 6: CONFIGURACIÓN -->
+    <div id="screen-settings" class="screen">
+        <h2>⚙️ Configuración</h2>
+        <button class="secondary" onclick="toggleVoice()">🔊 Voz: <span id="voice-status">ON</span></button>
+        <button class="accent" onclick="resetProgress()">⚠️ Borrar Todo el Progreso</button>
         <button class="secondary" onclick="showScreen('screen-home')">🏠 Volver</button>
     </div>
 
 </div>
 
 <script>
-    /* --- BASE DE DATOS DE PREGUNTAS Y TEMAS --- */
-    
-    const db = {
-        mates: [
-            { id: 'sumas', name: '➕ Sumas', type: 'input', gen: () => {
-                let n1 = Math.floor(Math.random() * 500) + 10;
-                let n2 = Math.floor(Math.random() * 400) + 10;
-                return { q: `${n1} + ${n2}`, a: n1 + n2, img: 'math', text: `Cuánto es ${n1} más ${n2}` };
-            }},
-            { id: 'restas', name: '➖ Restas', type: 'input', gen: () => {
-                let n1 = Math.floor(Math.random() * 500) + 50;
+/* ============================================================================
+   GENERADORES INFINITOS DE PREGUNTAS - TODAS LAS ASIGNATURAS
+   ============================================================================ */
+
+const db = {
+    mates: [
+        { 
+            id: 'sumas', 
+            name: '➕ Sumas', 
+            type: 'input', 
+            emoji: '🧮',
+            gen: () => {
+                let dificultad = Math.floor(stars / 50); // Aumenta con el progreso
+                let max = 100 + (dificultad * 100);
+                let n1 = Math.floor(Math.random() * max) + 10;
+                let n2 = Math.floor(Math.random() * max) + 10;
+                return { 
+                    q: `${n1} + ${n2}`, 
+                    a: n1 + n2, 
+                    text: `Cuánto es ${n1} más ${n2}`,
+                    hint: 'Suma las dos cantidades'
+                };
+            }
+        },
+        { 
+            id: 'restas', 
+            name: '➖ Restas', 
+            type: 'input', 
+            emoji: '✏️',
+            gen: () => {
+                let dificultad = Math.floor(stars / 50);
+                let max = 100 + (dificultad * 100);
+                let n1 = Math.floor(Math.random() * max) + 50;
                 let n2 = Math.floor(Math.random() * (n1 - 10)) + 1;
-                return { q: `${n1} - ${n2}`, a: n1 - n2, img: 'math', text: `Cuánto es ${n1} menos ${n2}` };
-            }},
-            { id: 'multiplicar', name: '✖️ Tablas', type: 'input', gen: () => {
+                return { 
+                    q: `${n1} - ${n2}`, 
+                    a: n1 - n2, 
+                    text: `Cuánto es ${n1} menos ${n2}`,
+                    hint: 'Resta el número pequeño del grande'
+                };
+            }
+        },
+        { 
+            id: 'multiplicar', 
+            name: '✖️ Tablas de Multiplicar', 
+            type: 'input', 
+            emoji: '📊',
+            gen: () => {
                 let n1 = Math.floor(Math.random() * 9) + 2;
                 let n2 = Math.floor(Math.random() * 10) + 1;
-                return { q: `${n1} x ${n2}`, a: n1 * n2, img: 'math', text: `Cuánto es ${n1} por ${n2}` };
-            }},
-            { id: 'divisiones', name: '➗ Divisiones', type: 'input', gen: () => {
-                // Divisiones exactas para 3º de Primaria
-                // Divisor entre 2 y 9
+                return { 
+                    q: `${n1} × ${n2}`, 
+                    a: n1 * n2, 
+                    text: `Cuánto es ${n1} por ${n2}`,
+                    hint: `Piensa en la tabla del ${n1}`
+                };
+            }
+        },
+        { 
+            id: 'divisiones', 
+            name: '➗ Divisiones Exactas', 
+            type: 'input', 
+            emoji: '🍰',
+            gen: () => {
                 let divisor = Math.floor(Math.random() * 8) + 2;
-                // Cociente entre 1 y 10 (para que sea manejable)
                 let cociente = Math.floor(Math.random() * 10) + 1;
-                // Dividendo = divisor x cociente (así nos aseguramos que es exacta)
                 let dividendo = divisor * cociente;
-                
                 return { 
                     q: `${dividendo} : ${divisor}`, 
                     a: cociente, 
-                    img: 'math', 
-                    text: `Cuánto es ${dividendo} entre ${divisor}` 
+                    text: `Cuánto es ${dividendo} entre ${divisor}`,
+                    hint: '¿Qué número multiplicado por el divisor da el dividendo?'
                 };
-            }},
-            { id: 'problemas', name: '🧠 Problemas', type: 'input', gen: () => {
+            }
+        },
+        { 
+            id: 'fracciones_suma', 
+            name: '🍕 Fracciones - Sumas (mismo denominador)', 
+            type: 'input', 
+            emoji: '🍕',
+            gen: () => {
+                let denom = [2, 3, 4, 5, 6, 8, 10][Math.floor(Math.random() * 7)];
+                let num1 = Math.floor(Math.random() * (denom - 1)) + 1;
+                let num2 = Math.floor(Math.random() * (denom - num1));
+                if (num2 < 1) num2 = 1;
+                return { 
+                    q: `<div class="fraction"><span class="top">${num1}</span><span class="bottom">${denom}</span></div> + <div class="fraction"><span class="top">${num2}</span><span class="bottom">${denom}</span></div> = ?`,
+                    a: `${num1 + num2}/${denom}`,
+                    text: `Suma ${num1} entre ${denom} más ${num2} entre ${denom}`,
+                    hint: 'Suma los numeradores y mantén el denominador',
+                    isFraction: true
+                };
+            }
+        },
+        { 
+            id: 'fracciones_comparar', 
+            name: '🔍 Fracciones - Comparar', 
+            type: 'choice', 
+            emoji: '⚖️',
+            gen: () => {
+                let denom = [2, 3, 4, 5, 6, 8, 10][Math.floor(Math.random() * 7)];
+                let num1 = Math.floor(Math.random() * (denom - 1)) + 1;
+                let num2 = Math.floor(Math.random() * (denom - 1)) + 1;
+                while (num1 === num2) num2 = Math.floor(Math.random() * (denom - 1)) + 1;
+                
+                let correct = num1 > num2 ? '>' : '<';
+                return { 
+                    q: `<div class="fraction"><span class="top">${num1}</span><span class="bottom">${denom}</span></div> ___ <div class="fraction"><span class="top">${num2}</span><span class="bottom">${denom}</span></div>`,
+                    a: correct, 
+                    options: ['>', '<'],
+                    text: `Compara ${num1} entre ${denom} con ${num2} entre ${denom}`,
+                    hint: 'Con el mismo denominador, ¿qué numerador es mayor?',
+                    isFraction: true
+                };
+            }
+        },
+        { 
+            id: 'fracciones_simple', 
+            name: '🎯 Fracciones - Identificar', 
+            type: 'choice', 
+            emoji: '📐',
+            gen: () => {
+                let denom = [2, 3, 4, 5, 6, 8, 10][Math.floor(Math.random() * 7)];
+                let num = Math.floor(Math.random() * (denom - 1)) + 1;
+                let wrong1 = `${num + 1}/${denom}`;
+                let wrong2 = `${num}/${denom + 1}`;
+                let correct = `${num}/${denom}`;
+                let options = [correct, wrong1, wrong2].sort(() => 0.5 - Math.random());
+                
+                return { 
+                    q: `¿Cómo se escribe "${num} partes de ${denom}"?`,
+                    a: correct, 
+                    options: options,
+                    text: `Escribe la fracción ${num} entre ${denom}`,
+                    hint: 'El número de arriba son las partes que tomamos',
+                    isFraction: true
+                };
+            }
+        },
+        { 
+            id: 'problemas_simple', 
+            name: '🧠 Problemas (1 operación)', 
+            type: 'input', 
+            emoji: '📝',
+            gen: () => {
                 const scenarios = [
-                    { t: "Tengo {n1} cromos y gano {n2}. ¿Cuántos tengo?", op: '+', img: 'stickers' },
-                    { t: "En el autobús van {n1} personas. Se bajan {n2}. ¿Cuántas quedan?", op: '-', img: 'bus' }
+                    { t: "Carla tiene {n1} cromos y le regalan {n2} más. ¿Cuántos tiene ahora?", op: '+', emoji: '🏆' },
+                    { t: "En una clase hay {n1} niños. Se van {n2} al recreo. ¿Cuántos quedan?", op: '-', emoji: '🏫' },
+                    { t: "Una caja tiene {n1} lápices. Compramos {n2} cajas iguales. ¿Cuántos lápices en total?", op: '×', emoji: '✏️' },
+                    { t: "Repartimos {n1} caramelos entre {n2} niños. ¿Cuántos caramelos le tocan a cada uno?", op: ':', emoji: '🍬' },
+                    { t: "Un libro cuesta {n1} euros. Compramos {n2} libros. ¿Cuánto pagamos?", op: '×', emoji: '📚' },
+                    { t: "Tenemos {n1} galletas. Nos comemos {n2}. ¿Cuántas quedan?", op: '-', emoji: '🍪' }
                 ];
                 const s = scenarios[Math.floor(Math.random() * scenarios.length)];
-                let n1 = Math.floor(Math.random() * 20) + 5;
-                let n2 = Math.floor(Math.random() * 10) + 1;
-                let ans = s.op === '+' ? n1 + n2 : n1 - n2;
-                return { q: s.t.replace('{n1}', n1).replace('{n2}', n2), a: ans, img: s.img, text: "Lee el problema y responde." };
-            }}
-        ],
-        lengua: [
-            { id: 'ortografia_bv', name: '🅱️ B o V', type: 'choice', gen: () => {
+                let n1, n2, ans;
+                
+                if (s.op === '+') {
+                    n1 = Math.floor(Math.random() * 50) + 10;
+                    n2 = Math.floor(Math.random() * 30) + 5;
+                    ans = n1 + n2;
+                } else if (s.op === '-') {
+                    n1 = Math.floor(Math.random() * 50) + 30;
+                    n2 = Math.floor(Math.random() * (n1 - 10)) + 5;
+                    ans = n1 - n2;
+                } else if (s.op === '×') {
+                    n1 = Math.floor(Math.random() * 9) + 2;
+                    n2 = Math.floor(Math.random() * 5) + 2;
+                    ans = n1 * n2;
+                } else {
+                    n2 = Math.floor(Math.random() * 5) + 2;
+                    ans = Math.floor(Math.random() * 10) + 1;
+                    n1 = n2 * ans;
+                }
+                
+                return { 
+                    q: s.t.replace('{n1}', n1).replace('{n2}', n2), 
+                    a: ans, 
+                    emoji: s.emoji,
+                    text: "Lee el problema cuidadosamente y responde",
+                    hint: s.op === '+' ? 'Suma las cantidades' : s.op === '-' ? 'Resta lo que se va' : s.op === '×' ? 'Multiplica' : 'Divide en partes iguales'
+                };
+            }
+        },
+        { 
+            id: 'problemas_compuestos', 
+            name: '🎯 Problemas Compuestos (2 operaciones)', 
+            type: 'input', 
+            emoji: '🧩',
+            gen: () => {
+                const scenarios = [
+                    { 
+                        t: "Carla tiene {n1} euros. Su abuela le da {n2} euros. Luego gasta {n3} euros en un libro. ¿Cuánto le queda?", 
+                        ops: ['+', '-'],
+                        calc: (a,b,c) => (a + b) - c,
+                        emoji: '💰'
+                    },
+                    { 
+                        t: "En un autobús van {n1} personas. En la primera parada suben {n2} y en la segunda bajan {n3}. ¿Cuántas personas quedan?", 
+                        ops: ['+', '-'],
+                        calc: (a,b,c) => (a + b) - c,
+                        emoji: '🚌'
+                    },
+                    { 
+                        t: "Compramos {n1} paquetes de {n2} cromos cada uno. Ya teníamos {n3} cromos. ¿Cuántos tenemos en total?", 
+                        ops: ['×', '+'],
+                        calc: (a,b,c) => (a * b) + c,
+                        emoji: '🏆'
+                    },
+                    { 
+                        t: "Tenemos {n1} manzanas. Las repartimos entre {n2} niños. Cada niño come {n3} manzanas. ¿Cuántas le sobran a cada niño?", 
+                        ops: [':', '-'],
+                        calc: (a,b,c) => (a / b) - c,
+                        emoji: '🍎'
+                    },
+                    { 
+                        t: "Un libro tiene {n1} páginas. Carla lee {n2} páginas el lunes y {n3} el martes. ¿Cuántas páginas le quedan?", 
+                        ops: ['-', '-'],
+                        calc: (a,b,c) => a - b - c,
+                        emoji: '📖'
+                    },
+                    { 
+                        t: "En una granja hay {n1} gallinas y {n2} vacas. ¿Cuántas patas hay en total?", 
+                        ops: ['×', '+'],
+                        calc: (a,b,c) => (a * 2) + (b * 4),
+                        emoji: '🐔',
+                        special: true
+                    }
+                ];
+                
+                const s = scenarios[Math.floor(Math.random() * scenarios.length)];
+                let n1, n2, n3, ans;
+                
+                if (s.special) {
+                    n1 = Math.floor(Math.random() * 10) + 5;
+                    n2 = Math.floor(Math.random() * 5) + 2;
+                    ans = (n1 * 2) + (n2 * 4);
+                } else if (s.ops.includes(':')) {
+                    n2 = Math.floor(Math.random() * 4) + 2;
+                    let cociente = Math.floor(Math.random() * 8) + 3;
+                    n3 = Math.floor(Math.random() * (cociente - 1)) + 1;
+                    n1 = n2 * cociente;
+                    ans = cociente - n3;
+                } else {
+                    n1 = Math.floor(Math.random() * 50) + 20;
+                    n2 = Math.floor(Math.random() * 20) + 5;
+                    n3 = Math.floor(Math.random() * 15) + 3;
+                    ans = s.calc(n1, n2, n3);
+                }
+                
+                return { 
+                    q: s.t.replace('{n1}', n1).replace('{n2}', n2).replace('{n3}', n3), 
+                    a: ans, 
+                    emoji: s.emoji,
+                    text: "Lee el problema paso a paso. Haz las dos operaciones.",
+                    hint: `Primero ${s.ops[0] === '+' ? 'suma' : s.ops[0] === '-' ? 'resta' : s.ops[0] === '×' ? 'multiplica' : 'divide'}, luego ${s.ops[1] === '+' ? 'suma' : s.ops[1] === '-' ? 'resta' : s.ops[1] === '×' ? 'multiplica' : 'divide'}`
+                };
+            }
+        }
+    ],
+    
+    lengua: [
+        { 
+            id: 'ortografia_bv', 
+            name: '🅱️ Ortografía: B o V', 
+            type: 'choice', 
+            emoji: '✏️',
+            gen: () => {
                 const words = [
-                    { w: 'Burro', correct: 'B', wrong: 'V', img: 'donkey' },
-                    { w: 'Vaca', correct: 'V', wrong: 'B', img: 'cow' },
-                    { w: 'Barco', correct: 'B', wrong: 'V', img: 'ship' },
-                    { w: 'Ventana', correct: 'V', wrong: 'B', img: 'window' },
-                    { w: 'Bebé', correct: 'B', wrong: 'V', img: 'baby' },
-                    { w: 'Volcán', correct: 'V', wrong: 'B', img: 'volcano' }
+                    { w: 'Burro', l: 'B' }, { w: 'Vaca', l: 'V' }, { w: 'Barco', l: 'B' },
+                    { w: 'Ventana', l: 'V' }, { w: 'Bebé', l: 'B' }, { w: 'Volcán', l: 'V' },
+                    { w: 'Biblioteca', l: 'B' }, { w: 'Violín', l: 'V' }, { w: 'Bailar', l: 'B' },
+                    { w: 'Volar', l: 'V' }, { w: 'Bolso', l: 'B' }, { w: 'Vela', l: 'V' },
+                    { w: 'Brazo', l: 'B' }, { w: 'Verde', l: 'V' }, { w: 'Bueno', l: 'B' },
+                    { w: 'Viejo', l: 'V' }, { w: 'Boca', l: 'B' }, { w: 'Vino', l: 'V' }
                 ];
                 const item = words[Math.floor(Math.random() * words.length)];
-                let hiddenWord = item.w.replace(item.correct, '_');
+                let hidden = item.w.replace(item.l, '_');
+                let wrong = item.l === 'B' ? 'V' : 'B';
+                
                 return { 
-                    q: `¿Cómo se escribe: ${hiddenWord}?`, 
-                    a: item.correct, 
-                    options: [item.correct, item.wrong], 
-                    img: item.img,
-                    text: `Elige la letra que falta en ${hiddenWord}`
+                    q: `¿Cómo se escribe: ${hidden}?`, 
+                    a: item.l, 
+                    options: ['B', 'V'],
+                    text: `Elige la letra que falta en ${hidden}`,
+                    hint: `La palabra completa es ${item.w}`
                 };
-            }},
-            { id: 'sinonimos', name: '🔄 Sinónimos', type: 'choice', gen: () => {
+            }
+        },
+        { 
+            id: 'ortografia_gj', 
+            name: '📝 Ortografía: G o J', 
+            type: 'choice', 
+            emoji: '📚',
+            gen: () => {
+                const words = [
+                    { w: 'Gato', l: 'G' }, { w: 'Jirafa', l: 'J' }, { w: 'Galleta', l: 'G' },
+                    { w: 'Jamón', l: 'J' }, { w: 'Gusano', l: 'G' }, { w: 'Juguete', l: 'J' },
+                    { w: 'Gente', l: 'G' }, { w: 'Jardín', l: 'J' }, { w: 'Gafas', l: 'G' },
+                    { w: 'Jueves', l: 'J' }, { w: 'Goma', l: 'G' }, { w: 'Jabón', l: 'J' }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                let hidden = item.w.replace(item.l, '_');
+                let wrong = item.l === 'G' ? 'J' : 'G';
+                
+                return { 
+                    q: `¿Cómo se escribe: ${hidden}?`, 
+                    a: item.l, 
+                    options: ['G', 'J'],
+                    text: `Elige la letra que falta en ${hidden}`,
+                    hint: `La palabra completa es ${item.w}`
+                };
+            }
+        },
+        { 
+            id: 'ortografia_h', 
+            name: '🤫 Ortografía: H (muda)', 
+            type: 'choice', 
+            emoji: '🔤',
+            gen: () => {
+                const words = [
+                    { w: 'Huevo', hasH: true }, { w: 'Oso', hasH: false }, 
+                    { w: 'Hielo', hasH: true }, { w: 'Ola', hasH: false },
+                    { w: 'Hombre', hasH: true }, { w: 'Oro', hasH: false },
+                    { w: 'Hormiga', hasH: true }, { w: 'Ojo', hasH: false },
+                    { w: 'Hijo', hasH: true }, { w: 'Oca', hasH: false },
+                    { w: 'Hueso', hasH: true }, { w: 'Olla', hasH: false }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                let correct = item.hasH ? `H${item.w.substring(1)}` : item.w;
+                let wrong = item.hasH ? item.w.substring(1) : `H${item.w}`;
+                
+                return { 
+                    q: `¿Cómo se escribe correctamente?`, 
+                    a: correct, 
+                    options: [correct, wrong],
+                    text: `Elige la forma correcta de escribir ${item.w}`,
+                    hint: 'Recuerda: la H no suena pero se escribe en algunas palabras'
+                };
+            }
+        },
+        { 
+            id: 'sinonimos', 
+            name: '🔄 Sinónimos', 
+            type: 'choice', 
+            emoji: '🔁',
+            gen: () => {
                 const pairs = [
-                    { w: 'Feliz', s: 'Contento', img: 'happy' },
-                    { w: 'Casa', s: 'Vivienda', img: 'house' },
-                    { w: 'Coche', s: 'Automóvil', img: 'car' },
-                    { w: 'Rápido', s: 'Veloz', img: 'rabbit' },
-                    { w: 'Empezar', s: 'Comenzar', img: 'flag' }
+                    { w: 'Feliz', s: 'Contento' }, { w: 'Triste', s: 'Apenado' },
+                    { w: 'Grande', s: 'Enorme' }, { w: 'Pequeño', s: 'Chiquito' },
+                    { w: 'Rápido', s: 'Veloz' }, { w: 'Lento', s: 'Despacio' },
+                    { w: 'Bonito', s: 'Hermoso' }, { w: 'Feo', s: 'Horrible' },
+                    { w: 'Empezar', s: 'Comenzar' }, { w: 'Terminar', s: 'Acabar' },
+                    { w: 'Casa', s: 'Vivienda' }, { w: 'Coche', s: 'Automóvil' },
+                    { w: 'Niño', s: 'Chico' }, { w: 'Miedo', s: 'Temor' },
+                    { w: 'Amigo', s: 'Compañero' }, { w: 'Listo', s: 'Inteligente' }
                 ];
                 const item = pairs[Math.floor(Math.random() * pairs.length)];
-                return {
-                    q: `¿Cuál es el sinónimo de ${item.w}?`,
-                    a: item.s,
-                    options: [item.s, 'Triste', 'Lento', 'Parar'],
-                    img: item.img,
-                    text: `Busca la palabra que significa lo mismo que ${item.w}`
+                const distractors = ['Triste', 'Lento', 'Feo', 'Grande', 'Pequeño', 'Solo', 'Nuevo', 'Viejo'];
+                let wrong1 = distractors[Math.floor(Math.random() * distractors.length)];
+                let wrong2 = distractors[Math.floor(Math.random() * distractors.length)];
+                while (wrong1 === wrong2 || wrong1 === item.s || wrong2 === item.s) {
+                    wrong1 = distractors[Math.floor(Math.random() * distractors.length)];
+                    wrong2 = distractors[Math.floor(Math.random() * distractors.length)];
+                }
+                
+                return { 
+                    q: `¿Cuál es el sinónimo de "${item.w}"?`, 
+                    a: item.s, 
+                    options: [item.s, wrong1, wrong2].sort(() => 0.5 - Math.random()),
+                    text: `Busca la palabra que significa lo mismo que ${item.w}`,
+                    hint: 'Un sinónimo es una palabra con significado similar'
                 };
-            }},
-            { id: 'gramatica', name: '📝 Sustantivo o Verbo', type: 'choice', gen: () => {
-                const items = [
-                    { w: 'Correr', type: 'Verbo', img: 'running' },
-                    { w: 'Mesa', type: 'Sustantivo', img: 'table' },
-                    { w: 'Saltar', type: 'Verbo', img: 'jumping' },
-                    { w: 'Perro', type: 'Sustantivo', img: 'dog' },
-                    { w: 'Comer', type: 'Verbo', img: 'eating' }
+            }
+        },
+        { 
+            id: 'antonimos', 
+            name: '↔️ Antónimos', 
+            type: 'choice', 
+            emoji: '⇄',
+            gen: () => {
+                const pairs = [
+                    { w: 'Feliz', a: 'Triste' }, { w: 'Grande', a: 'Pequeño' },
+                    { w: 'Rápido', a: 'Lento' }, { w: 'Alto', a: 'Bajo' },
+                    { w: 'Bueno', a: 'Malo' }, { w: 'Día', a: 'Noche' },
+                    { w: 'Caliente', a: 'Frío' }, { w: 'Abierto', a: 'Cerrado' },
+                    { w: 'Lleno', a: 'Vacío' }, { w: 'Nuevo', a: 'Viejo' },
+                    { w: 'Blanco', a: 'Negro' }, { w: 'Arriba', a: 'Abajo' }
                 ];
-                const item = items[Math.floor(Math.random() * items.length)];
-                return {
-                    q: `La palabra "${item.w}" es un...`,
-                    a: item.type,
-                    options: ['Sustantivo', 'Verbo'],
-                    img: item.img,
-                    text: `Dime si ${item.w} es un sustantivo o un verbo`
+                const item = pairs[Math.floor(Math.random() * pairs.length)];
+                const distractors = ['Feliz', 'Grande', 'Rápido', 'Alto', 'Bueno', 'Similar', 'Igual', 'Parecido'];
+                let wrong1 = distractors[Math.floor(Math.random() * distractors.length)];
+                let wrong2 = distractors[Math.floor(Math.random() * distractors.length)];
+                
+                return { 
+                    q: `¿Cuál es el antónimo de "${item.w}"?`, 
+                    a: item.a, 
+                    options: [item.a, wrong1, wrong2].sort(() => 0.5 - Math.random()),
+                    text: `Busca la palabra que significa lo contrario de ${item.w}`,
+                    hint: 'Un antónimo es una palabra con significado opuesto'
                 };
-            }}
-        ],
-        medio: [
-            { id: 'animales', name: '🦁 Animales', type: 'choice', gen: () => {
+            }
+        },
+        { 
+            id: 'gramatica_genero', 
+            name: '👦👧 Género: Masculino o Femenino', 
+            type: 'choice', 
+            emoji: '⚧',
+            gen: () => {
+                const words = [
+                    { w: 'Niño', g: 'Masculino' }, { w: 'Niña', g: 'Femenino' },
+                    { w: 'Perro', g: 'Masculino' }, { w: 'Gata', g: 'Femenino' },
+                    { w: 'Libro', g: 'Masculino' }, { w: 'Mesa', g: 'Femenino' },
+                    { w: 'Sol', g: 'Masculino' }, { w: 'Luna', g: 'Femenino' },
+                    { w: 'Árbol', g: 'Masculino' }, { w: 'Flor', g: 'Femenino' },
+                    { w: 'Coche', g: 'Masculino' }, { w: 'Casa', g: 'Femenino' },
+                    { w: 'Lápiz', g: 'Masculino' }, { w: 'Silla', g: 'Femenino' }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                
+                return { 
+                    q: `La palabra "${item.w}" es de género...`, 
+                    a: item.g, 
+                    options: ['Masculino', 'Femenino'],
+                    text: `Dime si ${item.w} es masculino o femenino`,
+                    hint: 'Fíjate en el artículo: el (masculino) o la (femenino)'
+                };
+            }
+        },
+        { 
+            id: 'gramatica_numero', 
+            name: '1️⃣2️⃣ Número: Singular o Plural', 
+            type: 'choice', 
+            emoji: '🔢',
+            gen: () => {
+                const words = [
+                    { w: 'Casa', n: 'Singular' }, { w: 'Casas', n: 'Plural' },
+                    { w: 'Niño', n: 'Singular' }, { w: 'Niños', n: 'Plural' },
+                    { w: 'Árbol', n: 'Singular' }, { w: 'Árboles', n: 'Plural' },
+                    { w: 'Flor', n: 'Singular' }, { w: 'Flores', n: 'Plural' },
+                    { w: 'Lápiz', n: 'Singular' }, { w: 'Lápices', n: 'Plural' },
+                    { w: 'Ciudad', n: 'Singular' }, { w: 'Ciudades', n: 'Plural' }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                
+                return { 
+                    q: `La palabra "${item.w}" está en número...`, 
+                    a: item.n, 
+                    options: ['Singular', 'Plural'],
+                    text: `Dime si ${item.w} es singular o plural`,
+                    hint: 'Singular = uno, Plural = varios'
+                };
+            }
+        },
+        { 
+            id: 'gramatica_categoria', 
+            name: '📚 Categoría: Sustantivo, Verbo o Adjetivo', 
+            type: 'choice', 
+            emoji: '🏷️',
+            gen: () => {
+                const words = [
+                    { w: 'Correr', c: 'Verbo' }, { w: 'Mesa', c: 'Sustantivo' },
+                    { w: 'Rojo', c: 'Adjetivo' }, { w: 'Comer', c: 'Verbo' },
+                    { w: 'Perro', c: 'Sustantivo' }, { w: 'Grande', c: 'Adjetivo' },
+                    { w: 'Saltar', c: 'Verbo' }, { w: 'Casa', c: 'Sustantivo' },
+                    { w: 'Azul', c: 'Adjetivo' }, { w: 'Dormir', c: 'Verbo' },
+                    { w: 'Libro', c: 'Sustantivo' }, { w: 'Bonito', c: 'Adjetivo' },
+                    { w: 'Escribir', c: 'Verbo' }, { w: 'Escuela', c: 'Sustantivo' },
+                    { w: 'Pequeño', c: 'Adjetivo' }, { w: 'Jugar', c: 'Verbo' }
+                ];
+                const item = words[Math.floor(Math.random() * words.length)];
+                
+                return { 
+                    q: `La palabra "${item.w}" es un/una...`, 
+                    a: item.c, 
+                    options: ['Sustantivo', 'Verbo', 'Adjetivo'],
+                    text: `¿Qué tipo de palabra es ${item.w}?`,
+                    hint: 'Sustantivo=nombre, Verbo=acción, Adjetivo=cualidad'
+                };
+            }
+        },
+        { 
+            id: 'completar_frase', 
+            name: '✍️ Completar la Frase', 
+            type: 'choice', 
+            emoji: '📝',
+            gen: () => {
+                const frases = [
+                    { t: 'El cielo es de color ___', a: 'azul', w: ['verde', 'rojo'] },
+                    { t: 'Los peces viven en el ___', a: 'agua', w: ['aire', 'suelo'] },
+                    { t: 'El sol sale por la ___', a: 'mañana', w: ['noche', 'tarde'] },
+                    { t: 'Para escribir uso un ___', a: 'lápiz', w: ['tenedor', 'zapato'] },
+                    { t: 'Los pájaros tienen ___', a: 'alas', w: ['patas', 'ruedas'] },
+                    { t: 'La leche es de color ___', a: 'blanco', w: ['negro', 'azul'] },
+                    { t: 'El fuego está ___', a: 'caliente', w: ['frío', 'mojado'] },
+                    { t: 'Dormimos en la ___', a: 'noche', w: ['mañana', 'comida'] }
+                ];
+                const item = frases[Math.floor(Math.random() * frases.length)];
+                let options = [item.a, item.w[0], item.w[1]].sort(() => 0.5 - Math.random());
+                
+                return { 
+                    q: `Completa: ${item.t}`, 
+                    a: item.a, 
+                    options: options,
+                    text: 'Elige la palabra que completa correctamente la frase',
+                    hint: 'Lee la frase completa para entender el significado'
+                };
+            }
+        }
+    ],
+    
+    medio: [
+        { 
+            id: 'animales_vertebrados', 
+            name: '🦴 Animales Vertebrados', 
+            type: 'choice', 
+            emoji: '🐾',
+            gen: () => {
                 const animals = [
-                    { n: 'León', d: 'Soy el rey de la selva y tengo melena.', img: 'lion' },
-                    { n: 'Elefante', d: 'Tengo una trompa muy larga y soy gris.', img: 'elephant' },
-                    { n: 'Jirafa', d: 'Tengo el cuello muy largo para comer hojas.', img: 'giraffe' },
-                    { n: 'Pingüino', d: 'Soy un ave que no vuela y vivo en el hielo.', img: 'penguin' },
-                    { n: 'Delfín', d: 'Vivo en el mar y soy muy inteligente.', img: 'dolphin' }
+                    { n: 'León', t: 'Mamífero', h: 'Tierra', c: 'Carnívoro' },
+                    { n: 'Águila', t: 'Ave', h: 'Aire', c: 'Carnívoro' },
+                    { n: 'Tiburón', t: 'Pez', h: 'Agua', c: 'Carnívoro' },
+                    { n: 'Rana', t: 'Anfibio', h: 'Agua/Tierra', c: 'Omnívoro' },
+                    { n: 'Serpiente', t: 'Reptil', h: 'Tierra', c: 'Carnívoro' },
+                    { n: 'Elefante', t: 'Mamífero', h: 'Tierra', c: 'Herbívoro' },
+                    { n: 'Pingüino', t: 'Ave', h: 'Tierra/Agua', c: 'Carnívoro' },
+                    { n: 'Delfín', t: 'Mamífero', h: 'Agua', c: 'Carnívoro' },
+                    { n: 'Tortuga', t: 'Reptil', h: 'Tierra/Agua', c: 'Omnívoro' },
+                    { n: 'Salmon', t: 'Pez', h: 'Agua', c: 'Omnívoro' }
                 ];
                 const item = animals[Math.floor(Math.random() * animals.length)];
-                let others = animals.filter(a => a.n !== item.n).map(a => a.n);
-                others.sort(() => 0.5 - Math.random());
-                let options = [item.n, others[0], others[1]];
-                options.sort(() => 0.5 - Math.random());
-
-                return {
-                    q: item.d,
-                    a: item.n,
-                    options: options,
-                    img: item.img,
-                    text: "Escucha la descripción y adivina el animal."
+                const questions = [
+                    { q: `¿Qué tipo de animal es el/la ${item.n}?`, a: item.t, opts: ['Mamífero', 'Ave', 'Pez', 'Reptil', 'Anfibio'] },
+                    { q: `¿Dónde vive el/la ${item.n}?`, a: item.h, opts: ['Tierra', 'Agua', 'Aire', 'Agua/Tierra', 'Tierra/Agua'] },
+                    { q: `¿Qué come el/la ${item.n}?`, a: item.c, opts: ['Carnívoro', 'Herbívoro', 'Omnívoro'] }
+                ];
+                const q = questions[Math.floor(Math.random() * questions.length)];
+                let options = [q.a];
+                let allOpts = [...new Set(q.opts.flatMap(o => o.split('/')))];
+                while (options.length < 3) {
+                    let rand = allOpts[Math.floor(Math.random() * allOpts.length)];
+                    if (!options.includes(rand)) options.push(rand);
+                }
+                
+                return { 
+                    q: q.q, 
+                    a: q.a, 
+                    options: options.sort(() => 0.5 - Math.random()),
+                    text: q.q,
+                    hint: `Piensa en las características del ${item.n}`
                 };
-            }},
-            { id: 'cuerpo', name: '🫀 Cuerpo Humano', type: 'choice', gen: () => {
+            }
+        },
+        { 
+            id: 'animales_invertebrados', 
+            name: '🐌 Animales Invertebrados', 
+            type: 'choice', 
+            emoji: '🦋',
+            gen: () => {
+                const animals = [
+                    { n: 'Mariposa', t: 'Insecto' }, { n: 'Araña', t: 'Arácnido' },
+                    { n: 'Caracol', t: 'Molusco' }, { n: 'Lombriz', t: 'Gusano' },
+                    { n: 'Pulpo', t: 'Molusco' }, { n: 'Abeja', t: 'Insecto' },
+                    { n: 'Cangrejo', t: 'Crustáceo' }, { n: 'Estrella de mar', t: 'Equinodermo' },
+                    { n: 'Hormiga', t: 'Insecto' }, { n: 'Medusa', t: 'Cnidario' }
+                ];
+                const item = animals[Math.floor(Math.random() * animals.length)];
+                
+                return { 
+                    q: `¿Qué tipo de animal invertebrado es el/la ${item.n}?`, 
+                    a: item.t, 
+                    options: ['Insecto', 'Arácnido', 'Molusco', 'Gusano', 'Crustáceo', 'Equinodermo', 'Cnidario'].sort(() => 0.5 - Math.random()).slice(0, 4),
+                    text: `Clasifica al ${item.n}`,
+                    hint: 'Los invertebrados no tienen columna vertebral'
+                };
+            }
+        },
+        { 
+            id: 'cuerpo_humano', 
+            name: '🫀 Cuerpo Humano - Órganos', 
+            type: 'choice', 
+            emoji: '🏥',
+            gen: () => {
+                const organs = [
+                    { n: 'Corazón', f: 'Bombea sangre a todo el cuerpo' },
+                    { n: 'Cerebro', f: 'Controla el pensamiento y los movimientos' },
+                    { n: 'Pulmones', f: 'Nos permiten respirar' },
+                    { n: 'Estómago', f: 'Digiere los alimentos' },
+                    { n: 'Hígado', f: 'Filtra la sangre y produce bilis' },
+                    { n: 'Riñones', f: 'Filtran la sangre y producen orina' },
+                    { n: 'Intestinos', f: 'Absorben los nutrientes de la comida' },
+                    { n: 'Esqueleto', f: 'Da forma y protección al cuerpo' }
+                ];
+                const item = organs[Math.floor(Math.random() * organs.length)];
+                const others = organs.filter(o => o.n !== item.n).map(o => o.n);
+                let options = [item.n, others[0], others[1], others[2]].sort(() => 0.5 - Math.random());
+                
+                return { 
+                    q: `¿Qué órgano tiene esta función? "${item.f}"`, 
+                    a: item.n, 
+                    options: options,
+                    text: 'Adivina el órgano por su función',
+                    hint: 'Piensa en qué parte del cuerpo hace esa función'
+                };
+            }
+        },
+        { 
+            id: 'sentidos', 
+            name: '👁️ Los 5 Sentidos', 
+            type: 'choice', 
+            emoji: '🖐️',
+            gen: () => {
+                const sentidos = [
+                    { s: 'Vista', o: 'Ojos', a: 'Ver' },
+                    { s: 'Oído', o: 'Oídos', a: 'Escuchar' },
+                    { s: 'Olfato', o: 'Nariz', a: 'Oler' },
+                    { s: 'Gusto', o: 'Lengua', a: 'Saborear' },
+                    { s: 'Tacto', o: 'Piel', a: 'Tocar' }
+                ];
+                const item = sentidos[Math.floor(Math.random() * sentidos.length)];
+                const questions = [
+                    { q: `¿Qué órgano usamos para ${item.a.toLowerCase()}?`, a: item.o },
+                    { q: `¿A qué sentido pertenecen los/las ${item.o}?`, a: item.s },
+                    { q: `Con el sentido de la ${item.s.toLowerCase()} podemos...`, a: item.a }
+                ];
+                const q = questions[Math.floor(Math.random() * questions.length)];
+                
+                let allAnswers = sentidos.map(s => q.a === s.o ? s.o : q.a === s.s ? s.s : s.a);
+                let options = [q.a];
+                while (options.length < 4) {
+                    let rand = allAnswers[Math.floor(Math.random() * allAnswers.length)];
+                    if (!options.includes(rand) && rand !== q.a) options.push(rand);
+                }
+                
+                return { 
+                    q: q.q, 
+                    a: q.a, 
+                    options: options.sort(() => 0.5 - Math.random()),
+                    text: q.q,
+                    hint: 'Recuerda los 5 sentidos: vista, oído, olfato, gusto y tacto'
+                };
+            }
+        },
+        { 
+            id: 'plantas', 
+            name: '🌱 Las Plantas', 
+            type: 'choice', 
+            emoji: '🌻',
+            gen: () => {
                 const parts = [
-                    { n: 'Corazón', d: 'Bombea sangre a todo el cuerpo.', img: 'heart' },
-                    { n: 'Cerebro', d: 'Controla lo que pensamos y recordamos.', img: 'brain' },
-                    { n: 'Pulmones', d: 'Nos ayudan a respirar.', img: 'lungs' },
-                    { n: 'Estómago', d: 'Aquí se digiere la comida.', img: 'stomach' }
+                    { p: 'Raíz', f: 'Absorbe agua y nutrientes del suelo' },
+                    { p: 'Tallo', f: 'Sostiene la planta y transporta savia' },
+                    { p: 'Hojas', f: 'Hacen la fotosíntesis con la luz del sol' },
+                    { p: 'Flor', f: 'Es la parte reproductora de la planta' },
+                    { p: 'Fruto', f: 'Contiene las semillas' }
                 ];
                 const item = parts[Math.floor(Math.random() * parts.length)];
-                let others = parts.filter(p => p.n !== item.n).map(p => p.n);
-                let options = [item.n, others[0], others[1]].sort(() => 0.5 - Math.random());
                 
-                return {
-                    q: `¿Qué órgano es este? ${item.d}`,
-                    a: item.n,
-                    options: options,
-                    img: item.img,
-                    text: "Adivina la parte del cuerpo."
+                return { 
+                    q: `¿Qué parte de la planta tiene esta función? "${item.f}"`, 
+                    a: item.p, 
+                    options: ['Raíz', 'Tallo', 'Hojas', 'Flor', 'Fruto'].sort(() => 0.5 - Math.random()),
+                    text: 'Identifica la parte de la planta',
+                    hint: 'Piensa en qué parte de la planta hace esa función'
                 };
-            }},
-            { id: 'geografia', name: '🗺️ Geografía', type: 'choice', gen: () => {
-                const places = [
-                    { q: '¿Cuál es la capital de España?', a: 'Madrid', opts: ['Barcelona', 'Sevilla', 'Valencia'], img: 'spain' },
-                    { q: '¿En qué comunidad vivimos?', a: 'Andalucía', opts: ['Cataluña', 'Galicia', 'Madrid'], img: 'andalucia' },
-                    { q: '¿Cuál es el planeta más grande?', a: 'Júpiter', opts: ['Marte', 'Tierra', 'Venus'], img: 'jupiter' }
+            }
+        },
+        { 
+            id: 'geografia_espana', 
+            name: '🗺️ Geografía de España', 
+            type: 'choice', 
+            emoji: '🇪🇸',
+            gen: () => {
+                const comunidades = [
+                    { n: 'Andalucía', c: 'Sevilla' }, { n: 'Cataluña', c: 'Barcelona' },
+                    { n: 'Madrid', c: 'Madrid' }, { n: 'Valencia', c: 'Valencia' },
+                    { n: 'Galicia', c: 'Santiago de Compostela' }, { n: 'País Vasco', c: 'Vitoria' },
+                    { n: 'Canarias', c: 'Las Palmas / Santa Cruz' }, { n: 'Aragón', c: 'Zaragoza' },
+                    { n: 'Castilla y León', c: 'Valladolid' }, { n: 'Murcia', c: 'Murcia' }
                 ];
-                const item = places[Math.floor(Math.random() * places.length)];
-                let options = [item.a, ...item.opts].sort(() => 0.5 - Math.random());
-                return {
-                    q: item.q,
-                    a: item.a,
+                const item = comunidades[Math.floor(Math.random() * comunidades.length)];
+                const types = [
+                    { q: `¿Cuál es la capital de ${item.n}?`, a: item.c },
+                    { q: `¿En qué comunidad está ${item.c}?`, a: item.n }
+                ];
+                const q = types[Math.floor(Math.random() * types.length)];
+                
+                let others = comunidades.filter(c => c.n !== item.n && c.c !== item.c);
+                let wrongAnswers = others.slice(0, 3).map(o => q.a === item.c ? o.c : o.n);
+                let options = [q.a, ...wrongAnswers].sort(() => 0.5 - Math.random());
+                
+                return { 
+                    q: q.q, 
+                    a: q.a, 
                     options: options,
-                    img: item.img,
-                    text: item.q
+                    text: q.q,
+                    hint: 'Recuerda las comunidades autónomas de España'
                 };
-            }}
-        ]
-    };
+            }
+        },
+        { 
+            id: 'sistema_solar', 
+            name: '🪐 El Sistema Solar', 
+            type: 'choice', 
+            emoji: '🌍',
+            gen: () => {
+                const planets = [
+                    { n: 'Mercurio', d: 'Es el planeta más cercano al Sol' },
+                    { n: 'Venus', d: 'Es el planeta más caliente' },
+                    { n: 'Tierra', d: 'Es el único planeta con vida conocida' },
+                    { n: 'Marte', d: 'Es conocido como el planeta rojo' },
+                    { n: 'Júpiter', d: 'Es el planeta más grande del sistema solar' },
+                    { n: 'Saturno', d: 'Tiene anillos muy visibles' },
+                    { n: 'Urano', d: 'Gira de lado respecto a su órbita' },
+                    { n: 'Neptuno', d: 'Es el planeta más lejano del Sol' }
+                ];
+                const item = planets[Math.floor(Math.random() * planets.length)];
+                const questions = [
+                    { q: `¿Qué planeta es este? "${item.d}"`, a: item.n },
+                    { q: `¿Cuál es la característica principal de ${item.n}?`, a: item.d }
+                ];
+                const q = questions[Math.floor(Math.random() * questions.length)];
+                
+                let others = planets.filter(p => p.n !== item.n).map(p => p.n);
+                let options = [item.n, others[0], others[1], others[2]].sort(() => 0.5 - Math.random());
+                
+                return { 
+                    q: q.q, 
+                    a: q.a, 
+                    options: q.a === item.n ? options : planets.map(p => p.d).sort(() => 0.5 - Math.random()).slice(0, 4),
+                    text: q.q,
+                    hint: 'Recuerda los 8 planetas del sistema solar'
+                };
+            }
+        },
+        { 
+            id: 'materia_estados', 
+            name: '💧 Estados de la Materia', 
+            type: 'choice', 
+            emoji: '🧊',
+            gen: () => {
+                const examples = [
+                    { e: 'Hielo', s: 'Sólido' }, { e: 'Agua', s: 'Líquido' },
+                    { e: 'Vapor', s: 'Gaseoso' }, { e: 'Madera', s: 'Sólido' },
+                    { e: 'Leche', s: 'Líquido' }, { e: 'Aire', s: 'Gaseoso' },
+                    { e: 'Piedra', s: 'Sólido' }, { e: 'Zumo', s: 'Líquido' },
+                    { e: 'Humo', s: 'Gaseoso' }, { e: 'Metal', s: 'Sólido' }
+                ];
+                const item = examples[Math.floor(Math.random() * examples.length)];
+                
+                return { 
+                    q: `¿En qué estado se encuentra: ${item.e}?`, 
+                    a: item.s, 
+                    options: ['Sólido', 'Líquido', 'Gaseoso'],
+                    text: `Identifica el estado de la materia de ${item.e}`,
+                    hint: 'Sólido=tiene forma fija, Líquido=se adapta al recipiente, Gaseoso=se expande'
+                };
+            }
+        },
+        { 
+            id: 'ecosistemas', 
+            name: '🌲 Ecosistemas', 
+            type: 'choice', 
+            emoji: '🏞️',
+            gen: () => {
+                const ecosistemas = [
+                    { n: 'Bosque', d: 'Hay muchos árboles y animales como ciervos y lobos' },
+                    { n: 'Desierto', d: 'Hace mucho calor y hay poca agua' },
+                    { n: 'Océano', d: 'Es agua salada y vive mucha vida marina' },
+                    { n: 'Río', d: 'Es agua dulce que fluye hacia el mar' },
+                    { n: 'Montaña', d: 'Es terreno elevado con clima frío en la cima' },
+                    { n: 'Sabana', d: 'Hay hierba alta y animales como leones y elefantes' }
+                ];
+                const item = ecosistemas[Math.floor(Math.random() * ecosistemas.length)];
+                
+                return { 
+                    q: `¿Qué ecosistema es este? "${item.d}"`, 
+                    a: item.n, 
+                    options: ['Bosque', 'Desierto', 'Océano', 'Río', 'Montaña', 'Sabana'].sort(() => 0.5 - Math.random()).slice(0, 4),
+                    text: 'Identifica el ecosistema por su descripción',
+                    hint: 'Piensa en las características del lugar'
+                };
+            }
+        }
+    ]
+};
 
-    /* --- LÓGICA DEL JUEGO --- */
+/* ============================================================================
+   LÓGICA DEL JUEGO
+   ============================================================================ */
 
-    let currentSubject = '';
-    let currentQuestionData = null;
-    let stars = parseInt(localStorage.getItem('carla_stars')) || 0;
-    let window_activeTopicObj = null;
+let currentSubject = '';
+let currentQuestionData = null;
+let stars = parseInt(localStorage.getItem('carla_stars')) || 0;
+let sessionStars = 0;
+let voiceEnabled = true;
+let window_activeTopicObj = null;
+let consecutiveCorrect = 0;
+
+window.onload = function() {
+    updateStats();
+    checkMedals();
+    document.getElementById('voice-status').innerText = voiceEnabled ? 'ON' : 'OFF';
+    setTimeout(() => speak("Bienvenida a la escuela de Carla"), 500);
+};
+
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.speechSynthesis.cancel();
+}
+
+function selectSubject(subj) {
+    currentSubject = subj;
+    const titles = { 'mates': '🧮 Matemáticas', 'lengua': '📖 Lengua Castellana', 'medio': '🌍 Conocimiento del Medio' };
+    document.getElementById('subject-title').innerText = titles[subj];
     
-    // Inicialización
-    window.onload = function() {
-        updateStats();
-        checkMedals();
-        setTimeout(() => speak("Bienvenida a la escuela de Carla"), 1000);
-    };
+    const container = document.getElementById('topics-container');
+    container.innerHTML = '';
+    
+    db[subj].forEach(topic => {
+        let btn = document.createElement('button');
+        btn.className = 'secondary';
+        btn.innerText = topic.name;
+        btn.onclick = () => startGame(topic.id);
+        container.appendChild(btn);
+    });
+    
+    showScreen('screen-topics');
+}
 
-    function showScreen(id) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.speechSynthesis.cancel();
-    }
+function startGame(topicId) {
+    const topic = db[currentSubject].find(t => t.id === topicId);
+    window_activeTopicObj = topic;
+    sessionStars = 0;
+    consecutiveCorrect = 0;
+    document.getElementById('session-stars').innerText = sessionStars;
+    showScreen('screen-game');
+    generateQuestion(topic);
+}
 
-    function selectSubject(subj) {
-        currentSubject = subj;
-        document.getElementById('subject-title').innerText = subj === 'mates' ? 'Matemáticas' : (subj === 'lengua' ? 'Lengua' : 'Conocimiento del Medio');
-        
-        const container = document.getElementById('topics-container');
-        container.innerHTML = '';
-        
-        db[subj].forEach(topic => {
-            let btn = document.createElement('button');
-            btn.className = 'secondary';
-            btn.innerText = topic.name;
-            btn.onclick = () => startGame(topic.id);
-            container.appendChild(btn);
-        });
-        
-        showScreen('screen-topics');
-    }
-
-    function startGame(topicId) {
-        const topic = db[currentSubject].find(t => t.id === topicId);
-        window_activeTopicObj = topic;
-        showScreen('screen-game');
-        generateQuestion(topic);
-    }
-
-    function generateQuestion(topic) {
-        const data = topic.gen();
-        currentQuestionData = data;
-        
+function generateQuestion(topic) {
+    const data = topic.gen();
+    currentQuestionData = data;
+    
+    // Actualizar UI
+    document.getElementById('game-subtitle').innerText = topic.name;
+    document.getElementById('emoji-display').innerText = topic.emoji || '📚';
+    document.getElementById('question-hint').innerText = data.hint || '';
+    
+    // Manejar HTML en preguntas (fracciones)
+    if (data.isFraction) {
+        document.getElementById('question-text').innerHTML = data.q;
+    } else {
         document.getElementById('question-text').innerText = data.q;
-        document.getElementById('game-subtitle').innerText = topic.name;
+    }
+    
+    // Actualizar barra de progreso
+    let progress = Math.min((sessionStars / 10) * 100, 100);
+    document.getElementById('progress-bar').style.width = progress + '%';
+    
+    const answerArea = document.getElementById('answer-area');
+    answerArea.innerHTML = '';
+    document.getElementById('btn-check').style.display = 'none';
+
+    if (topic.type === 'input') {
+        let input = document.createElement('input');
+        input.type = currentSubject === 'mates' && !data.isFraction ? 'number' : 'text';
+        input.id = 'user-answer';
+        input.placeholder = '?';
+        input.autocomplete = 'off';
+        input.inputmode = currentSubject === 'mates' && !data.isFraction ? 'numeric' : 'text';
+        answerArea.appendChild(input);
         
-        const visualArea = document.getElementById('visual-area');
-        visualArea.innerHTML = '';
+        let btn = document.getElementById('btn-check');
+        btn.style.display = 'inline-block';
+        setTimeout(() => { input.focus(); }, 500);
+    } else if (topic.type === 'choice') {
+        let grid = document.createElement('div');
+        grid.className = 'options-grid';
+        grid.style.gridTemplateColumns = data.options.length > 2 ? '1fr 1fr' : '1fr';
         
-        if (data.img === 'math') {
-            visualArea.innerHTML = '<div class="emoji-big">🧮</div>';
-        } else {
-            let imgUrl = `https://loremflickr.com/320/200/${data.img}?lock=${Math.random()}`;
-            let img = document.createElement('img');
-            img.src = imgUrl;
-            img.alt = "Imagen de ayuda";
-            img.onerror = function() { this.style.display='none'; visualArea.innerHTML = '<div class="emoji-big">❓</div>'; };
-            visualArea.appendChild(img);
-        }
+        let opts = data.options || [];
+        if(opts.length === 0) opts = ['Opción A', 'Opción B'];
 
-        const answerArea = document.getElementById('answer-area');
-        answerArea.innerHTML = '';
-        document.getElementById('btn-check').style.display = 'none';
-
-        if (topic.type === 'input') {
-            let input = document.createElement('input');
-            input.type = currentSubject === 'mates' ? 'number' : 'text';
-            input.id = 'user-answer';
-            input.placeholder = '?';
-            input.autocomplete = 'off';
-            input.inputmode = currentSubject === 'mates' ? 'numeric' : 'text';
-            answerArea.appendChild(input);
-            
-            let btn = document.getElementById('btn-check');
-            btn.style.display = 'inline-block';
-            setTimeout(() => input.focus(), 500);
-        } else if (topic.type === 'choice') {
-            let grid = document.createElement('div');
-            grid.className = 'options-grid';
-            
-            let opts = data.options || [];
-            if(opts.length === 0) opts = ['Opción A', 'Opción B'];
-
-            opts.forEach(opt => {
-                let btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkChoice(btn, opt);
-                grid.appendChild(btn);
-            });
-            answerArea.appendChild(grid);
-        }
-
-        speak(data.text);
+        opts.forEach(opt => {
+            let btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkChoice(btn, opt);
+            grid.appendChild(btn);
+        });
+        answerArea.appendChild(grid);
     }
 
-    function checkChoice(btnElement, selectedValue) {
-        let allBtns = document.querySelectorAll('.option-btn');
-        allBtns.forEach(b => b.disabled = true);
+    if (voiceEnabled) speak(data.text);
+}
 
-        if (selectedValue === currentQuestionData.a) {
-            btnElement.classList.add('correct');
+function checkChoice(btnElement, selectedValue) {
+    let allBtns = document.querySelectorAll('.option-btn');
+    allBtns.forEach(b => b.disabled = true);
+
+    if (selectedValue == currentQuestionData.a) {
+        btnElement.classList.add('correct');
+        handleSuccess();
+    } else {
+        btnElement.classList.add('wrong');
+        allBtns.forEach(b => {
+            if(b.innerText == currentQuestionData.a) b.classList.add('correct');
+        });
+        handleFail();
+    }
+}
+
+function checkAnswer() {
+    let input = document.getElementById('user-answer');
+    let val = input.value.trim();
+    
+    if (!val) return;
+    
+    if (currentQuestionData.isFraction) {
+        // Comparar fracciones como texto
+        if (val.replace(/\s/g, '') === currentQuestionData.a.replace(/\s/g, '')) {
             handleSuccess();
         } else {
-            btnElement.classList.add('wrong');
-            allBtns.forEach(b => {
-                if(b.innerText === currentQuestionData.a) b.classList.add('correct');
-            });
             handleFail();
+            input.value = '';
+            input.focus();
         }
-    }
-
-    function checkAnswer() {
-        let input = document.getElementById('user-answer');
-        let val = input.value.trim();
-        
-        if (currentSubject !== 'mates') {
-            val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-            let correct = currentQuestionData.a.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-            if (val === correct) {
-                handleSuccess();
-            } else {
-                handleFail();
-                input.value = '';
-                input.focus();
-            }
+    } else if (currentSubject !== 'mates') {
+        val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        let correct = currentQuestionData.a.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        if (val === correct) {
+            handleSuccess();
         } else {
-            if (parseInt(val) === currentQuestionData.a) {
-                handleSuccess();
-            } else {
-                handleFail();
-                input.value = '';
-                input.focus();
-            }
+            handleFail();
+            input.value = '';
+            input.focus();
+        }
+    } else {
+        if (parseInt(val) === currentQuestionData.a) {
+            handleSuccess();
+        } else {
+            handleFail();
+            input.value = '';
+            input.focus();
         }
     }
+}
 
-    function handleSuccess() {
-        speak("¡Muy bien! ¡Eres genial!");
-        addStar();
-        setTimeout(() => {
-            generateQuestion(window_activeTopicObj); 
-        }, 2000);
+function handleSuccess() {
+    consecutiveCorrect++;
+    let bonusStars = consecutiveCorrect >= 5 ? 2 : 1;
+    
+    if (voiceEnabled) {
+        const praises = ["¡Muy bien!", "¡Excelente!", "¡Eres genial!", "¡Fantástico!", "¡Sigue así!"];
+        speak(praises[Math.floor(Math.random() * praises.length)]);
     }
+    
+    addStar(bonusStars);
+    sessionStars += bonusStars;
+    document.getElementById('session-stars').innerText = sessionStars;
+    
+    setTimeout(() => {
+        generateQuestion(window_activeTopicObj); 
+    }, 1500);
+}
 
-    function handleFail() {
-        speak("Inténtalo de nuevo, tú puedes.");
-        document.body.style.backgroundColor = "#ffcccc";
-        setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
+function handleFail() {
+    consecutiveCorrect = 0;
+    if (voiceEnabled) {
+        const encourages = ["Inténtalo de nuevo", "Tú puedes", "Casi lo tienes", "Sigue practicando"];
+        speak(encourages[Math.floor(Math.random() * encourages.length)]);
     }
+    document.body.style.backgroundColor = "#ffcccc";
+    setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
+}
 
-    function addStar() {
-        stars++;
-        localStorage.setItem('carla_stars', stars);
+function addStar(amount = 1) {
+    stars += amount;
+    localStorage.setItem('carla_stars', stars);
+    updateStats();
+    checkMedals();
+    
+    document.body.style.backgroundColor = "#ffeaa7";
+    setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
+}
+
+function updateStats() {
+    document.getElementById('total-stars').innerText = stars;
+    let level = "Novata";
+    if(stars > 20) level = "Aprendiz";
+    if(stars > 50) level = "Experta";
+    if(stars > 150) level = "Maestra";
+    if(stars > 300) level = "Genio";
+    if(stars > 600) level = "Legendaria";
+    if(stars > 1000) level = "Inmortal";
+    document.getElementById('user-level').innerText = level;
+}
+
+function checkMedals() {
+    const medals = [
+        { id: 'medal-1', req: 10 },
+        { id: 'medal-2', req: 50 },
+        { id: 'medal-3', req: 100 },
+        { id: 'medal-4', req: 300 },
+        { id: 'medal-5', req: 600 },
+        { id: 'medal-6', req: 1000 },
+        { id: 'medal-7', req: 2000 },
+        { id: 'medal-8', req: 5000 }
+    ];
+    medals.forEach(m => {
+        if(stars >= m.req) document.getElementById(m.id).classList.add('unlocked');
+        else document.getElementById(m.id).classList.remove('unlocked');
+    });
+}
+
+function resetProgress() {
+    if(confirm("⚠️ ¿Seguro que quieres BORRAR TODO el progreso? Esto no se puede deshacer.")) {
+        stars = 0;
+        localStorage.setItem('carla_stars', 0);
         updateStats();
         checkMedals();
-        document.body.style.backgroundColor = "#ffeaa7";
-        setTimeout(() => { document.body.style.backgroundColor = "var(--secondary)"; }, 300);
+        alert("Progreso reiniciado.");
+        showScreen('screen-home');
     }
+}
 
-    function updateStats() {
-        document.getElementById('total-stars').innerText = stars;
-        let level = "Novata";
-        if(stars > 20) level = "Aprendiz";
-        if(stars > 50) level = "Experta";
-        if(stars > 150) level = "Maestra";
-        if(stars > 300) level = "Genio";
-        if(stars > 1000) level = "Legendaria";
-        document.getElementById('user-level').innerText = level;
+function toggleVoice() {
+    voiceEnabled = !voiceEnabled;
+    document.getElementById('voice-status').innerText = voiceEnabled ? 'ON' : 'OFF';
+    if(voiceEnabled) speak("Voz activada");
+}
+
+function speak(text) {
+    if (!voiceEnabled) return;
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.95;
+        utterance.pitch = 1.1;
+        window.speechSynthesis.speak(utterance);
     }
+}
 
-    function checkMedals() {
-        const medals = [
-            { id: 'medal-1', req: 10 },
-            { id: 'medal-2', req: 50 },
-            { id: 'medal-3', req: 100 },
-            { id: 'medal-4', req: 300 },
-            { id: 'medal-5', req: 600 },
-            { id: 'medal-6', req: 1000 }
-        ];
-        medals.forEach(m => {
-            if(stars >= m.req) document.getElementById(m.id).classList.add('unlocked');
-            else document.getElementById(m.id).classList.remove('unlocked');
-        });
+function speakCurrentText() {
+    if(currentQuestionData && voiceEnabled) speak(currentQuestionData.text);
+}
+
+// Permitir Enter para enviar respuesta
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && document.getElementById('btn-check').style.display !== 'none') {
+        checkAnswer();
     }
-
-    function resetProgress() {
-        if(confirm("¿Seguro que quieres borrar todas las estrellas y medallas?")) {
-            stars = 0;
-            localStorage.setItem('carla_stars', 0);
-            updateStats();
-            checkMedals();
-            alert("Progreso reiniciado.");
-        }
-    }
-
-    function speak(text) {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'es-ES';
-            utterance.rate = 0.95;
-            utterance.pitch = 1.1;
-            window.speechSynthesis.speak(utterance);
-        }
-    }
-
-    function speakCurrentText() {
-        if(currentQuestionData) speak(currentQuestionData.text);
-    }
-
+});
 </script>
 </body>
 </html>
