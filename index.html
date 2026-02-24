@@ -30,14 +30,15 @@
         }
 
         .container {
+            width: 100%;
             max-width: 700px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         /* HEADER & STATS */
@@ -47,34 +48,35 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(255,255,255,0.95);
-            padding: 12px 20px;
+            padding: 8px 15px;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             box-sizing: border-box;
         }
         .level-badge {
             background: linear-gradient(135deg, var(--primary), #ff8e8e);
             color: white;
-            padding: 6px 16px;
+            padding: 5px 12px;
             border-radius: 20px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .user-display {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             font-weight: bold;
             color: var(--dark);
+            font-size: 0.9rem;
         }
 
         /* CARDS */
         .card {
             background: white;
-            border-radius: 25px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 20px;
             width: 100%;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
@@ -108,24 +110,24 @@
         h1 { 
             color: var(--dark); 
             margin-top: 0; 
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        h2 { color: var(--secondary); margin: 10px 0; }
-        h3 { color: var(--dark); margin: 15px 0; }
+        h2 { color: var(--secondary); margin: 10px 0; font-size: clamp(1.2rem, 3vw, 1.5rem); }
+        h3 { color: var(--dark); margin: 15px 0; font-size: clamp(1rem, 2.5vw, 1.2rem); }
 
         /* BUTTONS */
         button {
             background: white;
             border: 3px solid var(--secondary);
             color: var(--dark);
-            padding: 15px 20px;
+            padding: 12px 15px;
             width: 100%;
-            margin: 8px 0;
-            border-radius: 15px;
-            font-size: 1.1rem;
+            margin: 6px 0;
+            border-radius: 12px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
@@ -163,13 +165,13 @@
         .emoji-selector {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin: 20px 0;
+            gap: 8px;
+            margin: 15px 0;
         }
         .emoji-option {
-            font-size: 2.5rem;
-            padding: 10px;
-            border-radius: 15px;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            padding: 8px;
+            border-radius: 12px;
             border: 3px solid #ddd;
             background: #f8f9fa;
             cursor: pointer;
@@ -182,25 +184,25 @@
             animation: pulse 0.3s;
         }
         .emoji-preview {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin: 15px 0;
-            min-height: 60px;
+            min-height: 50px;
         }
         .login-input {
             width: 100%;
-            padding: 15px;
-            font-size: 1.3rem;
+            padding: 12px;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             text-align: center;
             border: 3px solid var(--secondary);
-            border-radius: 15px;
+            border-radius: 12px;
             margin: 10px 0;
             font-family: var(--font-main);
         }
 
         /* GAME SPECIFIC */
         .question-area { 
-            font-size: 1.5rem; 
-            margin: 20px 0; 
+            font-size: clamp(1.1rem, 3vw, 1.5rem); 
+            margin: 15px 0; 
             line-height: 1.6; 
             font-weight: 600;
             color: var(--dark);
@@ -208,25 +210,25 @@
         .question-context {
             background: linear-gradient(135deg, #e8f6f3, #f0f9ff);
             border-left: 5px solid var(--secondary);
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             margin: 15px 0;
             text-align: left;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
         }
         .options-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-            margin-top: 20px; 
+            gap: 10px; 
+            margin-top: 15px; 
         }
         
         .option-btn {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             border: 3px solid #ddd;
             box-shadow: 0 5px 0 #ccc;
-            font-size: 1.1rem;
-            min-height: 60px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            min-height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -258,21 +260,23 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
         }
         .feedback-card {
             background: white;
-            padding: 30px;
-            border-radius: 25px;
-            max-width: 500px;
+            padding: 25px;
+            border-radius: 20px;
+            max-width: 450px;
             width: 100%;
             text-align: center;
             animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .feedback-title { 
-            font-size: 2.5rem; 
+            font-size: clamp(1.8rem, 5vw, 2.5rem); 
             margin: 0 0 15px 0; 
             font-weight: 900;
             background: linear-gradient(135deg, var(--success), #58d68d);
@@ -282,15 +286,15 @@
         .feedback-explanation { 
             background: linear-gradient(135deg, #e8f6f3, #f0f9ff); 
             border-left: 5px solid var(--secondary); 
-            padding: 20px; 
+            padding: 15px; 
             text-align: left; 
-            margin: 20px 0; 
+            margin: 15px 0; 
             border-radius: 10px;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             line-height: 1.5;
         }
         .feedback-icon { 
-            font-size: 5rem; 
+            font-size: clamp(3rem, 8vw, 5rem); 
             display: block; 
             margin-bottom: 10px;
             animation: celebrate 1s infinite;
@@ -299,11 +303,11 @@
         /* INPUTS */
         input[type="number"], input[type="text"] {
             width: 90%;
-            padding: 18px;
-            font-size: 1.8rem;
+            padding: 15px;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
             text-align: center;
             border: 3px solid var(--secondary);
-            border-radius: 15px;
+            border-radius: 12px;
             margin: 10px 0;
             font-family: var(--font-main);
         }
@@ -315,9 +319,9 @@
         .progress-container {
             width: 100%;
             background: #eee;
-            height: 12px;
+            height: 10px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             overflow: hidden;
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
@@ -333,18 +337,18 @@
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center; 
-            gap: 15px;
-            margin: 20px 0;
+            gap: 10px;
+            margin: 15px 0;
         }
         .medal-item { 
             text-align: center; 
-            width: 90px;
-            padding: 10px;
+            width: 80px;
+            padding: 8px;
             background: #f8f9fa;
-            border-radius: 15px;
+            border-radius: 12px;
         }
         .medal-icon { 
-            font-size: 3.5rem; 
+            font-size: clamp(2.5rem, 6vw, 3.5rem); 
             filter: grayscale(100%); 
             opacity: 0.3; 
             transition: 0.5s;
@@ -356,7 +360,7 @@
             animation: celebrate 0.5s;
         }
         .medal-name { 
-            font-size: 0.85rem; 
+            font-size: 0.75rem; 
             font-weight: bold; 
             margin-top: 5px;
             color: var(--dark);
@@ -365,23 +369,39 @@
         /* STATS BOX */
         .stats-box {
             background: linear-gradient(135deg, var(--purple), #e8f6f3);
-            padding: 15px;
-            border-radius: 15px;
+            padding: 12px;
+            border-radius: 12px;
             margin: 15px 0;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         }
 
         /* CONFETTI */
         .confetti {
             position: fixed;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: var(--accent);
             animation: fall 3s linear forwards;
             z-index: 999;
         }
         @keyframes fall {
             to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 480px) {
+            .container { padding: 10px; }
+            .card { padding: 15px; }
+            .options-grid { grid-template-columns: 1fr; }
+            .emoji-selector { grid-template-columns: repeat(5, 1fr); gap: 5px; }
+            .header { padding: 6px 10px; }
+        }
+
+        @media (max-width: 360px) {
+            h1 { font-size: 1.3rem; }
+            h2 { font-size: 1.1rem; }
+            button { padding: 10px; font-size: 0.9rem; }
+            .emoji-option { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -393,7 +413,7 @@
     <div id="screen-login" class="screen active">
         <div class="card">
             <h1>🎓 Escuela Master Class</h1>
-            <p style="font-size: 1.2rem; color: #666;">¡Bienvenido! ¿Eres nuevo o ya tienes usuario?</p>
+            <p style="font-size: clamp(0.9rem, 2.5vw, 1.2rem); color: #666;">¡Bienvenido! ¿Eres nuevo o ya tienes usuario?</p>
             
             <button class="primary" onclick="showScreen('screen-login-existing')">🔑 Ya tengo usuario</button>
             <button class="secondary" onclick="showScreen('screen-login-new')">🆕 Soy nuevo</button>
@@ -405,7 +425,7 @@
         <div class="card">
             <h2>🔑 Iniciar Sesión</h2>
             <input type="text" id="login-name" class="login-input" placeholder="Tu nombre (ej: Carla)">
-            <p>Selecciona tus 3 emojis secretos (en orden):</p>
+            <p style="font-size: clamp(0.8rem, 2vw, 1rem);">Selecciona tus 3 emojis secretos (en orden):</p>
             <div class="emoji-preview" id="login-emoji-preview"></div>
             <div class="emoji-selector" id="login-emoji-selector"></div>
             <button class="primary" onclick="loginUser()">Entrar 🚀</button>
@@ -418,7 +438,7 @@
         <div class="card">
             <h2>🆕 Crear Usuario</h2>
             <input type="text" id="new-name" class="login-input" placeholder="Tu nombre (ej: Carla)">
-            <p>Elige tus 3 emojis secretos (en orden):</p>
+            <p style="font-size: clamp(0.8rem, 2vw, 1rem);">Elige tus 3 emojis secretos (en orden):</p>
             <div class="emoji-preview" id="new-emoji-preview"></div>
             <div class="emoji-selector" id="new-emoji-selector"></div>
             <button class="primary" onclick="createUser()">¡Crear mi cuenta! 🎉</button>
@@ -434,12 +454,12 @@
                 <span id="header-name"></span>
             </div>
             <div class="level-badge">⭐ <span id="total-stars">0</span></div>
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-settings')">⚙️</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-settings')">⚙️</div>
         </div>
 
         <div class="card">
             <h1 id="welcome-title">¡Hola!</h1>
-            <div style="font-size: 5rem; margin: 20px; animation: celebrate 2s infinite;">🚀</div>
+            <div style="font-size: clamp(3rem, 8vw, 5rem); margin: 15px; animation: celebrate 2s infinite;">🚀</div>
             
             <div class="stats-box">
                 <div>📚 Preguntas únicas: <strong id="unique-questions">0</strong></div>
@@ -455,7 +475,7 @@
     <!-- PANTALLA 4: ASIGNATURAS -->
     <div id="screen-subjects" class="screen">
         <div class="header">
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
             <div class="level-badge">⭐ <span id="subject-stars">0</span></div>
             <div></div>
         </div>
@@ -470,7 +490,7 @@
     <!-- PANTALLA 5: TEMAS -->
     <div id="screen-topics" class="screen">
         <div class="header">
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-subjects')">🏠</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-subjects')">🏠</div>
             <div class="level-badge">⭐ <span id="topic-stars">0</span></div>
             <div></div>
         </div>
@@ -483,29 +503,29 @@
     <!-- PANTALLA 6: JUEGO -->
     <div id="screen-game" class="screen">
         <div class="header">
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-topics')">🏠</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-topics')">🏠</div>
             <div class="level-badge">⭐ <span id="game-stars">0</span></div>
-            <div style="font-size:1.2rem;">🔊 <span id="voice-status">ON</span></div>
+            <div style="font-size:clamp(0.9rem, 2vw, 1.2rem);">🔊 <span id="voice-status">ON</span></div>
         </div>
         
         <div class="progress-container"><div class="progress-bar" id="game-progress"></div></div>
         
         <div class="card">
-            <div id="question-emoji" style="font-size: 4rem; margin-bottom: 10px; animation: celebrate 2s infinite;">❓</div>
+            <div id="question-emoji" style="font-size: clamp(2.5rem, 7vw, 4rem); margin-bottom: 10px; animation: celebrate 2s infinite;">❓</div>
             <div id="question-context" class="question-context"></div>
             <div id="question-text" class="question-area">Pregunta...</div>
             
             <div id="input-area"></div>
             <div id="options-area" class="options-grid"></div>
             
-            <button id="btn-submit" class="primary" onclick="checkInputAnswer()" style="margin-top:20px; display:none;">✅ Comprobar</button>
+            <button id="btn-submit" class="primary" onclick="checkInputAnswer()" style="margin-top:15px; display:none;">✅ Comprobar</button>
         </div>
     </div>
 
     <!-- PANTALLA 7: RECOMPENSAS -->
     <div id="screen-rewards" class="screen">
         <div class="header">
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
             <div class="level-badge">⭐ <span id="rewards-stars">0</span></div>
             <div></div>
         </div>
@@ -532,7 +552,7 @@
     <!-- PANTALLA 8: AJUSTES -->
     <div id="screen-settings" class="screen">
         <div class="header">
-            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div style="font-size:clamp(1.2rem, 3vw, 1.5rem); cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
             <div class="level-badge">⚙️ Ajustes</div>
             <div></div>
         </div>
@@ -540,7 +560,6 @@
             <h2>⚙️ Configuración</h2>
             <button class="secondary" onclick="toggleVoice()">🔊 Voz: <span id="settings-voice">ON</span></button>
             <button class="accent" onclick="resetUserProgress()">🔄 Borrar MI Progreso</button>
-            <button style="background:linear-gradient(135deg, #e74c3c, #c0392b); color:white; border:none;" onclick="deleteAllUsers()">⚠️ Borrar TODOS los Usuarios</button>
             <button class="logout" onclick="showScreen('screen-home')">← Volver</button>
         </div>
     </div>
@@ -553,7 +572,7 @@
         <span id="fb-icon" class="feedback-icon">🎉</span>
         <h2 id="fb-title" class="feedback-title">¡Correcto!</h2>
         <div id="fb-content"></div>
-        <button class="primary" onclick="nextQuestion()" style="margin-top:20px;">Siguiente ➡️</button>
+        <button class="primary" onclick="nextQuestion()" style="margin-top:15px;">Siguiente ➡️</button>
     </div>
 </div>
 
@@ -564,9 +583,13 @@
 
 const EMOJI_OPTIONS = ['🦄','🌈','⭐','🎈','🍕','🐱','🚀','🌸','🎮','🍦'];
 
+// Audio Context para efectos de sonido
+let audioContext = null;
+
 let appState = {
     currentUser: null,
     voiceEnabled: true,
+    soundEnabled: true,
     selectedEmojis: []
 };
 
@@ -580,6 +603,102 @@ let gameState = {
 };
 
 /* ============================================================================
+   SISTEMA DE AUDIO (EFECTOS DE SONIDO)
+   ============================================================================ */
+
+function initAudio() {
+    try {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) {
+        console.log('Audio no soportado');
+    }
+}
+
+function playSound(type) {
+    if (!appState.soundEnabled || !audioContext) return;
+    
+    try {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        if (type === 'correct') {
+            // Sonidos de acierto (3 variantes aleatorias)
+            const variants = [
+                { freq: [523, 659, 784], duration: 0.4 },  // Do-Mi-Sol (alegre)
+                { freq: [659, 784, 988], duration: 0.3 },  // Mi-Sol-Do (brillante)
+                { freq: [523, 784, 1047], duration: 0.35 } // Do-Sol-Do (triunfal)
+            ];
+            const variant = variants[Math.floor(Math.random() * variants.length)];
+            
+            variant.freq.forEach((f, i) => {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.frequency.value = f;
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.3, audioContext.currentTime + i * 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.1 + variant.duration);
+                osc.start(audioContext.currentTime + i * 0.1);
+                osc.stop(audioContext.currentTime + i * 0.1 + variant.duration);
+            });
+        } else if (type === 'wrong') {
+            // Sonidos de fallo (2 variantes, suaves)
+            const variants = [
+                { freq: [300, 250], duration: 0.3 },
+                { freq: [280, 240], duration: 0.25 }
+            ];
+            const variant = variants[Math.floor(Math.random() * variants.length)];
+            
+            variant.freq.forEach((f, i) => {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.frequency.value = f;
+                osc.type = 'triangle';
+                gain.gain.setValueAtTime(0.2, audioContext.currentTime + i * 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.15 + variant.duration);
+                osc.start(audioContext.currentTime + i * 0.15);
+                osc.stop(audioContext.currentTime + i * 0.15 + variant.duration);
+            });
+        } else if (type === 'levelup') {
+            // Sonido de nivel (celebración)
+            [523, 659, 784, 1047].forEach((f, i) => {
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                osc.frequency.value = f;
+                osc.type = 'sine';
+                gain.gain.setValueAtTime(0.3, audioContext.currentTime + i * 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * 0.15 + 0.4);
+                osc.start(audioContext.currentTime + i * 0.15);
+                osc.stop(audioContext.currentTime + i * 0.15 + 0.4);
+            });
+        }
+    } catch(e) {
+        console.log('Error reproduciendo sonido');
+    }
+}
+
+function speak(text) {
+    if (!appState.voiceEnabled) return;
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-ES';
+        utterance.rate = 0.95;
+        utterance.pitch = 1.1;
+        utterance.volume = 0.8;
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+/* ============================================================================
    BASE DE DATOS MASIVA DE PREGUNTAS
    ============================================================================ */
 
@@ -588,24 +707,24 @@ const questionBank = {
         ortografia: [
             { id: 'ort_1', q: '¿Cómo se escribe: __arco?', context: 'Un barco navega por el mar.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b> porque las palabras que empiezan por "bar-" suelen llevar B (barco, barba, barrio, barniz).' },
             { id: 'ort_2', q: '¿Cómo se escribe: __aca?', context: 'La vaca da leche en la granja.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Truco: "La Vaca tiene cuernos en forma de V".' },
-            { id: 'ort_3', q: '¿Cómo se escribe: __urro?', context: 'El burro es un animal muy trabajador.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. Las palabras que empiezan por "bur-" llevan B (burro, burro, burbuja).' },
+            { id: 'ort_3', q: '¿Cómo se escribe: __urro?', context: 'El burro es un animal muy trabajador.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. Las palabras que empiezan por "bur-" llevan B (burro, burbuja).' },
             { id: 'ort_4', q: '¿Cómo se escribe: __entana?', context: 'Abre la ventana para que entre aire.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Las palabras que empiezan por "ven-" suelen llevar V (ventana, viento, vender).' },
             { id: 'ort_5', q: '¿Cómo se escribe: __ebé?', context: 'El bebé llora cuando tiene hambre.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. Las palabras que empiezan por "be-" y "bi-" llevan B (bebé, beber, bicicleta).' },
             { id: 'ort_6', q: '¿Cómo se escribe: __olcán?', context: 'El volcán echa lava y humo.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Las palabras que empiezan por "vol-" llevan V (volcán, volver, volumen).' },
             { id: 'ort_7', q: '¿Qué palabra está bien escrita?', context: 'Este animal tiene el cuello muy largo.', options: ['Girafa', 'Jirafa'], correct: 'Jirafa', explanation: 'Se escribe con <b>J</b>. Las palabras que empiezan por "jira-" llevan J.' },
             { id: 'ort_8', q: '¿Qué palabra está bien escrita?', context: 'El ___ maúlla y caza ratones.', options: ['Gato', 'Jato'], correct: 'Gato', explanation: 'Se escribe con <b>G</b>. Los sonidos "ga, go, gu" suelen ir con G.' },
-            { id: 'ort_9', q: '¿Qué palabra está bien escrita?', context: 'Las ___ son frutas amarillas y curvas.', options: ['Guinanas', 'Bananas'], correct: 'Bananas', explanation: 'Se escribe con <b>B</b>. "Banana" viene del árabe y siempre lleva B.' },
-            { id: 'ort_10', q: '¿Lleva H la palabra "__uevo"?', context: 'El huevo es blanco y tiene gallina dentro.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! Las palabras que empiezan por "hue-" y "hie-" SIEMPRE llevan H muda (huevo, hielo, hierba, hueso).' },
-            { id: 'ort_11', q: '¿Lleva H la palabra "__ielo"?', context: 'El hielo es agua congelada.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! "Hielo" empieza por "hie-", por eso lleva H muda.' },
-            { id: 'ort_12', q: '¿Lleva H la palabra "__ombre"?', context: 'El ser humano es un...', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: 'Sí, "hombre" lleva H inicial. Viene del latín "homo".' },
-            { id: 'ort_13', q: '¿Cómo se pluraliza "Lápiz"?', context: 'Tengo un lápiz, tengo varios...', options: ['Lápizes', 'Lápices'], correct: 'Lápices', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural (Lápiz→Lápices, Pez→Peces, Luz→Luces).' },
-            { id: 'ort_14', q: '¿Cómo se pluraliza "Pez"?', context: 'Un pez, muchos...', options: ['Pezes', 'Peces'], correct: 'Peces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
-            { id: 'ort_15', q: '¿Cómo se pluraliza "Voz"?', context: 'Una voz, muchas...', options: ['Vozes', 'Voces'], correct: 'Voces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
-            { id: 'ort_16', q: 'Elige la palabra correcta:', context: 'Voy a ___ agua.', options: ['Hechar', 'Echar'], correct: 'Echar', explanation: '"Echar" (tirar, poner) se escribe SIN H. "Hechar" no existe.' },
-            { id: 'ort_17', q: 'Elige la palabra correcta:', context: 'Lo ___ hecho bien.', options: ['He', 'E'], correct: 'He', explanation: '"He" del verbo haber lleva H. "E" es la letra del abecedario.' },
-            { id: 'ort_18', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Oso', 'Hueso'], correct: 'Hueso', explanation: '"Hueso" lleva H porque empieza por "hue-". "Oso" no lleva H.' },
-            { id: 'ort_19', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Ola', 'Hola'], correct: 'Hola', explanation: '"Hola" (saludo) lleva H. "Ola" (del mar) no lleva H.' },
-            { id: 'ort_20', q: 'Completa: "__ormiga"', context: 'La ___ es muy pequeña y trabajadora.', options: ['H', 'Sin H'], correct: 'H', explanation: '"Hormiga" lleva H inicial.' }
+            { id: 'ort_9', q: '¿Lleva H la palabra "__uevo"?', context: 'El huevo es blanco.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! Las palabras que empiezan por "hue-" y "hie-" SIEMPRE llevan H muda (huevo, hielo, hierba, hueso).' },
+            { id: 'ort_10', q: '¿Lleva H la palabra "__ielo"?', context: 'El hielo es agua congelada.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! "Hielo" empieza por "hie-", por eso lleva H muda.' },
+            { id: 'ort_11', q: '¿Lleva H la palabra "__ombre"?', context: 'El ser humano es un...', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: 'Sí, "hombre" lleva H inicial. Viene del latín "homo".' },
+            { id: 'ort_12', q: '¿Cómo se pluraliza "Lápiz"?', context: 'Tengo un lápiz, tengo varios...', options: ['Lápizes', 'Lápices'], correct: 'Lápices', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural (Lápiz→Lápices, Pez→Peces, Luz→Luces).' },
+            { id: 'ort_13', q: '¿Cómo se pluraliza "Pez"?', context: 'Un pez, muchos...', options: ['Pezes', 'Peces'], correct: 'Peces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
+            { id: 'ort_14', q: '¿Cómo se pluraliza "Voz"?', context: 'Una voz, muchas...', options: ['Vozes', 'Voces'], correct: 'Voces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
+            { id: 'ort_15', q: 'Elige la palabra correcta:', context: 'Voy a ___ agua.', options: ['Hechar', 'Echar'], correct: 'Echar', explanation: '"Echar" (tirar, poner) se escribe SIN H. "Hechar" no existe.' },
+            { id: 'ort_16', q: 'Elige la palabra correcta:', context: 'Lo ___ hecho bien.', options: ['He', 'E'], correct: 'He', explanation: '"He" del verbo haber lleva H. "E" es la letra del abecedario.' },
+            { id: 'ort_17', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Oso', 'Hueso'], correct: 'Hueso', explanation: '"Hueso" lleva H porque empieza por "hue-". "Oso" no lleva H.' },
+            { id: 'ort_18', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Ola', 'Hola'], correct: 'Hola', explanation: '"Hola" (saludo) lleva H. "Ola" (del mar) no lleva H.' },
+            { id: 'ort_19', q: 'Completa: "__ormiga"', context: 'La ___ es muy pequeña.', options: ['H', 'Sin H'], correct: 'H', explanation: '"Hormiga" lleva H inicial.' },
+            { id: 'ort_20', q: '¿Cómo se escribe: __isabuela?', context: 'La madre de mi abuela.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. "Bisabuela" lleva B porque viene de "bis-" (dos veces).' }
         ],
         gramatica: [
             { id: 'gra_1', q: '¿Qué tipo de palabra es "correr"?', context: 'Me gusta correr en el parque.', options: ['Sustantivo', 'Verbo', 'Adjetivo'], correct: 'Verbo', explanation: 'Es un <b>verbo</b> porque indica una ACCIÓN. Los verbos son lo que hacemos (correr, saltar, comer).' },
@@ -693,7 +812,6 @@ const mathEngine = {
         let n1, n2, n3, res, text, context, hint;
         const l = Math.max(1, Math.min(5, level));
 
-        // Generadores con contexto para TODAS las operaciones
         if (topic === 'sumas') {
             const contexts = [
                 { t: 'En una caja hay {n1} manzanas. Añadimos {n2} más.', q: '¿Cuántas manzanas hay ahora?' },
@@ -769,75 +887,64 @@ const mathEngine = {
             };
         }
         if (topic === 'fraccion') {
-            // PROBLEMAS DE FRACCIONES CON CONTEXTO (100% problemas)
             const problems = [
                 {
                     context: 'Para merendar, tu abuela ha hecho una tortilla de patatas riquísima y la ha cortado en 4 trozos iguales.',
                     q: 'Si tú te comes 1 trozo, ¿qué fracción de la tortilla te has comido?',
-                    setup: { total: 4, eaten: 1 },
                     a: '1/4',
                     explanation: 'La tortilla tiene 4 partes (denominador). Te comes 1 parte (numerador). Por eso es 1/4. ¡Quedan 3/4 para el abuelo!'
                 },
                 {
                     context: 'Imagina que tenemos un dibujo con 8 olivos de Jaén.',
                     q: 'Si pintamos la mitad (1/2) de los olivos de color verde oscuro, ¿cuántos olivos hay de color verde oscuro?',
-                    setup: { total: 8, fraction: '1/2' },
                     a: '4',
                     explanation: 'La mitad de 8 es 4. Porque 8 dividido entre 2 = 4. ¡Hay 4 olivos verde oscuro y 4 verde claro!'
                 },
                 {
                     context: 'La familia va en coche a la playa de Matalascañas. El camino es largo.',
                     q: 'Si ya hemos recorrido un tercio (1/3) del camino, ¿cuántas partes nos faltan para llegar?',
-                    setup: { total: 3, done: 1 },
                     a: '2',
                     explanation: 'El camino tiene 3 partes. Hemos hecho 1 parte. Faltan 3-1=2 partes. ¡Casi llegamos!'
                 },
                 {
                     context: 'En un plato hay 6 pestiños con miel típicos de Andalucía.',
                     q: 'Tu hermano se come 2/6 de los pestiños. ¿Cuántos pestiños se ha comido exactamente?',
-                    setup: { total: 6, fraction: '2/6' },
                     a: '2',
                     explanation: 'El plato tiene 6 partes. Tu hermano coge 2 partes. ¡Se ha comido 2 pestiños! Quedan 4.'
                 },
                 {
                     context: 'Una pizza está cortada en 8 porciones iguales.',
                     q: 'Si te comes 3 porciones, ¿qué fracción de la pizza te has comido?',
-                    setup: { total: 8, eaten: 3 },
                     a: '3/8',
                     explanation: 'La pizza tiene 8 partes (denominador). Te comes 3 partes (numerador). Por eso es 3/8.'
                 },
                 {
                     context: 'Una tarta de cumpleaños tiene 12 trozos.',
                     q: 'Si en la fiesta se comen 5 trozos, ¿qué fracción de la tarta se han comido?',
-                    setup: { total: 12, eaten: 5 },
                     a: '5/12',
                     explanation: 'La tarta tiene 12 partes. Se comen 5 partes. La fracción es 5/12.'
                 },
                 {
                     context: 'Un depósito de agua tiene 10 partes iguales.',
                     q: 'Si está lleno hasta 7 partes, ¿qué fracción del depósito está llena?',
-                    setup: { total: 10, filled: 7 },
                     a: '7/10',
                     explanation: 'El depósito tiene 10 partes. Está lleno hasta 7. La fracción es 7/10.'
                 },
                 {
                     context: 'Una barra de pan se corta en 6 rebanadas iguales.',
                     q: 'Si desayunas 2 rebanadas, ¿qué fracción de la barra te has comido?',
-                    setup: { total: 6, eaten: 2 },
                     a: '2/6',
                     explanation: 'La barra tiene 6 partes. Te comes 2. La fracción es 2/6 (que es lo mismo que 1/3).'
                 },
                 {
                     context: 'Un campo de fútbol está dividido en 4 cuartos.',
                     q: 'Si hemos jugado en 3 cuartos, ¿qué fracción del campo hemos recorrido?',
-                    setup: { total: 4, done: 3 },
                     a: '3/4',
                     explanation: 'El campo tiene 4 partes. Hemos recorrido 3. La fracción es 3/4.'
                 },
                 {
                     context: 'Una caja de huevos tiene 12 huecos.',
                     q: 'Si hay 9 huevos dentro, ¿qué fracción de la caja está ocupada?',
-                    setup: { total: 12, filled: 9 },
                     a: '9/12',
                     explanation: 'La caja tiene 12 partes. Hay 9 huevos. La fracción es 9/12 (que es lo mismo que 3/4).'
                 }
@@ -854,7 +961,6 @@ const mathEngine = {
             };
         }
         if (topic === 'problema') {
-            // Problemas compuestos (2 operaciones)
             const problems = [
                 { t: 'Carla tiene {n1}€. Gasta {n2}€ en un libro y luego su abuela le da {n3}€. ¿Cuánto tiene ahora?', a: (n1,n2,n3) => (n1-n2)+n3, hint: 'Primero resta, luego suma' },
                 { t: 'En un autobús van {n1} personas. En la parada 1 bajan {n2} y suben {n3}. ¿Cuántas quedan?', a: (n1,n2,n3) => (n1-n2)+n3, hint: 'Sigue el orden de la historia' },
@@ -892,7 +998,10 @@ function saveData() {
         localStorage.setItem('carla_user_' + appState.currentUser.id, JSON.stringify(appState.currentUser));
     }
     localStorage.setItem('carla_users', JSON.stringify(allUsers));
-    localStorage.setItem('carla_settings', JSON.stringify({ voiceEnabled: appState.voiceEnabled }));
+    localStorage.setItem('carla_settings', JSON.stringify({ 
+        voiceEnabled: appState.voiceEnabled,
+        soundEnabled: appState.soundEnabled
+    }));
 }
 
 function loadData() {
@@ -900,6 +1009,7 @@ function loadData() {
     if (settings) {
         const s = JSON.parse(settings);
         appState.voiceEnabled = s.voiceEnabled !== undefined ? s.voiceEnabled : true;
+        appState.soundEnabled = s.soundEnabled !== undefined ? s.soundEnabled : true;
     }
 }
 
@@ -914,7 +1024,6 @@ function createUserId(name, emojis) {
 let allUsers = JSON.parse(localStorage.getItem('carla_users')) || [];
 
 function initLoginScreen() {
-    // Crear selectores de emojis
     ['login', 'new'].forEach(prefix => {
         const container = document.getElementById(prefix + '-emoji-selector');
         container.innerHTML = '';
@@ -954,13 +1063,11 @@ function createUser() {
     
     const userId = createUserId(name, emojis);
     
-    // Verificar si ya existe
     if (allUsers.find(u => u.id === userId)) {
         alert('Este usuario ya existe. Prueba con otros emojis.');
         return;
     }
     
-    // Crear usuario
     const newUser = {
         id: userId,
         name: name,
@@ -968,14 +1075,18 @@ function createUser() {
         stars: 0,
         level: 1,
         uniqueQuestions: 0,
-        questionsDone: {}, // { 'lengua_ortografia': [0,1,2] }
+        questionsDone: {},
         medals: []
     };
     
     allUsers.push(newUser);
     saveData();
     
-    loginUser(newUser);
+    // IR DIRECTO A LA APP SIN PASO EXTRA
+    appState.currentUser = newUser;
+    appState.currentUser.questionsDone = appState.currentUser.questionsDone || {};
+    updateHomeScreen();
+    showScreen('screen-home');
 }
 
 function loginUser(existingUser) {
@@ -1033,15 +1144,6 @@ function resetUserProgress() {
     }
 }
 
-function deleteAllUsers() {
-    if (confirm('⚠️ ¿Seguro que quieres BORRAR TODOS los usuarios? Esto eliminará el progreso de toda la clase.')) {
-        allUsers = [];
-        localStorage.removeItem('carla_users');
-        logoutUser();
-        alert('Todos los usuarios han sido eliminados.');
-    }
-}
-
 /* ============================================================================
    NAVEGACIÓN Y JUEGO
    ============================================================================ */
@@ -1050,7 +1152,6 @@ function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     
-    // Actualizar estadísticas en cada pantalla
     if (appState.currentUser) {
         document.getElementById('subject-stars').innerText = appState.currentUser.stars;
         document.getElementById('topic-stars').innerText = appState.currentUser.stars;
@@ -1110,7 +1211,6 @@ function getAvailableQuestions(subject, topic) {
     const done = user.questionsDone[key] || [];
     
     if (subject === 'mates') {
-        // Matemáticas son infinitas, no hay límite
         return { infinite: true };
     }
     
@@ -1144,17 +1244,14 @@ function loadQuestion() {
     contextDiv.innerHTML = '';
     btnSub.style.display = 'none';
 
-    // Verificar preguntas disponibles
     const available = getAvailableQuestions(gameState.subject, gameState.topic);
     
     if (!available.infinite && available.available.length === 0) {
-        // Reciclar preguntas antiguas
         alert('¡Has completado todas las preguntas de este tema! Vamos a repasar algunas anteriores.');
         appState.currentUser.questionsDone[gameState.subject + '_' + gameState.topic] = [];
         saveData();
     }
 
-    // Generar Pregunta
     if (gameState.subject === 'mates') {
         gameState.currentQ = mathEngine.generate(gameState.topic, appState.currentUser.level);
         document.getElementById('question-emoji').innerText = '🧮';
@@ -1162,17 +1259,15 @@ function loadQuestion() {
         const bank = questionBank[gameState.subject][gameState.topic];
         const availableQ = getAvailableQuestions(gameState.subject, gameState.topic);
         const availableIndices = bank.map((q, i) => i).filter(i => !availableQ.done.includes(i));
-        const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+        const randomIndex = availableIndices.length > 0 ? availableIndices[Math.floor(Math.random() * availableIndices.length)] : Math.floor(Math.random() * bank.length);
         gameState.currentQ = { ...bank[randomIndex], _index: randomIndex };
         document.getElementById('question-emoji').innerText = gameState.subject === 'lengua' ? '📖' : '🌍';
     }
 
-    // Renderizar Contexto
     if (gameState.currentQ.context) {
         contextDiv.innerHTML = gameState.currentQ.context;
     }
 
-    // Renderizar Pregunta
     document.getElementById('question-text').innerHTML = gameState.currentQ.q;
 
     if (gameState.currentQ.type === 'input' || !gameState.currentQ.options) {
@@ -1234,15 +1329,17 @@ function handleSuccess() {
     gameState.sessionStars += starsGain;
     gameState.streak++;
     
-    // Marcar pregunta como hecha (si no es mates)
     if (gameState.subject !== 'mates' && gameState.currentQ._index !== undefined) {
         markQuestionDone(gameState.subject, gameState.topic, gameState.currentQ._index);
     }
     
-    // Subir nivel cada 5 aciertos seguidos
     if (gameState.streak % 5 === 0) {
         appState.currentUser.level++;
+        playSound('levelup');
         createConfetti();
+        speak('¡Nivel subido! ¡Eres increíble!');
+    } else {
+        playSound('correct');
     }
     
     saveData();
@@ -1252,6 +1349,7 @@ function handleSuccess() {
 
 function handleFail() {
     gameState.streak = 0;
+    playSound('wrong');
     if (gameState.currentQ.type === 'input' || !gameState.currentQ.options) {
         document.getElementById('user-input').value = '';
         document.getElementById('user-input').focus();
@@ -1304,6 +1402,12 @@ function createConfetti() {
 
 // Inicializar
 initLoginScreen();
+
+// Inicializar audio con primera interacción
+document.addEventListener('click', function initAudioOnFirstClick() {
+    initAudio();
+    document.removeEventListener('click', initAudioOnFirstClick);
+}, { once: true });
 
 </script>
 </body>
