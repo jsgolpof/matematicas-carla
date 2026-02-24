@@ -9,16 +9,19 @@
             --primary: #FF6B6B;
             --secondary: #4ECDC4;
             --accent: #FFE66D;
+            --purple: #A8D8EA;
             --success: #2ecc71;
             --error: #e74c3c;
             --dark: #2c3e50;
             --light: #ecf0f1;
-            --font-main: 'Segoe UI', 'Comic Sans MS', sans-serif;
+            --font-main: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
         }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: var(--font-main);
-            background: linear-gradient(135deg, #4ECDC4 0%, #556270 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
             padding: 0;
             min-height: 100vh;
@@ -43,83 +46,206 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.9);
-            padding: 10px 20px;
+            background: rgba(255,255,255,0.95);
+            padding: 12px 20px;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             margin-bottom: 20px;
             box-sizing: border-box;
         }
         .level-badge {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #ff8e8e);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .user-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: var(--dark);
         }
 
-        /* CARDS & BUTTONS */
+        /* CARDS */
         .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 30px;
             width: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
             animation: slideUp 0.5s ease;
             box-sizing: border-box;
         }
 
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideUp { 
+            from { transform: translateY(30px); opacity: 0; } 
+            to { transform: translateY(0); opacity: 1; } 
+        }
 
-        h1 { color: var(--dark); margin-top: 0; }
-        h2 { color: var(--secondary); }
+        @keyframes popIn { 
+            from { transform: scale(0.5); opacity: 0; } 
+            to { transform: scale(1); opacity: 1; } 
+        }
 
+        @keyframes pulse { 
+            0% { transform: scale(1); } 
+            50% { transform: scale(1.05); } 
+            100% { transform: scale(1); } 
+        }
+
+        @keyframes celebrate { 
+            0% { transform: rotate(0deg); } 
+            25% { transform: rotate(-10deg); } 
+            75% { transform: rotate(10deg); } 
+            100% { transform: rotate(0deg); } 
+        }
+
+        h1 { 
+            color: var(--dark); 
+            margin-top: 0; 
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 { color: var(--secondary); margin: 10px 0; }
+        h3 { color: var(--dark); margin: 15px 0; }
+
+        /* BUTTONS */
         button {
             background: white;
-            border: 2px solid var(--secondary);
+            border: 3px solid var(--secondary);
             color: var(--dark);
-            padding: 15px;
+            padding: 15px 20px;
             width: 100%;
             margin: 8px 0;
-            border-radius: 12px;
+            border-radius: 15px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
             font-family: var(--font-main);
-            box-shadow: 0 4px 0 #bdc3c7;
+            box-shadow: 0 5px 0 #16a085;
         }
-        button:active { transform: translateY(4px); box-shadow: none; }
-        button.primary { background: var(--primary); color: white; border-color: #c0392b; box-shadow: 0 4px 0 #c0392b; }
-        button.secondary { background: var(--secondary); color: white; border-color: #16a085; box-shadow: 0 4px 0 #16a085; }
+        button:active { transform: translateY(5px); box-shadow: none; }
+        button.primary { 
+            background: linear-gradient(135deg, var(--primary), #ff8e8e); 
+            color: white; 
+            border-color: #c0392b; 
+            box-shadow: 0 5px 0 #c0392b; 
+        }
+        button.secondary { 
+            background: linear-gradient(135deg, var(--secondary), #6ee7db); 
+            color: white; 
+            border-color: #16a085; 
+            box-shadow: 0 5px 0 #16a085; 
+        }
+        button.accent {
+            background: linear-gradient(135deg, var(--accent), #fff3b0);
+            color: var(--dark);
+            border-color: #f1c40f;
+            box-shadow: 0 5px 0 #f1c40f;
+        }
+        button.logout {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 0 #7f8c8d;
+            margin-top: 15px;
+        }
         
+        /* LOGIN SCREEN */
+        .emoji-selector {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .emoji-option {
+            font-size: 2.5rem;
+            padding: 10px;
+            border-radius: 15px;
+            border: 3px solid #ddd;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .emoji-option:hover { transform: scale(1.1); }
+        .emoji-option.selected {
+            border-color: var(--primary);
+            background: #ffe0e0;
+            animation: pulse 0.3s;
+        }
+        .emoji-preview {
+            font-size: 3rem;
+            margin: 15px 0;
+            min-height: 60px;
+        }
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            border: 3px solid var(--secondary);
+            border-radius: 15px;
+            margin: 10px 0;
+            font-family: var(--font-main);
+        }
+
         /* GAME SPECIFIC */
-        .question-area { font-size: 1.4rem; margin: 20px 0; line-height: 1.5; font-weight: 600; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .question-area { 
+            font-size: 1.5rem; 
+            margin: 20px 0; 
+            line-height: 1.6; 
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .question-context {
+            background: linear-gradient(135deg, #e8f6f3, #f0f9ff);
+            border-left: 5px solid var(--secondary);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: left;
+            font-size: 1.2rem;
+        }
+        .options-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            margin-top: 20px; 
+        }
         
         .option-btn {
-            background: #f8f9fa;
-            border: 2px solid #ddd;
-            box-shadow: 0 4px 0 #ccc;
-            font-size: 1rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 3px solid #ddd;
+            box-shadow: 0 5px 0 #ccc;
+            font-size: 1.1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .option-btn:hover { background: #e9ecef; }
         
         .option-btn.correct {
-            background: var(--success) !important;
+            background: linear-gradient(135deg, var(--success), #58d68d) !important;
             color: white !important;
             border-color: #27ae60 !important;
-            box-shadow: 0 4px 0 #219150 !important;
-            animation: pulse 0.5s;
+            box-shadow: 0 5px 0 #219150 !important;
+            animation: celebrate 0.5s;
         }
         .option-btn.wrong {
-            background: var(--error) !important;
+            background: linear-gradient(135deg, var(--error), #ec7063) !important;
             color: white !important;
             border-color: #c0392b !important;
-            box-shadow: 0 4px 0 #c0392b !important;
-            opacity: 0.6;
+            box-shadow: 0 5px 0 #c0392b !important;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
@@ -127,7 +253,7 @@
         .feedback-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             display: none;
             justify-content: center;
             align-items: center;
@@ -138,36 +264,46 @@
         .feedback-card {
             background: white;
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 25px;
             max-width: 500px;
             width: 100%;
             text-align: center;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         
-        .feedback-title { font-size: 2.5rem; margin: 0 0 15px 0; font-weight: 900; }
-        .feedback-correct { color: var(--success); }
+        .feedback-title { 
+            font-size: 2.5rem; 
+            margin: 0 0 15px 0; 
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--success), #58d68d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         .feedback-explanation { 
-            background: #e8f6f3; 
+            background: linear-gradient(135deg, #e8f6f3, #f0f9ff); 
             border-left: 5px solid var(--secondary); 
-            padding: 15px; 
+            padding: 20px; 
             text-align: left; 
             margin: 20px 0; 
-            border-radius: 5px;
-            font-size: 1.1rem;
-            line-height: 1.4;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            line-height: 1.5;
         }
-        .feedback-icon { font-size: 4rem; display: block; margin-bottom: 10px; }
+        .feedback-icon { 
+            font-size: 5rem; 
+            display: block; 
+            margin-bottom: 10px;
+            animation: celebrate 1s infinite;
+        }
 
         /* INPUTS */
         input[type="number"], input[type="text"] {
-            width: 80%;
-            padding: 15px;
-            font-size: 1.5rem;
+            width: 90%;
+            padding: 18px;
+            font-size: 1.8rem;
             text-align: center;
             border: 3px solid var(--secondary);
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 10px 0;
             font-family: var(--font-main);
         }
@@ -179,16 +315,73 @@
         .progress-container {
             width: 100%;
             background: #eee;
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 10px;
             margin-bottom: 20px;
             overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
         .progress-bar {
             height: 100%;
-            background: var(--success);
+            background: linear-gradient(90deg, var(--success), var(--accent));
             width: 0%;
             transition: width 0.5s;
+        }
+
+        /* MEDALS */
+        .medal-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .medal-item { 
+            text-align: center; 
+            width: 90px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        .medal-icon { 
+            font-size: 3.5rem; 
+            filter: grayscale(100%); 
+            opacity: 0.3; 
+            transition: 0.5s;
+        }
+        .medal-item.unlocked .medal-icon { 
+            filter: grayscale(0%); 
+            opacity: 1; 
+            transform: scale(1.1);
+            animation: celebrate 0.5s;
+        }
+        .medal-name { 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            margin-top: 5px;
+            color: var(--dark);
+        }
+
+        /* STATS BOX */
+        .stats-box {
+            background: linear-gradient(135deg, var(--purple), #e8f6f3);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* CONFETTI */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            animation: fall 3s linear forwards;
+            z-index: 999;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
     </style>
 </head>
@@ -196,46 +389,159 @@
 
 <div class="container">
     
-    <!-- HEADER GLOBAL -->
-    <div class="header">
-        <div>⭐ <span id="total-stars">0</span></div>
-        <div class="level-badge">Nivel: <span id="current-level">1</span></div>
-        <div onclick="goHome()" style="cursor:pointer; font-size:1.5rem;">🏠</div>
-    </div>
-
-    <!-- PANTALLA INICIO -->
-    <div id="screen-home" class="screen active">
+    <!-- PANTALLA 0: LOGIN -->
+    <div id="screen-login" class="screen active">
         <div class="card">
-            <h1>¡Hola Carla! 🎓</h1>
-            <p>Elige qué quieres aprender hoy.</p>
-            <div style="font-size: 4rem; margin: 20px;">🚀</div>
-            <button class="primary" onclick="selectSubject('mates')">🧮 Matemáticas</button>
-            <button class="secondary" onclick="selectSubject('lengua')">📖 Lengua</button>
-            <button style="background:#1dd1a1; color:white; border:none;" onclick="selectSubject('medio')">🌍 Conocimiento del Medio</button>
+            <h1>🎓 Escuela Master Class</h1>
+            <p style="font-size: 1.2rem; color: #666;">¡Bienvenido! ¿Eres nuevo o ya tienes usuario?</p>
+            
+            <button class="primary" onclick="showScreen('screen-login-existing')">🔑 Ya tengo usuario</button>
+            <button class="secondary" onclick="showScreen('screen-login-new')">🆕 Soy nuevo</button>
         </div>
     </div>
 
-    <!-- PANTALLA TEMAS -->
+    <!-- PANTALLA 1: LOGIN EXISTENTE -->
+    <div id="screen-login-existing" class="screen">
+        <div class="card">
+            <h2>🔑 Iniciar Sesión</h2>
+            <input type="text" id="login-name" class="login-input" placeholder="Tu nombre (ej: Carla)">
+            <p>Selecciona tus 3 emojis secretos (en orden):</p>
+            <div class="emoji-preview" id="login-emoji-preview"></div>
+            <div class="emoji-selector" id="login-emoji-selector"></div>
+            <button class="primary" onclick="loginUser()">Entrar 🚀</button>
+            <button class="logout" onclick="showScreen('screen-login')">← Volver</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 2: LOGIN NUEVO -->
+    <div id="screen-login-new" class="screen">
+        <div class="card">
+            <h2>🆕 Crear Usuario</h2>
+            <input type="text" id="new-name" class="login-input" placeholder="Tu nombre (ej: Carla)">
+            <p>Elige tus 3 emojis secretos (en orden):</p>
+            <div class="emoji-preview" id="new-emoji-preview"></div>
+            <div class="emoji-selector" id="new-emoji-selector"></div>
+            <button class="primary" onclick="createUser()">¡Crear mi cuenta! 🎉</button>
+            <button class="logout" onclick="showScreen('screen-login')">← Volver</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 3: INICIO -->
+    <div id="screen-home" class="screen">
+        <div class="header">
+            <div class="user-display">
+                <span id="header-emojis"></span>
+                <span id="header-name"></span>
+            </div>
+            <div class="level-badge">⭐ <span id="total-stars">0</span></div>
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-settings')">⚙️</div>
+        </div>
+
+        <div class="card">
+            <h1 id="welcome-title">¡Hola!</h1>
+            <div style="font-size: 5rem; margin: 20px; animation: celebrate 2s infinite;">🚀</div>
+            
+            <div class="stats-box">
+                <div>📚 Preguntas únicas: <strong id="unique-questions">0</strong></div>
+                <div>🏆 Nivel: <strong id="user-level">1</strong></div>
+            </div>
+
+            <button class="primary" onclick="showScreen('screen-subjects')">📚 Empezar a Aprender</button>
+            <button class="secondary" onclick="showScreen('screen-rewards')">🏅 Mis Medallas</button>
+            <button class="accent" onclick="logoutUser()">🚪 Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 4: ASIGNATURAS -->
+    <div id="screen-subjects" class="screen">
+        <div class="header">
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div class="level-badge">⭐ <span id="subject-stars">0</span></div>
+            <div></div>
+        </div>
+        <div class="card">
+            <h2>¿Qué quieres aprender hoy?</h2>
+            <button onclick="selectSubject('mates')" style="background:linear-gradient(135deg, #FF9F43, #f39c12); color:white; border:none;">🧮 Matemáticas</button>
+            <button onclick="selectSubject('lengua')" style="background:linear-gradient(135deg, #54a0ff, #2e86de); color:white; border:none;">📖 Lengua Castellana</button>
+            <button onclick="selectSubject('medio')" style="background:linear-gradient(135deg, #1dd1a1, #10ac84); color:white; border:none;">🌍 Conocimiento del Medio</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 5: TEMAS -->
     <div id="screen-topics" class="screen">
+        <div class="header">
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-subjects')">🏠</div>
+            <div class="level-badge">⭐ <span id="topic-stars">0</span></div>
+            <div></div>
+        </div>
         <div class="card">
             <h2 id="topic-title">Temas</h2>
             <div id="topics-list"></div>
-            <button onclick="goHome()" style="margin-top:20px; background:#95a5a6; color:white; border:none;">Volver</button>
         </div>
     </div>
 
-    <!-- PANTALLA JUEGO -->
+    <!-- PANTALLA 6: JUEGO -->
     <div id="screen-game" class="screen">
+        <div class="header">
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-topics')">🏠</div>
+            <div class="level-badge">⭐ <span id="game-stars">0</span></div>
+            <div style="font-size:1.2rem;">🔊 <span id="voice-status">ON</span></div>
+        </div>
+        
         <div class="progress-container"><div class="progress-bar" id="game-progress"></div></div>
         
         <div class="card">
-            <div id="question-emoji" style="font-size: 3rem; margin-bottom: 10px;">❓</div>
+            <div id="question-emoji" style="font-size: 4rem; margin-bottom: 10px; animation: celebrate 2s infinite;">❓</div>
+            <div id="question-context" class="question-context"></div>
             <div id="question-text" class="question-area">Pregunta...</div>
             
             <div id="input-area"></div>
             <div id="options-area" class="options-grid"></div>
             
-            <button id="btn-submit" class="primary" onclick="checkInputAnswer()" style="margin-top:20px; display:none;">Comprobar</button>
+            <button id="btn-submit" class="primary" onclick="checkInputAnswer()" style="margin-top:20px; display:none;">✅ Comprobar</button>
+        </div>
+    </div>
+
+    <!-- PANTALLA 7: RECOMPENSAS -->
+    <div id="screen-rewards" class="screen">
+        <div class="header">
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div class="level-badge">⭐ <span id="rewards-stars">0</span></div>
+            <div></div>
+        </div>
+        <div class="card">
+            <h2>🏆 Tu Muro de la Fama</h2>
+            <div class="stats-box">
+                <div>📚 Preguntas únicas: <strong id="reward-unique">0</strong></div>
+                <div>⭐ Estrellas totales: <strong id="reward-stars">0</strong></div>
+                <div>🏆 Nivel: <strong id="reward-level">1</strong></div>
+            </div>
+            <div class="medal-grid">
+                <div class="medal-item" id="medal-1"><div class="medal-icon">🥉</div><div class="medal-name">Bronce</div></div>
+                <div class="medal-item" id="medal-2"><div class="medal-icon">🥈</div><div class="medal-name">Plata</div></div>
+                <div class="medal-item" id="medal-3"><div class="medal-icon">🥇</div><div class="medal-name">Oro</div></div>
+                <div class="medal-item" id="medal-4"><div class="medal-icon">👑</div><div class="medal-name">Reina</div></div>
+                <div class="medal-item" id="medal-5"><div class="medal-icon">🚀</div><div class="medal-name">Astronauta</div></div>
+                <div class="medal-item" id="medal-6"><div class="medal-icon">🦄</div><div class="medal-name">Mágica</div></div>
+                <div class="medal-item" id="medal-7"><div class="medal-icon">🌟</div><div class="medal-name">Estelar</div></div>
+                <div class="medal-item" id="medal-8"><div class="medal-icon">💎</div><div class="medal-name">Diamante</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA 8: AJUSTES -->
+    <div id="screen-settings" class="screen">
+        <div class="header">
+            <div style="font-size:1.5rem; cursor:pointer;" onclick="showScreen('screen-home')">🏠</div>
+            <div class="level-badge">⚙️ Ajustes</div>
+            <div></div>
+        </div>
+        <div class="card">
+            <h2>⚙️ Configuración</h2>
+            <button class="secondary" onclick="toggleVoice()">🔊 Voz: <span id="settings-voice">ON</span></button>
+            <button class="accent" onclick="resetUserProgress()">🔄 Borrar MI Progreso</button>
+            <button style="background:linear-gradient(135deg, #e74c3c, #c0392b); color:white; border:none;" onclick="deleteAllUsers()">⚠️ Borrar TODOS los Usuarios</button>
+            <button class="logout" onclick="showScreen('screen-home')">← Volver</button>
         </div>
     </div>
 
@@ -253,298 +559,512 @@
 
 <script>
 /* ============================================================================
-   BASE DE DATOS DE CONOCIMIENTO (RICA Y EXPLICATIVA)
+   CONFIGURACIÓN Y ESTADO GLOBAL
    ============================================================================ */
 
-const knowledgeDB = {
+const EMOJI_OPTIONS = ['🦄','🌈','⭐','🎈','🍕','🐱','🚀','🌸','🎮','🍦'];
+
+let appState = {
+    currentUser: null,
+    voiceEnabled: true,
+    selectedEmojis: []
+};
+
+let gameState = {
+    subject: '',
+    topic: '',
+    currentQ: null,
+    sessionStars: 0,
+    attempts: 0,
+    streak: 0
+};
+
+/* ============================================================================
+   BASE DE DATOS MASIVA DE PREGUNTAS
+   ============================================================================ */
+
+const questionBank = {
     lengua: {
         ortografia: [
-            {
-                q: "¿Cómo se escribe: __arco?",
-                options: ["B", "V"],
-                correct: "B",
-                explanation: "Se escribe con <b>B</b> porque las palabras que empiezan por 'bar-' suelen llevar B (barco, barba, barrio)."
-            },
-            {
-                q: "¿Cómo se escribe: __aca?",
-                options: ["B", "V"],
-                correct: "V",
-                explanation: "Se escribe con <b>V</b>. Recuerda: 'La Vaca tiene cuernos en forma de V'."
-            },
-            {
-                q: "¿Qué palabra está bien escrita?",
-                options: ["Girafa", "Jirafa"],
-                correct: "Jirafa",
-                explanation: "Se escribe con <b>J</b>. Las palabras que empiezan por 'jira-' llevan J."
-            },
-            {
-                q: "¿Qué palabra está bien escrita?",
-                options: ["Gato", "Jato"],
-                correct: "Gato",
-                explanation: "Se escribe con <b>G</b>. Los sonidos suaves de 'ga, go, gu' suelen ir con G."
-            },
-            {
-                q: "¿Lleva H la palabra '__uevo'?",
-                options: ["Sí, lleva H", "No, no lleva H"],
-                correct: "Sí, lleva H",
-                explanation: "¡Sí! Las palabras que empiezan por 'hue-' y 'hie-' siempre llevan H muda (huevo, hielo, hierba)."
-            },
-            {
-                q: "Elige la correcta:",
-                options: ["Hombre", "Ombre"],
-                correct: "Hombre",
-                explanation: "Lleva <b>H</b> inicial. Proviene del latín 'homo'."
-            },
-            {
-                q: "¿Cómo se pluraliza 'Lápiz'?",
-                options: ["Lápizes", "Lápices"],
-                correct: "Lápices",
-                explanation: "Las palabras terminadas en -Z cambian la Z por C en plural (Lápiz -> Lápices, Pez -> Peces)."
-            },
-            {
-                q: "¿Qué palabra es un VERBO?",
-                options: ["Casa", "Correr", "Rojo"],
-                correct: "Correr",
-                explanation: "'Correr' es una acción, por eso es un verbo. 'Casa' es un lugar (sustantivo) y 'Rojo' es un color (adjetivo)."
-            },
-            {
-                q: "Sinónimo de 'Feliz':",
-                options: ["Triste", "Contento", "Enfadado"],
-                correct: "Contento",
-                explanation: "Un sinónimo es una palabra que significa lo mismo. Si estás feliz, estás contento."
-            },
-            {
-                q: "Antónimo de 'Día':",
-                options: ["Sol", "Noche", "Luz"],
-                correct: "Noche",
-                explanation: "Un antónimo es lo contrario. Lo contrario del Día es la Noche."
-            },
-            {
-                q: "¿Qué palabra es AGUDA?",
-                options: ["Camión", "Lápiz", "Árbol"],
-                correct: "Camión",
-                explanation: "Las palabras agudas tienen la fuerza de voz en la última sílaba. Camión lleva tilde porque termina en N."
-            },
-            {
-                q: "Completa: 'El ___ es azul'.",
-                options: ["cielo", "suelo", "pelo"],
-                correct: "cielo",
-                explanation: "El cielo es el espacio sobre la tierra, y normalmente lo vemos azul."
-            }
+            { id: 'ort_1', q: '¿Cómo se escribe: __arco?', context: 'Un barco navega por el mar.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b> porque las palabras que empiezan por "bar-" suelen llevar B (barco, barba, barrio, barniz).' },
+            { id: 'ort_2', q: '¿Cómo se escribe: __aca?', context: 'La vaca da leche en la granja.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Truco: "La Vaca tiene cuernos en forma de V".' },
+            { id: 'ort_3', q: '¿Cómo se escribe: __urro?', context: 'El burro es un animal muy trabajador.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. Las palabras que empiezan por "bur-" llevan B (burro, burro, burbuja).' },
+            { id: 'ort_4', q: '¿Cómo se escribe: __entana?', context: 'Abre la ventana para que entre aire.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Las palabras que empiezan por "ven-" suelen llevar V (ventana, viento, vender).' },
+            { id: 'ort_5', q: '¿Cómo se escribe: __ebé?', context: 'El bebé llora cuando tiene hambre.', options: ['B', 'V'], correct: 'B', explanation: 'Se escribe con <b>B</b>. Las palabras que empiezan por "be-" y "bi-" llevan B (bebé, beber, bicicleta).' },
+            { id: 'ort_6', q: '¿Cómo se escribe: __olcán?', context: 'El volcán echa lava y humo.', options: ['B', 'V'], correct: 'V', explanation: 'Se escribe con <b>V</b>. Las palabras que empiezan por "vol-" llevan V (volcán, volver, volumen).' },
+            { id: 'ort_7', q: '¿Qué palabra está bien escrita?', context: 'Este animal tiene el cuello muy largo.', options: ['Girafa', 'Jirafa'], correct: 'Jirafa', explanation: 'Se escribe con <b>J</b>. Las palabras que empiezan por "jira-" llevan J.' },
+            { id: 'ort_8', q: '¿Qué palabra está bien escrita?', context: 'El ___ maúlla y caza ratones.', options: ['Gato', 'Jato'], correct: 'Gato', explanation: 'Se escribe con <b>G</b>. Los sonidos "ga, go, gu" suelen ir con G.' },
+            { id: 'ort_9', q: '¿Qué palabra está bien escrita?', context: 'Las ___ son frutas amarillas y curvas.', options: ['Guinanas', 'Bananas'], correct: 'Bananas', explanation: 'Se escribe con <b>B</b>. "Banana" viene del árabe y siempre lleva B.' },
+            { id: 'ort_10', q: '¿Lleva H la palabra "__uevo"?', context: 'El huevo es blanco y tiene gallina dentro.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! Las palabras que empiezan por "hue-" y "hie-" SIEMPRE llevan H muda (huevo, hielo, hierba, hueso).' },
+            { id: 'ort_11', q: '¿Lleva H la palabra "__ielo"?', context: 'El hielo es agua congelada.', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: '¡Sí! "Hielo" empieza por "hie-", por eso lleva H muda.' },
+            { id: 'ort_12', q: '¿Lleva H la palabra "__ombre"?', context: 'El ser humano es un...', options: ['Sí, lleva H', 'No, no lleva H'], correct: 'Sí, lleva H', explanation: 'Sí, "hombre" lleva H inicial. Viene del latín "homo".' },
+            { id: 'ort_13', q: '¿Cómo se pluraliza "Lápiz"?', context: 'Tengo un lápiz, tengo varios...', options: ['Lápizes', 'Lápices'], correct: 'Lápices', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural (Lápiz→Lápices, Pez→Peces, Luz→Luces).' },
+            { id: 'ort_14', q: '¿Cómo se pluraliza "Pez"?', context: 'Un pez, muchos...', options: ['Pezes', 'Peces'], correct: 'Peces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
+            { id: 'ort_15', q: '¿Cómo se pluraliza "Voz"?', context: 'Una voz, muchas...', options: ['Vozes', 'Voces'], correct: 'Voces', explanation: 'Las palabras terminadas en -Z cambian la Z por C en plural.' },
+            { id: 'ort_16', q: 'Elige la palabra correcta:', context: 'Voy a ___ agua.', options: ['Hechar', 'Echar'], correct: 'Echar', explanation: '"Echar" (tirar, poner) se escribe SIN H. "Hechar" no existe.' },
+            { id: 'ort_17', q: 'Elige la palabra correcta:', context: 'Lo ___ hecho bien.', options: ['He', 'E'], correct: 'He', explanation: '"He" del verbo haber lleva H. "E" es la letra del abecedario.' },
+            { id: 'ort_18', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Oso', 'Hueso'], correct: 'Hueso', explanation: '"Hueso" lleva H porque empieza por "hue-". "Oso" no lleva H.' },
+            { id: 'ort_19', q: '¿Qué palabra lleva H?', context: 'Una de estas lleva H.', options: ['Ola', 'Hola'], correct: 'Hola', explanation: '"Hola" (saludo) lleva H. "Ola" (del mar) no lleva H.' },
+            { id: 'ort_20', q: 'Completa: "__ormiga"', context: 'La ___ es muy pequeña y trabajadora.', options: ['H', 'Sin H'], correct: 'H', explanation: '"Hormiga" lleva H inicial.' }
         ],
         gramatica: [
-            {
-                q: "¿Cuál es el sustantivo en: 'El perro ladra'?",
-                options: ["El", "Perro", "Ladra"],
-                correct: "Perro",
-                explanation: "El sustantivo es la palabra que nombra a seres u objetos. Aquí nombra al animal."
-            },
-            {
-                q: "¿Cuál es el adjetivo en: 'La casa roja'?",
-                options: ["Casa", "La", "Roja"],
-                correct: "Roja",
-                explanation: "El adjetivo dice cómo es el sustantivo. 'Roja' nos dice cómo es la casa."
-            },
-            {
-                q: "¿Qué tiempo verbal es 'Comí'?",
-                options: ["Presente", "Pasado", "Futuro"],
-                correct: "Pasado",
-                explanation: "'Comí' indica una acción que ya terminó. Es Pretérito Perfecto Simple."
-            }
+            { id: 'gra_1', q: '¿Qué tipo de palabra es "correr"?', context: 'Me gusta correr en el parque.', options: ['Sustantivo', 'Verbo', 'Adjetivo'], correct: 'Verbo', explanation: 'Es un <b>verbo</b> porque indica una ACCIÓN. Los verbos son lo que hacemos (correr, saltar, comer).' },
+            { id: 'gra_2', q: '¿Qué tipo de palabra es "casa"?', context: 'Mi casa es muy grande.', options: ['Sustantivo', 'Verbo', 'Adjetivo'], correct: 'Sustantivo', explanation: 'Es un <b>sustantivo</b> porque nombra un OBJETO o LUGAR. Los sustantivos son personas, animales o cosas.' },
+            { id: 'gra_3', q: '¿Qué tipo de palabra es "rojo"?', context: 'El coche es rojo.', options: ['Sustantivo', 'Verbo', 'Adjetivo'], correct: 'Adjetivo', explanation: 'Es un <b>adjetivo</b> porque dice CÓMO ES algo. Los adjetivos dan cualidades (rojo, grande, bonito).' },
+            { id: 'gra_4', q: '¿Cuál es el sustantivo? "El perro ladra"', context: 'Encuentra el nombre en la frase.', options: ['El', 'Perro', 'Ladra'], correct: 'Perro', explanation: '"Perro" es el sustantivo porque nombra al animal. "El" es el artículo y "ladra" es el verbo.' },
+            { id: 'gra_5', q: '¿Cuál es el adjetivo? "La casa roja"', context: 'Encuentra la cualidad en la frase.', options: ['Casa', 'La', 'Roja'], correct: 'Roja', explanation: '"Roja" es el adjetivo porque nos dice CÓMO es la casa.' },
+            { id: 'gra_6', q: '¿Qué tiempo verbal es "comí"?', context: 'Ayer comí pizza.', options: ['Presente', 'Pasado', 'Futuro'], correct: 'Pasado', explanation: '"Comí" es PASADO porque la acción YA terminó. Lo sabemos por el acento y porque dice "ayer".' },
+            { id: 'gra_7', q: '¿Qué tiempo verbal es "comeré"?', context: 'Mañana comeré ensalada.', options: ['Presente', 'Pasado', 'Futuro'], correct: 'Futuro', explanation: '"Comeré" es FUTURO porque la acción TODAVÍA NO ha pasado. Lo sabemos por la terminación "-é".' },
+            { id: 'gra_8', q: '¿Qué tiempo verbal es "como"?', context: 'Yo como fruta todos los días.', options: ['Presente', 'Pasado', 'Futuro'], correct: 'Presente', explanation: '"Como" es PRESENTE porque es algo que hago AHORA o habitualmente.' },
+            { id: 'gra_9', q: '¿Cuál es el verbo? "Los niños juegan"', context: 'Encuentra la acción.', options: ['Los', 'Niños', 'Juegan'], correct: 'Juegan', explanation: '"Juegan" es el verbo porque es la ACCIÓN que hacen los niños.' },
+            { id: 'gra_10', q: '¿"Feliz" es un adjetivo?', context: 'Estoy muy feliz hoy.', options: ['Sí', 'No'], correct: 'Sí', explanation: 'Sí, "feliz" es un adjetivo porque dice CÓMO está alguien (una cualidad o estado).' }
+        ],
+        sinonimos: [
+            { id: 'sin_1', q: 'Sinónimo de "feliz"', context: 'Busca una palabra que signifique lo mismo.', options: ['Triste', 'Contento', 'Enfadado'], correct: 'Contento', explanation: '"Contento" es sinónimo de "feliz" porque ambas significan tener alegría.' },
+            { id: 'sin_2', q: 'Sinónimo de "triste"', context: 'Busca una palabra que signifique lo mismo.', options: ['Alegre', 'Apenado', 'Feliz'], correct: 'Apenado', explanation: '"Apenado" es sinónimo de "triste" porque ambas significan tener pena.' },
+            { id: 'sin_3', q: 'Sinónimo de "grande"', context: 'Busca una palabra que signifique lo mismo.', options: ['Pequeño', 'Enorme', 'Bajo'], correct: 'Enorme', explanation: '"Enorme" es sinónimo de "grande" porque ambas indican mucho tamaño.' },
+            { id: 'sin_4', q: 'Sinónimo de "rápido"', context: 'Busca una palabra que signifique lo mismo.', options: ['Lento', 'Veloz', 'Despacio'], correct: 'Veloz', explanation: '"Veloz" es sinónimo de "rápido" porque ambas indican mucha velocidad.' },
+            { id: 'sin_5', q: 'Sinónimo de "empezar"', context: 'Busca una palabra que signifique lo mismo.', options: ['Terminar', 'Comenzar', 'Parar'], correct: 'Comenzar', explanation: '"Comenzar" es sinónimo de "empezar" porque ambas significan iniciar algo.' },
+            { id: 'sin_6', q: 'Sinónimo de "bonito"', context: 'Busca una palabra que signifique lo mismo.', options: ['Feo', 'Hermoso', 'Regular'], correct: 'Hermoso', explanation: '"Hermoso" es sinónimo de "bonito" porque ambas indican belleza.' },
+            { id: 'sin_7', q: 'Sinónimo de "casa"', context: 'Busca una palabra que signifique lo mismo.', options: ['Calle', 'Vivienda', 'Puerta'], correct: 'Vivienda', explanation: '"Vivienda" es sinónimo de "casa" porque ambas son lugares donde vivimos.' },
+            { id: 'sin_8', q: 'Sinónimo de "coche"', context: 'Busca una palabra que signifique lo mismo.', options: ['Bicicleta', 'Automóvil', 'Camión'], correct: 'Automóvil', explanation: '"Automóvil" es sinónimo de "coche" porque ambos son vehículos de cuatro ruedas.' },
+            { id: 'sin_9', q: 'Sinónimo de "niño"', context: 'Busca una palabra que signifique lo mismo.', options: ['Adulto', 'Chico', 'Bebé'], correct: 'Chico', explanation: '"Chico" es sinónimo de "niño" porque ambos se refieren a una persona joven.' },
+            { id: 'sin_10', q: 'Sinónimo de "listo"', context: 'Busca una palabra que signifique lo mismo.', options: ['Tonto', 'Inteligente', 'Lento'], correct: 'Inteligente', explanation: '"Inteligente" es sinónimo de "listo" porque ambas indican capacidad mental.' }
+        ],
+        antonimos: [
+            { id: 'ant_1', q: 'Antónimo de "día"', context: 'Busca la palabra contraria.', options: ['Sol', 'Noche', 'Luz'], correct: 'Noche', explanation: '"Noche" es antónimo de "día" porque son momentos opuestos del tiempo.' },
+            { id: 'ant_2', q: 'Antónimo de "grande"', context: 'Busca la palabra contraria.', options: ['Enorme', 'Pequeño', 'Alto'], correct: 'Pequeño', explanation: '"Pequeño" es antónimo de "grande" porque son tamaños opuestos.' },
+            { id: 'ant_3', q: 'Antónimo de "rápido"', context: 'Busca la palabra contraria.', options: ['Veloz', 'Lento', 'Correr'], correct: 'Lento', explanation: '"Lento" es antónimo de "rápido" porque son velocidades opuestas.' },
+            { id: 'ant_4', q: 'Antónimo de "alto"', context: 'Busca la palabra contraria.', options: ['Grande', 'Bajo', 'Largo'], correct: 'Bajo', explanation: '"Bajo" es antónimo de "alto" porque son alturas opuestas.' },
+            { id: 'ant_5', q: 'Antónimo de "bueno"', context: 'Busca la palabra contraria.', options: ['Malo', 'Regular', 'Mejor'], correct: 'Malo', explanation: '"Malo" es antónimo de "bueno" porque son calidades opuestas.' },
+            { id: 'ant_6', q: 'Antónimo de "caliente"', context: 'Busca la palabra contraria.', options: ['Fuego', 'Frío', 'Tibio'], correct: 'Frío', explanation: '"Frío" es antónimo de "caliente" porque son temperaturas opuestas.' },
+            { id: 'ant_7', q: 'Antónimo de "abierto"', context: 'Busca la palabra contraria.', options: ['Puerta', 'Cerrado', 'Grande'], correct: 'Cerrado', explanation: '"Cerrado" es antónimo de "abierto" porque son estados opuestos.' },
+            { id: 'ant_8', q: 'Antónimo de "lleno"', context: 'Busca la palabra contraria.', options: ['Vacío', 'Completo', 'Medio'], correct: 'Vacío', explanation: '"Vacío" es antónimo de "lleno" porque son cantidades opuestas.' },
+            { id: 'ant_9', q: 'Antónimo de "nuevo"', context: 'Busca la palabra contraria.', options: ['Moderno', 'Viejo', 'Joven'], correct: 'Viejo', explanation: '"Viejo" es antónimo de "nuevo" porque son edades opuestas.' },
+            { id: 'ant_10', q: 'Antónimo de "blanco"', context: 'Busca la palabra contraria.', options: ['Gris', 'Negro', 'Claro'], correct: 'Negro', explanation: '"Negro" es antónimo de "blanco" porque son colores opuestos.' }
         ]
     },
     medio: {
         animales: [
-            {
-                q: "¿Qué tipo de animal es la ballena?",
-                options: ["Pez", "Mamífero", "Reptil"],
-                correct: "Mamífero",
-                explanation: "Aunque vive en el agua, la ballena es mamífero porque respira por pulmones, tiene sangre caliente y da de mamar a sus crías."
-            },
-            {
-                q: "¿Qué animal es un invertebrado?",
-                options: ["Perro", "Mariposa", "Águila"],
-                correct: "Mariposa",
-                explanation: "La mariposa es un insecto y no tiene columna vertebral (huesos internos), por eso es invertebrado."
-            },
-            {
-                q: "¿Qué comen los animales herbívoros?",
-                options: ["Carne", "Plantas", "Todo"],
-                correct: "Plantas",
-                explanation: "Herbívoro viene de 'hierba'. Se alimentan exclusivamente de vegetales."
-            },
-            {
-                q: "¿Cómo respiran los peces?",
-                options: ["Por pulmones", "Por branquias", "Por la piel"],
-                correct: "Por branquias",
-                explanation: "Las branquias filtran el oxígeno que hay disuelto en el agua."
-            },
-            {
-                q: "¿Qué animal es ovíparo?",
-                options: ["Gato", "Gallina", "Vaca"],
-                correct: "Gallina",
-                explanation: "Ovíparo significa que nace de un huevo. La gallina pone huevos."
-            }
+            { id: 'ani_1', q: '¿Qué tipo de animal es la ballena?', context: 'Vive en el océano y es enorme.', options: ['Pez', 'Mamífero', 'Reptil'], correct: 'Mamífero', explanation: 'La ballena es MAMÍFERO porque: 1) Respira por pulmones, 2) Tiene sangre caliente, 3) Da de mamar a sus crías. ¡Aunque viva en el agua!' },
+            { id: 'ani_2', q: '¿Qué animal es un invertebrado?', context: 'No tiene huesos internos.', options: ['Perro', 'Mariposa', 'Águila'], correct: 'Mariposa', explanation: 'La mariposa es INVERTEBRADO porque no tiene columna vertebral. Es un insecto con esqueleto externo.' },
+            { id: 'ani_3', q: '¿Qué comen los herbívoros?', context: 'Son animales como la vaca.', options: ['Carne', 'Plantas', 'Todo'], correct: 'Plantas', explanation: 'Los HERBÍVOROS comen PLANTAS. "Herbi" viene de hierba. Ejemplos: vaca, oveja, conejo.' },
+            { id: 'ani_4', q: '¿Qué comen los carnívoros?', context: 'Son animales como el león.', options: ['Plantas', 'Carne', 'Frutas'], correct: 'Carne', explanation: 'Los CARNÍVOROS comen CARNE. "Carni" viene de carne. Ejemplos: león, tigre, lobo.' },
+            { id: 'ani_5', q: '¿Cómo respiran los peces?', context: 'Viven bajo el agua.', options: ['Por pulmones', 'Por branquias', 'Por la piel'], correct: 'Por branquias', explanation: 'Los peces respiran por BRANQUIAS, que filtran el oxígeno del agua. Por eso no pueden vivir fuera del agua.' },
+            { id: 'ani_6', q: '¿Qué animal es ovíparo?', context: 'Nace de un huevo.', options: ['Gato', 'Gallina', 'Vaca'], correct: 'Gallina', explanation: 'La gallina es OVÍPARA porque pone HUEVOS. "Ovi" viene de huevo. Otros: pato, pez, mariposa.' },
+            { id: 'ani_7', q: '¿Qué animal es vivíparo?', context: 'Nace directamente de la madre.', options: ['Gallina', 'Perro', 'Tortuga'], correct: 'Perro', explanation: 'El perro es VIVÍPARO porque nace directamente del vientre de su madre. "Vivi" viene de vida.' },
+            { id: 'ani_8', q: '¿Cuántas patas tiene un insecto?', context: 'Como la hormiga o la abeja.', options: ['4 patas', '6 patas', '8 patas'], correct: '6 patas', explanation: 'Todos los INSECTOS tienen 6 PATAS. Es su característica principal. Ejemplos: hormiga, abeja, mariposa.' },
+            { id: 'ani_9', q: '¿Qué animal tiene plumas?', context: 'Puede volar por el cielo.', options: ['Murciélago', 'Ave', 'Mariposa'], correct: 'Ave', explanation: 'Las AVES tienen PLUMAS. Es lo que las diferencia de otros animales. Ejemplos: águila, gorrión, pingüino.' },
+            { id: 'ani_10', q: '¿Qué animal tiene escamas?', context: 'Vive en el agua o en tierra.', options: ['Pez o Reptil', 'Mamífero', 'Ave'], correct: 'Pez o Reptil', explanation: 'Los PECES y REPTILES tienen ESCAMAS que protegen su cuerpo. Ejemplos: pez, serpiente, cocodrilo.' }
         ],
         cuerpo: [
-            {
-                q: "¿Qué órgano bombea la sangre?",
-                options: ["Cerebro", "Corazón", "Estómago"],
-                correct: "Corazón",
-                explanation: "El corazón es un músculo que funciona como una bomba para enviar sangre a todo el cuerpo."
-            },
-            {
-                q: "¿Dónde se digiere la comida?",
-                options: ["En el Estómago", "En el Cerebro", "En los Pulmones"],
-                correct: "En el Estómago",
-                explanation: "El estómago es como una batidora que mezcla la comida con jugos gástricos."
-            },
-            {
-                q: "¿Qué hueso protege el cerebro?",
-                options: ["Las Costillas", "El Cráneo", "La Pelvis"],
-                correct: "El Cráneo",
-                explanation: "El cráneo es un hueso muy duro en forma de casco que protege nuestra parte más importante."
-            }
+            { id: 'cue_1', q: '¿Qué órgano bombea la sangre?', context: 'Funciona como una bomba.', options: ['Cerebro', 'Corazón', 'Estómago'], correct: 'Corazón', explanation: 'El CORAZÓN bombea sangre a todo el cuerpo. Late unas 100.000 veces al día. ¡Es un músculo muy trabajador!' },
+            { id: 'cue_2', q: '¿Dónde se digiere la comida?', context: 'Es como una batidora.', options: ['En el Estómago', 'En el Cerebro', 'En los Pulmones'], correct: 'En el Estómago', explanation: 'El ESTÓMAGO digiere la comida mezclándola con jugos gástricos. Luego pasa al intestino.' },
+            { id: 'cue_3', q: '¿Qué hueso protege el cerebro?', context: 'Es como un casco natural.', options: ['Las Costillas', 'El Cráneo', 'La Pelvis'], correct: 'El Cráneo', explanation: 'El CRÁNEO protege el cerebro. Es un hueso muy duro en forma de casco.' },
+            { id: 'cue_4', q: '¿Qué órganos nos permiten respirar?', context: 'Tomamos aire por ellos.', options: ['Corazón', 'Pulmones', 'Riñones'], correct: 'Pulmones', explanation: 'Los PULMONES toman oxígeno del aire y expulsan dióxido de carbono. Tenemos dos.' },
+            { id: 'cue_5', q: '¿Qué órgano controla el pensamiento?', context: 'Es el jefe del cuerpo.', options: ['Corazón', 'Cerebro', 'Hígado'], correct: 'Cerebro', explanation: 'El CEREBRO controla TODO: pensar, moverse, recordar. Es el órgano más importante.' },
+            { id: 'cue_6', q: '¿Cuántos huesos tiene el cuerpo humano?', context: 'Un adulto.', options: ['106', '206', '306'], correct: '206', explanation: 'Un adulto tiene 206 HUESOS. ¡Los bebés tienen más (300) pero algunos se unen al crecer!' },
+            { id: 'cue_7', q: '¿Qué protege las costillas?', context: 'Están en el pecho.', options: ['El cerebro', 'El corazón y pulmones', 'El estómago'], correct: 'El corazón y pulmones', explanation: 'Las COSTILLAS protegen el corazón y los pulmones. Son como una jaula protectora.' },
+            { id: 'cue_8', q: '¿Qué órgano filtra la sangre?', context: 'Tenemos dos.', options: ['Pulmones', 'Riñones', 'Hígado'], correct: 'Riñones', explanation: 'Los RIÑONES filtran la sangre y producen orina. Tenemos dos, uno a cada lado.' },
+            { id: 'cue_9', q: '¿Cuál es el hueso más largo?', context: 'Está en la pierna.', options: ['Fémur', 'Brazo', 'Columna'], correct: 'Fémur', explanation: 'El FÉMUR (en el muslo) es el hueso más largo y fuerte del cuerpo.' },
+            { id: 'cue_10', q: '¿Qué nos permite saborear la comida?', context: 'Está en la boca.', options: ['Los dientes', 'La lengua', 'Los labios'], correct: 'La lengua', explanation: 'La LENGUA tiene papilas gustativas que detectan sabores: dulce, salado, ácido y amargo.' }
         ],
         planeta: [
-            {
-                q: "¿Cuál es el planeta más grande?",
-                options: ["Tierra", "Marte", "Júpiter"],
-                correct: "Júpiter",
-                explanation: "Júpiter es tan grande que dentro cabrían 1.300 Tierras."
-            },
-            {
-                q: "¿Qué planeta tiene anillos visibles?",
-                options: ["Saturno", "Venus", "Mercurio"],
-                correct: "Saturno",
-                explanation: "Saturno tiene un sistema de anillos formado por hielo y rocas muy brillante."
-            },
-            {
-                q: "¿En qué planeta vivimos?",
-                options: ["Marte", "Tierra", "Luna"],
-                correct: "Tierra",
-                explanation: "La Tierra es el único planeta conocido con agua líquida y vida."
-            },
-            {
-                q: "¿Qué movimiento causa el Día y la Noche?",
-                options: ["Traslación", "Rotación", "Órbita"],
-                correct: "Rotación",
-                explanation: "La Rotación es cuando la Tierra gira sobre sí misma como una peonza (tarda 24 horas)."
-            }
+            { id: 'pla_1', q: '¿Cuál es el planeta más grande?', context: 'Caben 1.300 Tierras dentro.', options: ['Tierra', 'Marte', 'Júpiter'], correct: 'Júpiter', explanation: 'JÚPITER es el planeta más GRANDE. Es tan enorme que dentro cabrían 1.300 Tierras. ¡Es un gigante gaseoso!' },
+            { id: 'pla_2', q: '¿Qué planeta tiene anillos visibles?', context: 'Son de hielo y roca.', options: ['Saturno', 'Venus', 'Mercurio'], correct: 'Saturno', explanation: 'SATURNO tiene los ANILLOS más visibles. Están hechos de millones de trozos de hielo y roca.' },
+            { id: 'pla_3', q: '¿En qué planeta vivimos?', context: 'Tiene agua y vida.', options: ['Marte', 'Tierra', 'Luna'], correct: 'Tierra', explanation: 'La TIERRA es nuestro hogar. Es el único planeta conocido con agua líquida y vida.' },
+            { id: 'pla_4', q: '¿Qué movimiento causa el Día y la Noche?', context: 'Gira como una peonza.', options: ['Traslación', 'Rotación', 'Órbita'], correct: 'Rotación', explanation: 'La ROTACIÓN es cuando la Tierra gira sobre sí misma. Tarda 24 horas = 1 día.' },
+            { id: 'pla_5', q: '¿Qué movimiento causa las Estaciones?', context: 'Da vueltas alrededor del Sol.', options: ['Traslación', 'Rotación', 'Giro'], correct: 'Traslación', explanation: 'La TRASLACIÓN es cuando la Tierra da vueltas alrededor del Sol. Tarda 365 días = 1 año.' },
+            { id: 'pla_6', q: '¿Cuál es el planeta más cercano al Sol?', context: 'Es muy caliente.', options: ['Venus', 'Mercurio', 'Tierra'], correct: 'Mercurio', explanation: 'MERCURIO es el más cercano al Sol. Por eso hace mucho calor durante el día.' },
+            { id: 'pla_7', q: '¿Cuál es el planeta más caliente?', context: 'Tiene una atmósfera muy densa.', options: ['Mercurio', 'Venus', 'Marte'], correct: 'Venus', explanation: 'VENUS es el más CALIENTE (460°C) porque su atmósfera atrapa el calor como un invernadero.' },
+            { id: 'pla_8', q: '¿Qué planeta es conocido como "el planeta rojo"?', context: 'Tiene mucho hierro.', options: ['Júpiter', 'Marte', 'Saturno'], correct: 'Marte', explanation: 'MARTE es rojo por el óxido de hierro en su superficie. ¡Es el objetivo de las misiones espaciales!' },
+            { id: 'pla_9', q: '¿Cuántos planetas hay en el Sistema Solar?', context: 'Contando desde Mercurio.', options: ['7', '8', '9'], correct: '8', explanation: 'Hay 8 PLANETAS: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno. (Plutón ya no es planeta).' },
+            { id: 'pla_10', q: '¿Qué es la Luna?', context: 'Gira alrededor de la Tierra.', options: ['Un planeta', 'Un satélite', 'Una estrella'], correct: 'Un satélite', explanation: 'La LUNA es un SATÉLITE natural de la Tierra. Gira alrededor de nuestro planeta.' }
         ]
     }
 };
 
 /* ============================================================================
-   MOTOR MATEMÁTICO INTELIGENTE
+   MOTOR MATEMÁTICO INFINITO
    ============================================================================ */
-const mathEngine = {
-    level: 1,
-    generate: function(topic) {
-        // Ajustar dificultad según nivel (1 a 5)
-        let n1, n2, n3, res, text, hint;
-        const l = this.level;
 
+const mathEngine = {
+    generate: function(topic, level) {
+        let n1, n2, n3, res, text, context, hint;
+        const l = Math.max(1, Math.min(5, level));
+
+        // Generadores con contexto para TODAS las operaciones
         if (topic === 'sumas') {
+            const contexts = [
+                { t: 'En una caja hay {n1} manzanas. Añadimos {n2} más.', q: '¿Cuántas manzanas hay ahora?' },
+                { t: 'Carla tiene {n1} cromos. Su amigo le da {n2}.', q: '¿Cuántos cromos tiene en total?' },
+                { t: 'En un árbol hay {n1} pájaros. Llegan {n2} más.', q: '¿Cuántos pájaros hay ahora?' }
+            ];
+            const ctx = contexts[Math.floor(Math.random() * contexts.length)];
             if (l < 3) { n1 = r(10, 50); n2 = r(10, 50); }
             else if (l < 5) { n1 = r(100, 500); n2 = r(100, 500); }
             else { n1 = r(500, 1000); n2 = r(500, 1000); }
-            return { type: 'input', q: `${n1} + ${n2}`, a: n1 + n2, hint: 'Suma las unidades, luego las decenas...' };
+            return {
+                type: 'input',
+                context: ctx.t.replace('{n1}', n1).replace('{n2}', n2),
+                q: ctx.q,
+                a: n1 + n2,
+                hint: 'Suma las dos cantidades',
+                explanation: `Has sumado ${n1} + ${n2} = ${n1+n2}. ¡La suma es la operación de añadir!`
+            };
         }
         if (topic === 'restas') {
+            const contexts = [
+                { t: 'Hay {n1} galletas. Nos comemos {n2}.', q: '¿Cuántas galletas quedan?' },
+                { t: 'En un autobús van {n1} personas. Se bajan {n2}.', q: '¿Cuántas personas quedan?' },
+                { t: 'Tenemos {n1} euros. Gastamos {n2}.', q: '¿Cuánto dinero nos queda?' }
+            ];
+            const ctx = contexts[Math.floor(Math.random() * contexts.length)];
             if (l < 3) { n1 = r(50, 90); n2 = r(10, 40); }
             else { n1 = r(200, 900); n2 = r(50, n1-10); }
-            return { type: 'input', q: `${n1} - ${n2}`, a: n1 - n2, hint: 'Recuerda llevar si la cifra de arriba es menor.' };
+            return {
+                type: 'input',
+                context: ctx.t.replace('{n1}', n1).replace('{n2}', n2),
+                q: ctx.q,
+                a: n1 - n2,
+                hint: 'Resta lo que se va del total',
+                explanation: `Has restado ${n1} - ${n2} = ${n1-n2}. ¡La resta es la operación de quitar!`
+            };
         }
         if (topic === 'mult') {
+            const contexts = [
+                { t: 'Compramos {n2} cajas con {n1} lápices cada una.', q: '¿Cuántos lápices tenemos en total?' },
+                { t: 'Hay {n2} bolsas con {n1} caramelos cada una.', q: '¿Cuántos caramelos hay en total?' },
+                { t: 'Un libro cuesta {n1} euros. Compramos {n2} libros.', q: '¿Cuánto pagamos en total?' }
+            ];
+            const ctx = contexts[Math.floor(Math.random() * contexts.length)];
             if (l < 3) { n1 = r(2, 5); n2 = r(2, 9); }
             else { n1 = r(6, 9); n2 = r(6, 12); }
-            return { type: 'input', q: `${n1} × ${n2}`, a: n1 * n2, hint: 'Usa las tablas de multiplicar.' };
+            return {
+                type: 'input',
+                context: ctx.t.replace('{n1}', n1).replace('{n2}', n2),
+                q: ctx.q,
+                a: n1 * n2,
+                hint: 'Multiplica usando las tablas',
+                explanation: `Has multiplicado ${n1} × ${n2} = ${n1*n2}. ¡La multiplicación es sumar varias veces el mismo número!`
+            };
         }
         if (topic === 'div') {
+            const contexts = [
+                { t: 'Repartimos {n1} caramelos entre {n2} niños.', q: '¿Cuántos caramelos le tocan a cada uno?' },
+                { t: 'Tenemos {n1} galletas para {n2} amigos.', q: '¿Cuántas galletas le tocan a cada uno?' },
+                { t: 'Dividimos {n1} euros entre {n2} personas.', q: '¿Cuánto dinero le toca a cada uno?' }
+            ];
+            const ctx = contexts[Math.floor(Math.random() * contexts.length)];
             if (l < 3) { n2 = r(2, 5); res = r(2, 9); }
             else { n2 = r(6, 9); res = r(10, 20); }
             n1 = n2 * res;
-            return { type: 'input', q: `${n1} : ${n2}`, a: res, hint: 'Piensa: ¿Qué número por ' + n2 + ' da ' + n1 + '?' };
+            return {
+                type: 'input',
+                context: ctx.t.replace('{n1}', n1).replace('{n2}', n2),
+                q: ctx.q,
+                a: res,
+                hint: `Piensa: ¿Qué número por ${n2} da ${n1}?`,
+                explanation: `Has dividido ${n1} : ${n2} = ${res}. ¡La división es repartir en partes iguales!`
+            };
         }
         if (topic === 'fraccion') {
-            let den = [2,3,4,5,10][r(0,4)];
-            let num1 = r(1, den-1);
-            let num2 = r(1, den-num1);
-            return { 
-                type: 'input', 
-                q: `<span style='display:inline-block; text-align:center'><span style='border-bottom:2px solid black'>${num1}</span><br>${den}</span> + <span style='display:inline-block; text-align:center'><span style='border-bottom:2px solid black'>${num2}</span><br>${den}</span>`, 
-                a: `${num1+num2}/${den}`, 
-                hint: 'Suma los de arriba (numeradores) y deja los de abajo igual.' 
+            // PROBLEMAS DE FRACCIONES CON CONTEXTO (100% problemas)
+            const problems = [
+                {
+                    context: 'Para merendar, tu abuela ha hecho una tortilla de patatas riquísima y la ha cortado en 4 trozos iguales.',
+                    q: 'Si tú te comes 1 trozo, ¿qué fracción de la tortilla te has comido?',
+                    setup: { total: 4, eaten: 1 },
+                    a: '1/4',
+                    explanation: 'La tortilla tiene 4 partes (denominador). Te comes 1 parte (numerador). Por eso es 1/4. ¡Quedan 3/4 para el abuelo!'
+                },
+                {
+                    context: 'Imagina que tenemos un dibujo con 8 olivos de Jaén.',
+                    q: 'Si pintamos la mitad (1/2) de los olivos de color verde oscuro, ¿cuántos olivos hay de color verde oscuro?',
+                    setup: { total: 8, fraction: '1/2' },
+                    a: '4',
+                    explanation: 'La mitad de 8 es 4. Porque 8 dividido entre 2 = 4. ¡Hay 4 olivos verde oscuro y 4 verde claro!'
+                },
+                {
+                    context: 'La familia va en coche a la playa de Matalascañas. El camino es largo.',
+                    q: 'Si ya hemos recorrido un tercio (1/3) del camino, ¿cuántas partes nos faltan para llegar?',
+                    setup: { total: 3, done: 1 },
+                    a: '2',
+                    explanation: 'El camino tiene 3 partes. Hemos hecho 1 parte. Faltan 3-1=2 partes. ¡Casi llegamos!'
+                },
+                {
+                    context: 'En un plato hay 6 pestiños con miel típicos de Andalucía.',
+                    q: 'Tu hermano se come 2/6 de los pestiños. ¿Cuántos pestiños se ha comido exactamente?',
+                    setup: { total: 6, fraction: '2/6' },
+                    a: '2',
+                    explanation: 'El plato tiene 6 partes. Tu hermano coge 2 partes. ¡Se ha comido 2 pestiños! Quedan 4.'
+                },
+                {
+                    context: 'Una pizza está cortada en 8 porciones iguales.',
+                    q: 'Si te comes 3 porciones, ¿qué fracción de la pizza te has comido?',
+                    setup: { total: 8, eaten: 3 },
+                    a: '3/8',
+                    explanation: 'La pizza tiene 8 partes (denominador). Te comes 3 partes (numerador). Por eso es 3/8.'
+                },
+                {
+                    context: 'Una tarta de cumpleaños tiene 12 trozos.',
+                    q: 'Si en la fiesta se comen 5 trozos, ¿qué fracción de la tarta se han comido?',
+                    setup: { total: 12, eaten: 5 },
+                    a: '5/12',
+                    explanation: 'La tarta tiene 12 partes. Se comen 5 partes. La fracción es 5/12.'
+                },
+                {
+                    context: 'Un depósito de agua tiene 10 partes iguales.',
+                    q: 'Si está lleno hasta 7 partes, ¿qué fracción del depósito está llena?',
+                    setup: { total: 10, filled: 7 },
+                    a: '7/10',
+                    explanation: 'El depósito tiene 10 partes. Está lleno hasta 7. La fracción es 7/10.'
+                },
+                {
+                    context: 'Una barra de pan se corta en 6 rebanadas iguales.',
+                    q: 'Si desayunas 2 rebanadas, ¿qué fracción de la barra te has comido?',
+                    setup: { total: 6, eaten: 2 },
+                    a: '2/6',
+                    explanation: 'La barra tiene 6 partes. Te comes 2. La fracción es 2/6 (que es lo mismo que 1/3).'
+                },
+                {
+                    context: 'Un campo de fútbol está dividido en 4 cuartos.',
+                    q: 'Si hemos jugado en 3 cuartos, ¿qué fracción del campo hemos recorrido?',
+                    setup: { total: 4, done: 3 },
+                    a: '3/4',
+                    explanation: 'El campo tiene 4 partes. Hemos recorrido 3. La fracción es 3/4.'
+                },
+                {
+                    context: 'Una caja de huevos tiene 12 huecos.',
+                    q: 'Si hay 9 huevos dentro, ¿qué fracción de la caja está ocupada?',
+                    setup: { total: 12, filled: 9 },
+                    a: '9/12',
+                    explanation: 'La caja tiene 12 partes. Hay 9 huevos. La fracción es 9/12 (que es lo mismo que 3/4).'
+                }
+            ];
+            const prob = problems[Math.floor(Math.random() * problems.length)];
+            return {
+                type: 'input',
+                context: prob.context,
+                q: prob.q,
+                a: prob.a,
+                hint: 'Piensa: total de partes y partes que tomamos',
+                explanation: prob.explanation,
+                isFraction: true
             };
         }
         if (topic === 'problema') {
-            // Problemas compuestos dinámicos
+            // Problemas compuestos (2 operaciones)
+            const problems = [
+                { t: 'Carla tiene {n1}€. Gasta {n2}€ en un libro y luego su abuela le da {n3}€. ¿Cuánto tiene ahora?', a: (n1,n2,n3) => (n1-n2)+n3, hint: 'Primero resta, luego suma' },
+                { t: 'En un autobús van {n1} personas. En la parada 1 bajan {n2} y suben {n3}. ¿Cuántas quedan?', a: (n1,n2,n3) => (n1-n2)+n3, hint: 'Sigue el orden de la historia' },
+                { t: 'Compramos {n2} paquetes de {n1} cromos. Ya teníamos {n3} cromos. ¿Cuántos tenemos?', a: (n1,n2,n3) => (n1*n2)+n3, hint: 'Primero multiplica, luego suma' },
+                { t: 'Tenemos {n1} manzanas. Las repartimos entre {n2} niños. Cada niño come {n3}. ¿Cuántas le sobran a cada uno?', a: (n1,n2,n3) => Math.floor(n1/n2)-n3, hint: 'Primero divide, luego resta' },
+                { t: 'Un libro tiene {n1} páginas. Carla lee {n2} el lunes y {n3} el martes. ¿Cuántas le quedan?', a: (n1,n2,n3) => n1-n2-n3, hint: 'Resta lo que ha leído del total' }
+            ];
+            const prob = problems[Math.floor(Math.random() * problems.length)];
             if (l < 3) {
-                // 1 Operación
-                n1 = r(10, 50); n2 = r(5, 20);
-                const ops = [
-                    { t: `Tengo ${n1} cromos y compro ${n2}.`, a: n1+n2, op: '+' },
-                    { t: `Hay ${n1} pájaros y se van ${n2}.`, a: n1-n2, op: '-' }
-                ];
-                const p = ops[r(0,1)];
-                return { type: 'input', q: p.t + " ¿Cuántos hay?", a: p.a, hint: p.op === '+' ? 'Suma' : 'Resta' };
+                n1 = r(20, 50); n2 = r(5, 15); n3 = r(3, 10);
             } else {
-                // 2 Operaciones (Compuestos)
-                n1 = r(20, 100); n2 = r(5, 20); n3 = r(5, 10);
-                const probs = [
-                    { t: `Carla tiene ${n1}€. Gasta ${n2}€ y luego su abuela le da ${n3}€.`, a: (n1-n2)+n3, hint: 'Primero resta lo que gasta, luego suma lo que le dan.' },
-                    { t: `En un bus van ${n1} personas. Bajan ${n2} y suben ${n3}.`, a: (n1-n2)+n3, hint: 'Sigue el orden de la historia.' }
-                ];
-                const p = probs[r(0,1)];
-                return { type: 'input', q: p.t + " ¿Cuántas hay ahora?", a: p.a, hint: p.hint };
+                n1 = r(50, 150); n2 = r(10, 40); n3 = r(5, 20);
             }
+            const answer = prob.a(n1, n2, n3);
+            return {
+                type: 'input',
+                context: 'Problema de varias operaciones:',
+                q: prob.t.replace('{n1}', n1).replace('{n2}', n2).replace('{n3}', n3),
+                a: answer,
+                hint: prob.hint,
+                explanation: `Primero haz una operación, luego la otra. El resultado es ${answer}.`
+            };
         }
     }
 };
 
 /* ============================================================================
-   LÓGICA DE LA APP
+   UTILIDADES
    ============================================================================ */
 
-let state = {
-    stars: parseInt(localStorage.getItem('carla_stars_v4')) || 0,
-    level: parseInt(localStorage.getItem('carla_level_v4')) || 1,
-    subject: '',
-    topic: '',
-    currentQ: null,
-    streak: 0, // Racha de aciertos
-    attempts: 0 // Intentos en la pregunta actual
-};
-
-// Utilidad random
 function r(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
-function init() {
-    updateStats();
-    // Ajustar nivel del motor matemático
-    mathEngine.level = state.level;
+function saveData() {
+    if (appState.currentUser) {
+        localStorage.setItem('carla_user_' + appState.currentUser.id, JSON.stringify(appState.currentUser));
+    }
+    localStorage.setItem('carla_users', JSON.stringify(allUsers));
+    localStorage.setItem('carla_settings', JSON.stringify({ voiceEnabled: appState.voiceEnabled }));
 }
 
-function updateStats() {
-    document.getElementById('total-stars').innerText = state.stars;
-    document.getElementById('current-level').innerText = state.level;
-    localStorage.setItem('carla_stars_v4', state.stars);
-    localStorage.setItem('carla_level_v4', state.level);
+function loadData() {
+    const settings = localStorage.getItem('carla_settings');
+    if (settings) {
+        const s = JSON.parse(settings);
+        appState.voiceEnabled = s.voiceEnabled !== undefined ? s.voiceEnabled : true;
+    }
 }
+
+function createUserId(name, emojis) {
+    return name + '_' + emojis.join('');
+}
+
+/* ============================================================================
+   GESTIÓN DE USUARIOS
+   ============================================================================ */
+
+let allUsers = JSON.parse(localStorage.getItem('carla_users')) || [];
+
+function initLoginScreen() {
+    // Crear selectores de emojis
+    ['login', 'new'].forEach(prefix => {
+        const container = document.getElementById(prefix + '-emoji-selector');
+        container.innerHTML = '';
+        EMOJI_OPTIONS.forEach(emoji => {
+            const div = document.createElement('div');
+            div.className = 'emoji-option';
+            div.innerText = emoji;
+            div.onclick = () => selectEmoji(prefix, emoji, div);
+            container.appendChild(div);
+        });
+    });
+    loadData();
+}
+
+function selectEmoji(prefix, emoji, element) {
+    const key = prefix + '-selected';
+    if (!appState[key]) appState[key] = [];
+    
+    if (appState[key].length < 3) {
+        appState[key].push(emoji);
+        element.classList.add('selected');
+        updateEmojiPreview(prefix);
+    }
+}
+
+function updateEmojiPreview(prefix) {
+    const key = prefix + '-selected';
+    document.getElementById(prefix + '-emoji-preview').innerText = appState[key] ? appState[key].join(' ') : '';
+}
+
+function createUser() {
+    const name = document.getElementById('new-name').value.trim();
+    const emojis = appState['new-selected'];
+    
+    if (!name) { alert('Por favor, escribe tu nombre'); return; }
+    if (!emojis || emojis.length !== 3) { alert('Selecciona 3 emojis'); return; }
+    
+    const userId = createUserId(name, emojis);
+    
+    // Verificar si ya existe
+    if (allUsers.find(u => u.id === userId)) {
+        alert('Este usuario ya existe. Prueba con otros emojis.');
+        return;
+    }
+    
+    // Crear usuario
+    const newUser = {
+        id: userId,
+        name: name,
+        emojis: emojis,
+        stars: 0,
+        level: 1,
+        uniqueQuestions: 0,
+        questionsDone: {}, // { 'lengua_ortografia': [0,1,2] }
+        medals: []
+    };
+    
+    allUsers.push(newUser);
+    saveData();
+    
+    loginUser(newUser);
+}
+
+function loginUser(existingUser) {
+    const name = document.getElementById('login-name').value.trim();
+    const emojis = appState['login-selected'];
+    
+    if (!name) { alert('Por favor, escribe tu nombre'); return; }
+    if (!emojis || emojis.length !== 3) { alert('Selecciona 3 emojis'); return; }
+    
+    const userId = createUserId(name, emojis);
+    const user = existingUser || allUsers.find(u => u.id === userId);
+    
+    if (!user) {
+        alert('Usuario no encontrado. ¿Eres nuevo? Crea tu cuenta.');
+        return;
+    }
+    
+    appState.currentUser = user;
+    appState.currentUser.questionsDone = appState.currentUser.questionsDone || {};
+    
+    updateHomeScreen();
+    showScreen('screen-home');
+}
+
+function logoutUser() {
+    appState.currentUser = null;
+    appState['new-selected'] = [];
+    appState['login-selected'] = [];
+    document.getElementById('new-name').value = '';
+    document.getElementById('login-name').value = '';
+    document.querySelectorAll('.emoji-option').forEach(e => e.classList.remove('selected'));
+    document.querySelectorAll('.emoji-preview').forEach(e => e.innerText = '');
+    showScreen('screen-login');
+}
+
+function updateHomeScreen() {
+    const user = appState.currentUser;
+    document.getElementById('header-name').innerText = user.name;
+    document.getElementById('header-emojis').innerText = user.emojis.join(' ');
+    document.getElementById('total-stars').innerText = user.stars;
+    document.getElementById('user-level').innerText = user.level;
+    document.getElementById('unique-questions').innerText = user.uniqueQuestions;
+    document.getElementById('welcome-title').innerText = '¡Hola ' + user.name + '!';
+}
+
+function resetUserProgress() {
+    if (confirm('¿Seguro que quieres borrar TU progreso? Esto no se puede deshacer.')) {
+        appState.currentUser.stars = 0;
+        appState.currentUser.level = 1;
+        appState.currentUser.uniqueQuestions = 0;
+        appState.currentUser.questionsDone = {};
+        saveData();
+        updateHomeScreen();
+        alert('Tu progreso ha sido reiniciado.');
+    }
+}
+
+function deleteAllUsers() {
+    if (confirm('⚠️ ¿Seguro que quieres BORRAR TODOS los usuarios? Esto eliminará el progreso de toda la clase.')) {
+        allUsers = [];
+        localStorage.removeItem('carla_users');
+        logoutUser();
+        alert('Todos los usuarios han sido eliminados.');
+    }
+}
+
+/* ============================================================================
+   NAVEGACIÓN Y JUEGO
+   ============================================================================ */
 
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-}
-
-function goHome() {
-    showScreen('screen-home');
+    
+    // Actualizar estadísticas en cada pantalla
+    if (appState.currentUser) {
+        document.getElementById('subject-stars').innerText = appState.currentUser.stars;
+        document.getElementById('topic-stars').innerText = appState.currentUser.stars;
+        document.getElementById('game-stars').innerText = appState.currentUser.stars;
+        document.getElementById('rewards-stars').innerText = appState.currentUser.stars;
+        document.getElementById('reward-unique').innerText = appState.currentUser.uniqueQuestions;
+        document.getElementById('reward-level').innerText = appState.currentUser.level;
+    }
+    document.getElementById('settings-voice').innerText = appState.voiceEnabled ? 'ON' : 'OFF';
 }
 
 function selectSubject(subj) {
-    state.subject = subj;
-    const titles = { 'mates': 'Matemáticas', 'lengua': 'Lengua', 'medio': 'Conocimiento del Medio' };
+    gameState.subject = subj;
+    const titles = { 'mates': '🧮 Matemáticas', 'lengua': '📖 Lengua Castellana', 'medio': '🌍 Conocimiento del Medio' };
     document.getElementById('topic-title').innerText = titles[subj];
     
     const list = document.getElementById('topics-list');
@@ -552,15 +1072,16 @@ function selectSubject(subj) {
     
     let topics = [];
     if (subj === 'mates') topics = [
-        {id:'sumas', name:'Sumas'}, {id:'restas', name:'Restas'}, 
-        {id:'mult', name:'Multiplicación'}, {id:'div', name:'Divisiones'},
-        {id:'fraccion', name:'Fracciones'}, {id:'problema', name:'Problemas'}
+        {id:'sumas', name:'➕ Sumas con Problemas'}, {id:'restas', name:'➖ Restas con Problemas'}, 
+        {id:'mult', name:'✖️ Multiplicación'}, {id:'div', name:'➗ Divisiones'},
+        {id:'fraccion', name:'🍕 Fracciones'}, {id:'problema', name:'🧩 Problemas Compuestos'}
     ];
     if (subj === 'lengua') topics = [
-        {id:'ortografia', name:'Ortografía'}, {id:'gramatica', name:'Gramática'}
+        {id:'ortografia', name:'🅱️ Ortografía'}, {id:'gramatica', name:'📝 Gramática'},
+        {id:'sinonimos', name:'🔄 Sinónimos'}, {id:'antonimos', name:'↔️ Antónimos'}
     ];
     if (subj === 'medio') topics = [
-        {id:'animales', name:'Animales'}, {id:'cuerpo', name:'Cuerpo Humano'}, {id:'planeta', name:'El Universo'}
+        {id:'animales', name:'🦁 Animales'}, {id:'cuerpo', name:'🫀 Cuerpo Humano'}, {id:'planeta', name:'🪐 El Universo'}
     ];
 
     topics.forEach(t => {
@@ -575,42 +1096,88 @@ function selectSubject(subj) {
 }
 
 function startGame(topicId) {
-    state.topic = topicId;
-    state.attempts = 0;
+    gameState.topic = topicId;
+    gameState.sessionStars = 0;
+    gameState.attempts = 0;
+    gameState.streak = 0;
     showScreen('screen-game');
     loadQuestion();
 }
 
+function getAvailableQuestions(subject, topic) {
+    const user = appState.currentUser;
+    const key = subject + '_' + topic;
+    const done = user.questionsDone[key] || [];
+    
+    if (subject === 'mates') {
+        // Matemáticas son infinitas, no hay límite
+        return { infinite: true };
+    }
+    
+    const bank = questionBank[subject][topic];
+    const available = bank.filter((q, index) => !done.includes(index));
+    
+    return { infinite: false, available, done, total: bank.length };
+}
+
+function markQuestionDone(subject, topic, index) {
+    const user = appState.currentUser;
+    const key = subject + '_' + topic;
+    if (!user.questionsDone[key]) user.questionsDone[key] = [];
+    if (!user.questionsDone[key].includes(index)) {
+        user.questionsDone[key].push(index);
+        user.uniqueQuestions++;
+    }
+    saveData();
+}
+
 function loadQuestion() {
-    state.attempts = 0;
+    gameState.attempts = 0;
     document.getElementById('game-progress').style.width = '0%';
     const areaOpt = document.getElementById('options-area');
     const areaInp = document.getElementById('input-area');
     const btnSub = document.getElementById('btn-submit');
+    const contextDiv = document.getElementById('question-context');
     
     areaOpt.innerHTML = '';
     areaInp.innerHTML = '';
+    contextDiv.innerHTML = '';
     btnSub.style.display = 'none';
 
-    // Generar Pregunta
-    if (state.subject === 'mates') {
-        state.currentQ = mathEngine.generate(state.topic);
-        document.getElementById('question-emoji').innerText = '🧮';
-    } else {
-        // Elegir banco de conocimiento
-        const bank = knowledgeDB[state.subject][state.topic];
-        // Filtrar por nivel si fuera necesario (aquí simplificado aleatorio)
-        state.currentQ = bank[r(0, bank.length - 1)];
-        document.getElementById('question-emoji').innerText = state.subject === 'lengua' ? '📖' : '🌍';
+    // Verificar preguntas disponibles
+    const available = getAvailableQuestions(gameState.subject, gameState.topic);
+    
+    if (!available.infinite && available.available.length === 0) {
+        // Reciclar preguntas antiguas
+        alert('¡Has completado todas las preguntas de este tema! Vamos a repasar algunas anteriores.');
+        appState.currentUser.questionsDone[gameState.subject + '_' + gameState.topic] = [];
+        saveData();
     }
 
-    // Renderizar
-    document.getElementById('question-text').innerHTML = state.currentQ.q;
+    // Generar Pregunta
+    if (gameState.subject === 'mates') {
+        gameState.currentQ = mathEngine.generate(gameState.topic, appState.currentUser.level);
+        document.getElementById('question-emoji').innerText = '🧮';
+    } else {
+        const bank = questionBank[gameState.subject][gameState.topic];
+        const availableQ = getAvailableQuestions(gameState.subject, gameState.topic);
+        const availableIndices = bank.map((q, i) => i).filter(i => !availableQ.done.includes(i));
+        const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+        gameState.currentQ = { ...bank[randomIndex], _index: randomIndex };
+        document.getElementById('question-emoji').innerText = gameState.subject === 'lengua' ? '📖' : '🌍';
+    }
 
-    if (state.currentQ.type === 'input' || !state.currentQ.options) {
-        // Input numérico o texto
+    // Renderizar Contexto
+    if (gameState.currentQ.context) {
+        contextDiv.innerHTML = gameState.currentQ.context;
+    }
+
+    // Renderizar Pregunta
+    document.getElementById('question-text').innerHTML = gameState.currentQ.q;
+
+    if (gameState.currentQ.type === 'input' || !gameState.currentQ.options) {
         let inp = document.createElement('input');
-        inp.type = state.subject === 'mates' && state.topic !== 'fraccion' ? 'number' : 'text';
+        inp.type = gameState.subject === 'mates' && gameState.topic !== 'fraccion' ? 'number' : 'text';
         inp.id = 'user-input';
         inp.placeholder = 'Escribe tu respuesta...';
         inp.onkeypress = (e) => { if(e.key==='Enter') checkInputAnswer(); };
@@ -618,8 +1185,7 @@ function loadQuestion() {
         btnSub.style.display = 'inline-block';
         setTimeout(() => inp.focus(), 500);
     } else {
-        // Opciones múltiples
-        state.currentQ.options.forEach(opt => {
+        gameState.currentQ.options.forEach(opt => {
             let btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerText = opt;
@@ -633,67 +1199,63 @@ function checkInputAnswer() {
     let val = document.getElementById('user-input').value.trim();
     if (!val) return;
     
-    // Normalizar para mates
-    if (state.subject === 'mates') {
-        if (state.topic === 'fraccion') {
-             // Comparación simple de strings para fracciones
-             if (val.replace(/\s/g,'') === state.currentQ.a.replace(/\s/g,'')) handleSuccess();
+    if (gameState.subject === 'mates') {
+        if (gameState.topic === 'fraccion') {
+             if (val.replace(/\s/g,'') === gameState.currentQ.a.replace(/\s/g,'')) handleSuccess();
              else handleFail();
         } else {
-            if (parseInt(val) === state.currentQ.a) handleSuccess();
+            if (parseInt(val) === gameState.currentQ.a) handleSuccess();
             else handleFail();
         }
     } else {
-        // Lengua (texto)
-        if (val.toLowerCase() === state.currentQ.a.toLowerCase()) handleSuccess();
+        if (val.toLowerCase() === gameState.currentQ.a.toLowerCase()) handleSuccess();
         else handleFail();
     }
 }
 
 function checkOptionAnswer(btnElement, selectedValue) {
-    // Si ya está marcada como correcta o wrong, ignorar
     if (btnElement.classList.contains('correct') || btnElement.classList.contains('wrong')) return;
 
-    state.attempts++;
+    gameState.attempts++;
     
-    if (selectedValue === state.currentQ.correct) {
+    if (selectedValue === gameState.currentQ.correct) {
         btnElement.classList.add('correct');
         handleSuccess();
     } else {
         btnElement.classList.add('wrong');
-        // NO bloqueamos el juego, solo este botón. El usuario puede elegir otro.
-        // Pero registramos el fallo para no dar estrella completa si es el 2º intento
         handleFail(false); 
     }
 }
 
 function handleSuccess() {
-    // Calcular recompensa
-    let starsGain = 1;
-    if (state.attempts === 0) starsGain = 2; // Primera intento = bonus
+    let starsGain = gameState.attempts === 0 ? 2 : 1;
     
-    state.stars += starsGain;
-    state.streak++;
+    appState.currentUser.stars += starsGain;
+    gameState.sessionStars += starsGain;
+    gameState.streak++;
     
-    // Subir nivel cada 5 aciertos seguidos
-    if (state.streak % 5 === 0) {
-        state.level++;
-        mathEngine.level = state.level;
-        alert("¡Nivel Subido! Ahora eres Nivel " + state.level);
+    // Marcar pregunta como hecha (si no es mates)
+    if (gameState.subject !== 'mates' && gameState.currentQ._index !== undefined) {
+        markQuestionDone(gameState.subject, gameState.topic, gameState.currentQ._index);
     }
     
-    updateStats();
+    // Subir nivel cada 5 aciertos seguidos
+    if (gameState.streak % 5 === 0) {
+        appState.currentUser.level++;
+        createConfetti();
+    }
+    
+    saveData();
+    updateHomeScreen();
     showFeedback(true);
 }
 
-function handleFail(isFinal = false) {
-    state.streak = 0;
-    // Si es input y falla, limpiamos para reintentar
-    if (state.currentQ.type === 'input' || !state.currentQ.options) {
+function handleFail() {
+    gameState.streak = 0;
+    if (gameState.currentQ.type === 'input' || !gameState.currentQ.options) {
         document.getElementById('user-input').value = '';
         document.getElementById('user-input').focus();
     }
-    // Si es opción múltiple, ya se marcó en rojo en checkOptionAnswer
 }
 
 function showFeedback(isCorrect) {
@@ -705,22 +1267,14 @@ function showFeedback(isCorrect) {
     modal.style.display = 'flex';
     
     if (isCorrect) {
-        title.innerText = state.attempts === 0 ? "¡Excelente!" : "¡Correcto!";
-        title.className = "feedback-title feedback-correct";
-        icon.innerText = "🎉";
+        title.innerText = gameState.attempts === 0 ? '¡Excelente!' : '¡Correcto!';
+        icon.innerText = '🎉';
         
-        let html = "";
-        // Si es Lengua o Medio, mostrar explicación
-        if (state.subject !== 'mates' && state.currentQ.explanation) {
-            html = `<div class="feedback-explanation"><b>💡 ¿Sabías qué?</b><br>${state.currentQ.explanation}</div>`;
-        } else if (state.subject === 'mates') {
-            html = `<div class="feedback-explanation">Operación resuelta correctamente. ¡Sigue así!</div>`;
-        } else {
-            html = "<div class='feedback-explanation'>¡Muy bien hecho!</div>";
+        let html = '';
+        if (gameState.currentQ.explanation) {
+            html = '<div class="feedback-explanation"><b>💡 Explicación:</b><br>' + gameState.currentQ.explanation + '</div>';
         }
         content.innerHTML = html;
-    } else {
-        // Caso de fallo final (si implementáramos game over)
     }
 }
 
@@ -729,8 +1283,27 @@ function nextQuestion() {
     loadQuestion();
 }
 
-// Iniciar
-init();
+function toggleVoice() {
+    appState.voiceEnabled = !appState.voiceEnabled;
+    saveData();
+    document.getElementById('settings-voice').innerText = appState.voiceEnabled ? 'ON' : 'OFF';
+    document.getElementById('voice-status').innerText = appState.voiceEnabled ? 'ON' : 'OFF';
+}
+
+function createConfetti() {
+    for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.background = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8D8EA'][Math.floor(Math.random() * 4)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+// Inicializar
+initLoginScreen();
 
 </script>
 </body>
